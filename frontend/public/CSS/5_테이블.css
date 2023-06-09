@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+    .fee_table , .fee_table th , .fee_table td{
+                border: solid 2px black; 
+    }
+    .fee_table th {
+                padding: 10px 20px;
+                background-color: #eeeeee;   
+    }
+    .fee_table td{
+                 padding: 10px;
+                 text-align: center;
+    }
+    .fee_table .col1 { width: 50px; }
+    .fee_table .col2 .fee_table .col3 { width: 100px; }
+    .fee_table .col4 { width: 200px; }
+    
+    .login_table{
+           width: 300px;
+           margin: 30px;
+    }
+    .login_table .id , .login_table .password{
+         width: 200px; height: 30px;
+         font-size: 13px;
+         border: solid 1px #eeeeee;
+         border-radius: 10px;
+         padding-left: 10px;
+    }
+    .login_table .btn{
+           width: 100px; height: 70px;
+           background-color: black;
+           color: white;  font-weight: bold;
+           border: none;
+           border-radius: 10px;
+    }

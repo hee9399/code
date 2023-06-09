@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+/*css주석*/
+
+/* 1. 모든 곳에 스타일 적용 */
+     *{ color: blue; }
+     
+     /* 2. h4 태그에 스타일 적용 */
+      h4{color: yellow;}
+
+
+      .text1{color: green;}
+      
+      #tect2{ color: red; }
