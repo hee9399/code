@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+       #wrap{
+             width: 1200px;
+             margin: 0 auto;
+       }
+
+       #header{
+               background-color: skyblue;
+               height: 200px;
+       }
+       #content{
+               background-color: orange;
+               height: 600px;
+               display: flex;
+       }
+       #left_menu{
+                  background-color: gray;
+                  width: 800px;
+       }
+       #right_menu{
+                   background-color: purple;
+                   width: 400px;
+       }
+       #footer{
+               background-color: black;
+       }
+
