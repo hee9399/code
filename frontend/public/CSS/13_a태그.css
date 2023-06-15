@@ -42,9 +42,22 @@ a:visited {/* 해당 요소를 클릭한 적이 있으면 css*/
 li{ list-style-type: none;}
 /*메뉴에 마우스를 올렸을때 서브메뉴를 보이기*/
 .drop_menu:hover .sub_menu{ display: block;}
-
-
-
+/*------------------------드랍메뉴----------------------------*/
+.drop_menu{	position: relative;} /* 상대위치 */ 
+/**/
+.drop_menu{
+	position: absolute;/* 절대위치 */
+	left: -40px; top: 15px; /* drop_menu 요소 기준으로 왼쪽으로 40px 이동*/
+	display: none; /*숨김*/
+	width: 100px; /* 드랍메뉴 사이즈*/
+	background-color: white; /* 드랍메뉴 배경색*/
+	padding: 10px 0px; /* 여백 */
+	text-align: center; /* 텍스트 정렬 */
+}
+/**/
+.drop_menu:hover .sub_menu{
+	display: block; /* 보이기 */
+}
 
 
 
