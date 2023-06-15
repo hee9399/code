@@ -8,22 +8,32 @@
       
 </head>
 <body>
-             <div class=main_name>
-             	<h1> kakao </h1>               
-             </div> 
-            <form>       
-	                  <input class="id" type="text" placeholder="카카오메일 아이디,이메일,전화번호" />
-	             <br/>
-	                  <input class="password" type="password" placeholder=" 비밀번호 " />     
-	             <br/>
-	                  <input type="radio" name="confirm"/>로그인상태유지 
-	             <br/>
-	                  <input class="but" type="button" value="로그인"/>
-	            <br/>
-	                  <input class="but2" type="button" value="QR코드 로그인"/>	
-	                  <ul>
-	                  <span class="font1"> 회원가입 계정찾기 비밀번호</span>
-	                  </ul>         
-            </form>
+	<div> <!-- 로그인 전체 창 -->
+    	<div class=main_name> <!-- 메인 이름 -->
+        	<h1> kakao </h1>               
+        </div> <!-- 메인 이름 end -->
+        <form>
+        <div class="main_text">     
+	    		<input class="id" type="text" placeholder="카카오메일 아이디,이메일,전화번호" />
+	   		<br/>
+	        	<input class="password" type="password" placeholder=" 비밀번호 " />     
+		    <br/>
+		    	<div class="main_radio">
+		        	<input class="radio" type="radio" name="confirm"/>
+		        	<p  class="radio_name">로그인상태유지</p>
+     	        </div>
+		    <br/>
+		        <input class="btn1" type="button" value="로그인"/>
+		    <br/>
+		        <input class="btn2" type="button" value="QR코드 로그인"/>	
+		    <br/>
+		    	<div class="info">		    	               
+		        	<p>회원가입</p><span class="info_box">｜</span>
+		        	<p>계정찾기</p><span class="info_box">｜</span> 
+		        	<p>비밀번호</p>
+		        </div> 		        
+	   </div>                      
+       </form>    	     	
+    </div> <!-- 로그인 전체 창 end -->
 </body>
 </html>
