@@ -43,7 +43,7 @@ li{ list-style-type: none;}
 	background-color: white; /*배경*/
 	opacity: 0.8; /* 요소 투명도 1=100%[투명도없음] , 0.5=50% */
 }
-/* 메뉴 */
+/* 메뉴  s*/
 .main_menu ul{
 	display: flex;
 	justify-content: space-between;
