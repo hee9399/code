@@ -5,14 +5,15 @@
 	display: flex; 
     justify-content: center; 
     margin-top: 200px;
+    margin-bottom: 50px
 }
 .main_text{
 	
-	text-align: center;
+	margin: 0 auto; /**/
 	border: solid 3px #EEEEEE;
-	padding: 50px 50px 100px 50px;
-    margin-top: 55px;
+	padding: 50px;
     
+    width: 430px;
 }
    
 .id , .password { 
@@ -35,7 +36,7 @@
 	color: #616274
 }
 .btn1{
-	width: 300px; height: 50px;
+	height: 50px;
     background-color: #FEE500;
     border: none;
     border-radius: 10px;
@@ -52,10 +53,11 @@
 	font-size: 12px;
 	/*세로를 가로로 정렬함*/
     display: flex;
-	justify-content: center;
+	justify-content: flex-end;
+	
     margin-top: 25px;
-    position: absolute;
-    right: 715px;
+    
+    
 }
 .info_box{ color: #EEEEEE }
 

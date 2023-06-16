@@ -36,7 +36,8 @@
 	background-color: #F9F9F9;
 }
 .item2{
-	
+	display: flex;
+	justify-content: center;
 	
 }
 .sub_img{
@@ -44,6 +45,7 @@
 }
 .content_menu2{
 	margin-top:  6px;
+	
 }
 .content_menu2 p{
 	margin-top:  6px;
