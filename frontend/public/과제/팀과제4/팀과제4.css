@@ -1,0 +1,162 @@
+@charset "UTF-8";
+ *{
+   margin: 0; 
+   padding: 0;
+   font-family: "맑은 고딕"
+}
+
+a{text-decoration: none;}
+
+li{list-style-type:none; }
+/* 헤더 밑 검정 바 안 색, 위치 조정 */
+#menu_black_bar{
+   height:58px;
+   padding:10px 0;
+   display:flex;
+   justify-content: center;
+   align-items:center;
+   background-color: #000000}
+
+/* 검정 바 안 a태그 텍스트 색 */
+#menu_black_bar a{
+   color: white;
+}
+
+/* 검정바 안 내용 블록 크기 */
+.black_bar_space{
+   width:1184px;
+   
+}
+
+/* 검정바 안 블록 안 폰트 사이즈 공간 사이즈 */
+.black_bar_text {
+   width:1144px;
+   padding:0 20px;
+   font-size: 20px;
+   
+}
+
+/* 검정바 안 내용물 정렬 */
+.black_bar_text li{
+   display: flex;
+   display: inline-block;
+}
+
+/* 소개 글 전체 구역*/
+#main_content{
+	width: 1184px;
+	margin: 0 auto;
+}
+.main_font{
+	margin-top: 90px;
+    margin-left: 23px;
+}
+.left_name{
+	display: flex;
+	margin-top: 17px;
+    margin-left: 23px  
+}
+.name{ 
+	display: none;
+}
+.left_name .p_font1{
+	font-size: 20px; 
+}
+.left_name .p_font2{
+	font-size: 16px;
+	margin-top: 4px
+}
+.p_foint3{
+	font-size: 16px;
+	color: #666666;
+	margin-left: 23px;
+	margin-top: 10px;
+}
+.sinup_box1{
+	padding: 65px 16px 70px;
+	border-right: solid 2px orange;
+	width: 557px;
+	text-align:center;
+	display: table-cell;
+	margin-top: 10px
+}
+.sinup_item1{
+	display: flex;
+	
+}
+.item1{
+	margin-top: 10px;
+}
+.btn1{
+	background-color: #D72300;
+	border: none; color: white;
+	font-weight: bold;
+	margin-left: -13px;
+    width: 444px;
+    padding: 15px;
+	font-size: 1.625rem;
+	border-radius: 8px;
+}
+.sinup_box2{
+	padding: 45px 16px 70px;
+	width: 557px;
+	text-align:center;
+	display: table-cell;
+}
+.sinup_item2{
+	display: flex;
+}
+.btn2{
+	background-color: #1EC800;
+	border: none; color: white;
+	font-weight: bold;
+	margin-left: -13px;
+    width: 338px;
+    padding: 15px;
+	font-size: 1.625rem;
+	border-radius: 8px;
+}
+.btn3{
+	background-color: #FFEB00;
+	border: none; color: #3C1E20;
+	font-weight: bold;
+	margin-left: -13px;
+    width: 338px;
+    padding: 15px;
+	font-size: 1.625rem;
+	border-radius: 8px;
+	margin-top: 10px;
+}
+.btn4{
+	background-color: #000000;
+	border: none; color: white;
+	font-weight: bold;
+	margin-left: -13px;
+    width: 338px;
+    padding: 15px;
+	font-size: 1.625rem;
+	border-radius: 8px;
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
