@@ -33,7 +33,8 @@
 }
 .radio_name{
 	margin-top: 20px;
-	color: #616274
+	color: #616274;
+	font-size: 12px;
 }
 .btn1{
 	height: 50px;
@@ -60,10 +61,34 @@
     
 }
 .info_box{ color: #EEEEEE }
-
-
-
-
+.footer{
+	width: 100%;
+	
+}
+.f_font{
+	display: flex;
+    font-size: 5px;
+    margin-top: 39px;
+	justify-content: center;
+	
+}
+.f_font p{
+	padding: 0 10px;
+}
+.font6{
+	border: none;
+	font-size: 5px;
+	color: #878795;
+}
+.font2{ font-weight: bold;}
+.f_info{
+	display: flex;
+	justify-content: center;
+	font-size: 5px;
+	margin-top: 10px;
+}
+.font1{ color: #878795; }
+.font3{color: #9A9DAD}
 
 
 
