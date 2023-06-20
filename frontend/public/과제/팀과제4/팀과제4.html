@@ -9,74 +9,100 @@
 </head>
 <body>
 
-	<div id="wrap"> <!-- 웹 페이지 전체 구역 -->
-	
-		<!-- 로그인,회원가입 헤더 -->
+<!-- 로그인,회원가입 헤더 -->
       <div id="header">
          <div class="header_content">
-            <div class="top_menu">
-            	<a href="https://www.burgerking.co.kr/#/home"> 브랜드홈</a> 
-            	<span>|</span> 
-            	<a href="https://www.burgerking.co.kr/#/login">로그인</a>
-            	<span>|</span> 
-            	<a href="https://www.burgerking.co.kr/#/notice/1"> 고객센터 </a>
-            </div>
-            	<div class="bottom_menu">
-               		<div class="top_logo"> 
-               				<a href="https://www.burgerking.co.kr/#/login"><img src="img/burger_king_logo.png"> </a>
-               			<h2><a href="https://www.burgerking.co.kr/#/login">버거킹 </a></h2>
-               		</div>
+            <div class="top_menu"><a href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_main.html">브랜드홈</a> <span>|</span> <a href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_login.html"> 로그인</a><span>|</span> 고객센터</div>
+            <div class="bottom_menu">
+               <div><a class="top_logo" href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_login.html"><img src="img/burger_king_logo.png"><h2>버거킹</h2></a></div>
                <div class="signupdiv"><a class="sign_up" href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_join.html"><strong>회원가입</strong></a></div>
             </div>
          </div>
       </div>
-      <div class="sub_header">
-         <div class="sub_menu">
-            <div>HOME > 로그인</div>
+      
+      <div id="menu_black_bar"><!-- 헤더 밑 검정 바 -->
+      <div class="black_bar_space">
+         <div class="black_bar_text">
+            <ul>
+               <li><a class="bbtext" href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_main.html">HOME</a></li>
+               <li>></li>
+               <li><a class="bbtext" href="http://192.168.17.138:8080/frontend/%EA%B3%BC%EC%A0%9C/burger_king/burger_king_menu.html">메뉴소개</a></li>
+            </ul>
          </div>
       </div>
-<!-- 로그인,회원가입 헤더 end-->	
-		<div id=main_content> <!-- 회원가입 전체 구역 -->
-		
-			<h1 class=main_font>환영합니다!</h1> <!-- 대표 제목 -->
-				<div class="left_name"> <!-- 컨텐츠 소개글 -->
-					<p class="p_font1">이메일 주소</p>
-					<p class="p_font2">혹은</p>
-					<p class="p_font1">sns 계정</p>
-					<p class="p_font2">으로 간편하게</p>					
-					<p class="p_font1" style=color:#E22219;>회원가입</p>
-					<p class="p_font2">하세요!</p>
-				</div> <!-- 컨텐츠 소개글 end -->
-			<p class="p_foint3">버거킹 서비스는 만 14세 이상부터 이용 하실 수 있습니다</p>
-					
-			
-			<div class="sinup_box1"> <!-- 회원가입 창 -->
-			
-				<div class="sinup_item1">
-					<img src="img/singup_logo1.jpg">
-					<h3 class="item1">이메일 회원가입</h3>
-				</div>
-				<div class="sin_btn">
-					<input class="btn1" type="button" value="버거킹 회원가입">
-				</div>
-				
-			</div>	<!-- 회원가입 창 end -->
-			
-			<div class="sinup_box2">
-				<div class="sinup_item2">
-					<img src="img/singup_logo2.jpg">
-					<h3 class="item1">간편회원가입</h3>
-				</div>
-				
-				<div class="sin_btn">
-					<input class="btn2" type="button" value="네이버">
-					<input class="btn3" type="button" value="카카오톡">
-					<input class="btn4" type="button" value="애플 로그인">
-				</div>
-			</div>			
-		</div><!-- 회원가입 전체 구역 end -->
-		
-	</div> <!-- 웹 페이지 전체 구역 end -->
+   </div> <!-- 헤더 밑 검정 바 끝 -->
+
+
+
+   <div class=web_container>
+       <div id=main_content> <!-- 회원가입 전체 구역 -->  
+            <div class="welcomebox">
+               <h3 class="page_tit02">환영합니다!</h3> <!-- 대표 제목 -->
+               <div class="left_name"> <!-- 컨텐츠 소개글 -->
+                  <p><span class="br"><strong>이메일 주소</strong> 혹은 <strong>SNS 계정</strong> 으로</span> 간편하게<strong> <em>회원가입</em> </strong>하세요!</p>                       
+                  <p class="p_foint3">버거킹 서비스는 만 14세 이상부터 이용 하실 수 있습니다</p>
+               </div> <!-- 컨텐츠 소개글 end -->
+            </div>
+                  
+            <div class="weblogin_ul">
+               <div class="sinup_box1"> <!-- 회원가입 창 -->
+               
+                  <div class="sinup_item1">
+                     <img src="img/signup_logo1.jpg">
+                     <h3 class="item1">이메일 회원가입</h3>
+                  </div>
+                  <div class="sin_btn">
+                     <input class="btn1" type="button" value="버거킹 회원가입">
+                  </div>
+                  
+               </div>   <!-- 회원가입 창 end -->
+               
+               <div class="sinup_box2">
+                  <div class="sinup_item2">
+                     <img src="img/signup_logo2.jpg">
+                     <h3 class="item2">간편회원가입</h3>
+                  </div>
+                  
+              <div class="simple_login">
+              
+               <ul class="login_list">
+                  <li class="naver"><span>네이버</span></li>
+                  <li class="kakao"><span>카카오</span></li>
+                  <li class="apple"><span>애플</span></li>
+               </ul>
+            </div>
+               </div>
+            </div>       
+            </div><!-- 회원가입 전체 구역 end -->
+         </div>
+         <div id="footer"> 
+            <div class="copyright">
+                  <div class="copy_left">
+                     <img src="img/Burgerking_logo.png">
+                     
+                     <p>서울 종로구 삼봉로 71 G 타워 4F,5F 주식회사 비케이알 | 전화주문 1599-0505<br/>
+                     사업자 등록번호 101-86-76277 | (주)BKR 대표이사 이동형<br/>
+                     Copyright 2019 BKR Co., Ltd. All right Reserved<br/></p>
+                     
+                     <span>
+                        <a href="https://www.facebook.com/burgerkingkorea"><img src="img/facebook.png"></a>
+                        <a href="https://www.instagram.com/burgerkingkorea"><img src="img/instagram.png"></a>
+                     </span>
+                  
+                  </div>
+                  <div class="copy_right">
+                     <ul>
+                        <a href="#"><li> 이용약관 </li></a>
+                        <a href="#"><li class="copy_border"> 개인정보처리방침 </li></a>
+                        <a href="#"><li> 법적고지 </li></a>
+                     </ul>
+                     <a href="#"><span>인재채용</span></a>
+                     <a href="#"><span>가맹점모집</span></a>
+                  </div>
+               </div>
+               <a href="#"><input class="fixed" type="button"  value=""></a>
+              </div>
+
 	
 
 </body>
