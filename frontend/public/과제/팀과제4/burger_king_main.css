@@ -1,0 +1,473 @@
+@charset "UTF-8";
+*{
+   margin: 0; 
+   padding: 0;
+}
+
+@font-face {
+    font-family: 'TTWanjudaedunsancheB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/TTWanjudaedunsancheB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+a{
+   text-decoration: none;
+   color: black;
+}
+
+li{list-style-type:none; }
+
+#wrap{
+   width: 100%;
+   margin: 0 auto;
+   
+}
+
+/* ---- 헤더 시작 ----  */
+
+#header{
+   
+   width: 100%;
+   margin-top: 20px;
+   margin-bottom: 10px;
+   
+
+}
+
+.header_wrap{
+   width: 100%;
+   display: flex;
+   justify-content: space-around;
+   margin: 0 auto;
+   flex-wrap: nowap;
+   position: sticky;
+   top: 0px;
+   z-index: 1;
+   background-color: white;
+   
+   
+}
+
+
+.main_logo{
+   align-items: center;
+   
+}
+
+a{
+   display: flex;   
+   
+}
+.main_logo img{
+   width: 100px;
+   margin: 0px 20px;
+}
+
+
+.arrow {
+   font-size: 5px;
+   line-height: 30px;
+   margin-left: 10px;
+   
+}
+
+
+
+.header_menu{
+   position: relative;
+   display : flex;
+   align-content: center;
+   width: 100%;
+   margin-left: 0px;
+   justify-content: center;
+   margin: 10px 0px;
+   
+}
+
+.menu_option{
+   display : flex;
+   font-weight: bold;
+   margin-top: 15px;
+   position: relative; 
+   
+   
+}
+
+
+.menu_option li{
+   padding: 20px 37px;
+   padding-top: 25px;
+   font-size: 22px;
+   margin-left: -15px;
+   font-family: "TTWanjudaedunsancheB";
+   position: relative;
+   color: black;
+   
+}
+.drop_menu{
+   display: none;
+   position: absolute;
+   top: 95px;
+   left:0;
+   width: 100%;
+   height: 340px;
+   background-color: white;
+   z-index: 0;
+   border-bottom: solid 1px lightgray;
+   
+}
+.sub_menu{
+   display :none;
+   position: absolute;
+   top: 80px;
+   left:0;
+   width: 120px;
+   height: 340px;
+   background-color: white;
+   z-index: 0;
+   left: 28px;
+   
+}
+
+.header_menu:hover .drop_menu{
+   display: block;
+}
+.header_menu:hover .sub_menu{
+   display: block;
+}
+
+.sub_menu a{
+   justify-content: flex-start;
+   }
+
+.sub_menu li{
+   font-size: 14px;
+   width: 100%;
+   padding: 8px 10px; margin: 0;
+   font-weight: bold;
+   font-family: "Sanse-serif";
+
+}
+
+
+
+.header_order{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   
+}
+
+.order_1{
+   font-family: "TTWanjudaedunsancheB";
+   align-items: center;
+   text-align: center;
+   width: 165px;
+   height: 25px;
+   background-color: #502416;
+   color: white;
+   padding-top: 14px;
+   padding-bottom: 12px;
+   font-size: 20px;
+   font-weight: bold;
+   border-radius: 40px;
+   margin: 8px;
+   margin-top: 25px;
+   margin-right: 15px;
+   margin-bottom: 15px;
+   margin-left: 20px;
+}
+
+.order_2{
+   font-family: "TTWanjudaedunsancheB";
+   align-items: center;
+   text-align: center;
+   width: 165px;
+   height: 25px;
+   background-color: #D72300;
+   color: white;
+   padding-top: 14px;
+   padding-bottom: 12px;
+   font-size: 20px;
+   font-weight: bold;
+   border-radius: 40px;
+   margin: 8px;
+   margin-top: 25px;
+   margin-right: 15px;
+   margin-bottom: 15px;
+}
+
+/* ---- 헤더 종료 ----  */
+
+/* ---- 메인 시작 ---- */
+#main{
+   width: 100%;
+   margin: 0 auto;
+   background-color: #F2EBE6;
+   
+}
+.back_color{
+   width: 1440px;
+   margin: 0 auto;
+   
+}
+.main_image_top{
+   margin-bottom: -10px;
+   
+}
+.store{
+   background-color: white;
+   padding-top: 1px;
+   
+   
+}
+
+.main_container{
+   width: 1440px;
+   height: 160px;
+   background-color: #683A2F;
+   margin-top: -10px;
+   padding-top: 10px;
+}
+
+.main_container{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+.main_container_image img{
+   height: 90px;
+}
+
+.main_image_middle img{
+   width: 100%;
+   
+}
+
+.serch{
+   font-family: "TTWanjudaedunsancheB";
+   align-items: center;
+   text-align: center;
+   width: 100px;
+   height: 28px;
+   background-color: #D72300;
+   color: white;
+   font-size: 25px;
+   font-weight: bold;
+   border-radius: 40px;
+   margin: 8px;
+   margin-top: 25px;
+   margin-right: 15px;
+   padding: 10px 30px;
+   
+}
+
+.serch1{
+   margin-top: 80px;
+   text-align: center;
+   font-family: "TTWanjudaedunsancheB";
+   font-size: 50px;
+   color: #2E2E2E;
+}
+
+.serch2{
+   margin: 10px;
+   text-align: center;
+   font-family: "TTWanjudaedunsancheB";
+   font-size: 25px;
+   color: #2E2E2E;
+}
+.serch_main{
+   display: flex;
+   justify-content: center;
+   
+}
+.delivery{
+   width: 1144px;
+   display: flex;
+   justify-content: space-between;
+   margin: 0 auto;
+}
+
+.delivery_list img{
+   width: 100px;
+   height: 112.5px;
+   margin: 0 auto;
+   margin: 0px 50px;
+   
+   
+}
+
+.delivery_list p{
+   text-align: center;
+   font-weight: bold;
+   color: #2E3835;
+   
+}
+
+.text_color{
+   font-family: "TTWanjudaedunsancheB";
+   color: red;
+   margin: 0 auto;
+   text-align: center;
+   font-weight: bold;
+   
+}
+
+.delivery_list li{
+   width: 200px;
+   border-right: solid 1px lightgray;
+}
+
+.delivery_list {
+   margin: 80px 0px;
+   display: flex;
+
+}
+
+.tel{
+   display: flex;
+   justify-content:center;
+   margin: 0 auto;
+   width: 1440px;
+   height: 200px;
+   background-image: url("img/main_background_image.png");
+   color: white;
+   font-family: "TTWanjudaedunsancheB";
+   align-items: center;
+}
+.tel h3{
+   margin-top: 10px;
+   font-size: 21px;
+
+}
+.tel h1{
+   font-size: 35px;
+}
+
+.tel p{
+   display: inline-block;
+   font-size: 50px;
+   align-items: center;
+   margin: 0px 20px;
+   
+}
+
+.tel img{
+   margin-left: 150px;
+   
+}
+
+/* ---- 메인 종료 ---- */
+
+
+/* ---- 푸터 시작 ---- */
+#footer{
+   width: 100%;
+   background-color: #2B0200;
+   margin: 0 auto;
+   color: white;
+}
+
+.footer_option{
+   display: flex;
+   width: 1144px;
+   justify-content: space-between;
+   margin: 0 auto;
+   color: white;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   border-bottom: solid 1px #BBA391;
+}
+
+footer_sub_menu{
+   margin-top: 150px;
+   
+}
+
+.footer_option span{
+   font-family: "TTWanjudaedunsancheB";
+   color : #F5EBDC;
+   font-size: 25px;
+   margin-bottom: 20px;
+}
+
+.footer_sub_menu li{
+   font-family: "TTWanjudaedunsancheB";
+   color: #BBA391;
+   font-size: 18px;
+   line-height: 200%;
+}
+
+.copyright{
+   display: flex;
+   justify-content: space-between;
+   width: 1144px;
+   margin: 0 auto;
+   padding: 40px 0px;
+}
+
+.copy_left a{
+   display: inline;
+}
+
+.copy_left p{
+   margin: 20px 0px;
+   color: #BBA391;
+   font-size: 15px;
+   
+}
+
+.copy_right li{
+   display: inline;
+   color: #BBA391;
+   padding: 0px 5px;
+   font-family: "TTWanjudaedunsancheB";
+   font-size: 15px;
+}
+
+.copy_border{
+   border-left: solid 1px #411C1A;
+   border-right: solid 1px #411C1A;
+}
+
+.copy_right ul{
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 20px;
+}
+
+.copy_right span{
+   color: #BBA391;
+   font-weight: bold;
+   border: solid 1px #BBA391;
+   padding: 5px 30px;
+   margin: 20px 0px;
+   border-radius: 50px;
+   color: #F5EBDC;
+   font-size: 13px;
+   
+}
+
+.copy_right a{
+   display: inline-block;
+   
+}
+
+.fixed{
+   position: fixed;
+   bottom: 50px;
+   left: 50%;
+   width: 52px;
+   height: 52px;
+   background-image: url("img/fixed_arrow.png");
+   background-size: 48px 48px;
+   border: none;
+   opacity: 0.8;
+   margin-left: 600px;
+   background-color: black;
+}
+
+/* ---- 푸터 종료 ---- */

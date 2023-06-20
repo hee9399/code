@@ -16,7 +16,8 @@ console.log(max1)
 
 let min = a11
 min = min > b11 ? b11 : min
-min = min > c11 ?
+min = min > c11 ? cll : min 
+console.log(min) 
 
 
 
