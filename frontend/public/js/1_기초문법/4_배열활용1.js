@@ -10,7 +10,7 @@ let 학생리스트 = [] // * 초기에는 배열에 아무것도 없다. -한�
 function 추가함수(){ // f start -클릭할때마다실행
 	alert('함수 실행했네...')
 	
-	  // 1. input 에서 입력바든 데이터 가져오자.
+	  // 1. input 에서 입력받은 데이터 가져오자.
 		let snameInput = document.querySelector(".sname")
 		// document : HTML문서( DOM객체 )
 		// query : 쿼리(질의)
@@ -41,7 +41,7 @@ function 삭제함수(){
 	 // * 입력받은 데이터 삭제
 	 	 
 	 // 1. <input> 객체 호출
-	 let snameInput = document.querySelector
+	 let snameInput = document.querySelector(".sname")
 	 
 	 // 2. <input> 객체의 value 속성 호출
 	 let name = snameInput.value 
