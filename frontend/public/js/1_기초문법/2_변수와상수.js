@@ -40,10 +40,10 @@ console.log(변수2)	// 변수2 = 30
 console.log(변수2+10) // 변수2+10 => 40
  
 // 5. 입력받은값 저장
-let입력 = prompt('숫자 입력해주세요.')
+let 입력 = prompt('숫자 입력해주세요.')
 console.log('입력받은 숫자 : ' +입력)
 
-let입력 = confirm('삭제하시겠습니까?')	// console( ): 확인(true) or 취소 
+let 상태 = confirm('삭제하시겠습니까?')	// console( ): 확인(true) or 취소 (false) 버튼 존재하는 메시지 함수
 console.log('버튼 상태 : ' + 상태)
 
 // ---------------------------------------//
@@ -52,14 +52,43 @@ const 상수1 = 10
 // 2. 상수 출력
 console.log(상수1)
 // 3. 상수 수정
-// 상수1 = 20 // 오류발생 :
+// 상수1 = 20 // 오류발생 :  Assignment to constant variable.
 console.log(상수1)
 // 4. 상수 연산
 const 상수2 = 상수1 + 20 
 console.log(상수2) 
 // 5. 입력받은 값을 상수에 저장
 const 입력2 = prompt('문자 입력')
-console.log('입력받ㅇㄴ 문자 : '+입력2) 
+console.log('입력받은 문자 : '+입력2) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
