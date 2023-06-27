@@ -144,7 +144,7 @@ function 등록(){ 	console.log('등록함수 클릭');
 	// 3. 배열 저장 
 	날짜배열.push( date );		console.log( 날짜배열 )
 	항목배열.push( name );		console.log( 항목배열 )
-	금액배열.push( money );	console.log( 금액배열 )
+	금액배열.push( money );		console.log( 금액배열 )
 	
 	출력()
 	
