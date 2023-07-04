@@ -13,7 +13,7 @@ function onWrite(){ console.log('onWrite()함수')
 	let passwordValue = document.querySelector('#password').value;
 	let titleValue = document.querySelector('#title').value;
 	let contentValue = document.querySelector('#content').value;
-	
+	 
 		// 날짜 모양으로 출력 
 		let now = new Date(); // 1. 현재 시스템(pc)의 날짜/시간 호출 
 		let year = now.getFullYear(); 	console.log('year : ' + year )		// 현재 연도 
