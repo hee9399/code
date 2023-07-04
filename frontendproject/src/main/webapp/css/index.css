@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+/*css 기본값 제거*/
+
+*{
+	padding: 0px;
+	margin: 0px;
+	font-family: '나눔 고딕'
+}
+li{list-style-type: none;} /*글머리 제거*/
+a{color: black; text-decoration: none;}/*a태그의 색상 , 밑줄 제거*/
+
+/*페이지 사이즈 사이즈 : 1200px*/
+
+/*외부폰트*/
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.head_menu{
+	display: flex;
+	justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

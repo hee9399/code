@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@include file="../header.jsp" %>
 	<h4>게시판 입니다.</h4>
-
+	<%@include file="../footer.jsp" %>
 </body>
 </html>
