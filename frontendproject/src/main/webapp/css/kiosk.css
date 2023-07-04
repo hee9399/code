@@ -4,11 +4,121 @@
 .kioskwrap{
 	font-family: 'MBC1961GulimM';
 	width: 700px;	/*구역 가로사이즈*/
-	margin: 0 auto; /*구역 가로가운데 정렬*/
-	border: 1px solid red; height: 1000px;
+	margin: 50px  auto; /*구역 가로가운데 정렬*/
 }
 .himg{
 	width: 100%;
 	/* height: 200px; */
 	object-fit  : cover;/* 비율 맞추기 : 이미지 짤림 */
 }
+/*카테고리*/
+.categorymenu{
+	display: flex;	/*하위 요소들의 가로배치*/
+	justify-content: space-around; /*가로 배치 방법*/
+	padding-top: 2px;
+}
+/*선택 안된 카테고리*/
+.categorymenu li{
+	color: #8e8e8e;
+}
+/*선택/클릭 된 카테고리*/
+.categoryselect{
+	color: red !important;  /*위에서 이미 color 속성 사용했으므로 중복!!*/
+	/*1. id 별도로 해서 속성적용 2. style속성 3. !important*/
+	border-bottom: 3px solid red;
+	padding-bottom: 3px; 
+}
+
+/*제품들 출력 구역*/
+
+.productbox{
+	height: 450px;
+	display: flex; flex-wrap: wrap;
+	overflow-y: scroll; /*만약에 자식요소들이 현재 구역보다 사이즈가 더 커지면*/
+}
+/*제품 1개*/
+	/*전체 가로사이즈 : width: 700px; / 가로당 제품수*/
+	/*가로사이즈가 700px 혹은 100% 이기 때문에  퍼센테이지의 30% 이미지를 차지한다*/
+.product{width: 20%; text-align: center; margin: 5px 10px 30px 10px;}
+.product img{width: 100%;}
+.product .pprice{color: red;}
+
+/*카드 출력 구역*/
+.cartbox{
+	height: 250px;
+	background-color: #eeeeee;
+	position: relative;
+}
+/*카트 상단 부분*/
+.carttop{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 50px;
+}
+/*카트내 제품수 원정*/
+.ccount{
+	background-color: red;
+	width: 30px;	/*사이즈가 적용이안됨 왜? span 은 inline 이 기본값이므로 사이즈적용못함*/	
+	display:inline-block; 
+	/*inline : 한줄차지안됨 사이즈적용안됨 ,
+	block : 한줄차지 가능 사이즈적용 가능 , inline-block : 한줄차지안됨 사이즈적용 가능*/
+	border-radius: 30px;
+	font-size: 12px;
+	color: white;
+	text-align: center;
+	padding: 4px;
+}
+/*카트내 제품 총가격*/
+.ctotal{color: red;}
+/*카트내 제품 출력 구역 flex는 자식 요소들이 만약에 사이즈가 더크면 자동으로 자식요쇼들의 사이즈를 올림ㄴ*/
+.cartbottom{
+	display: flex; 
+	overflow: scroll; /*가로 스크롤 : overflow: scroll;*/
+	}
+/*카트내 제품 1개*/
+.citem{
+	min-width: 25%; /*한줄에 4개씩 : 최소가로사이즈*/ /*max-width , max-width , max-height , nin-height*/
+	background-color: white;
+	padding: 10px;
+	margin: 5px 10px;
+	position: relative; /*x버튼의 기준점*/
+}
+/*카트 개별 취소 버튼*/
+.icencel{
+	position: absolute;
+	right: 10px;
+	top: 10px;	
+}
+/*카트 제품명*/
+.iname{width: 80%; height: 70px;}
+.iprice{color: red;}
+/*버튼들의 구역*/
+.cartbtn{
+	display: flex;
+	/*가장 가까운 상위 요소의 position: rekatuve; 만일 상위요소내 relative 존재하지 않으면 body 기준점*/
+	position: absolute;
+	width: 100%;
+	bottom: 0px; /*최하단에 배치*/
+}
+.cartbtn button{ /*버튼들의 공통*/
+	width: 50%;
+	font-size: 20px;
+	color: white;
+	border: none;
+	padding: 20px;
+}
+.cancelbtn{background-color: black;}
+.orderbtn{background-color: red;}
+
+
+
+
+
+
+
+
+
+
+
+
+
