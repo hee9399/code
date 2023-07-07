@@ -55,7 +55,7 @@
 				</tr>
 			</thead>
 			
-			<tbody>
+			<tbody class="tcontent">
 				<tr> <!-- 게시물 1개 행 -->
 					<td>1</td> <td>게시물제목</td> <td>유재석</td>
 					<td>2023-07-06</td> <td>321</td> <td>2</td>
@@ -118,7 +118,7 @@
 	<!-- 부트스트랩에서 만든 JS 적용 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	
-	<script src="../list.js" type="text/javascript"></script>
+	<script src="../js/list.js" type="text/javascript"></script>
 	
 	
 	
