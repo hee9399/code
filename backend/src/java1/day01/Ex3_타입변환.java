@@ -1,6 +1,6 @@
 package java1.day01;
 
-public class Ex3_타입변환 {
+
 	public class Ex3_타입변환 { // class s 
 		
 		public static void main(String[] args) { // main s
@@ -88,4 +88,4 @@ public class Ex3_타입변환 {
 				 	
 	  
 	 */
-}
+

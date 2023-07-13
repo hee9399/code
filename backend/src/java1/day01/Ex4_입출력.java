@@ -2,7 +2,7 @@ package java1.day01;
 
 import java.util.Scanner;
 
-public class Ex4_입출력 { // class start
+
 	
 	public class Ex4_입출력 { // class s 
 
@@ -58,4 +58,4 @@ public class Ex4_입출력 { // class start
 			
 		} // main e 
 	} 
-}// class end
+

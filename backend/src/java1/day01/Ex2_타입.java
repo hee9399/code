@@ -1,9 +1,9 @@
 package java1.day01; // 현재 클래스의 패키지 경로
 
-public class Ex2_타입 { // class start
+public class Ex2_타입 { // class s
 	
 	// main + 컨트롤 + 스페이스바 => 엔터
-	public static void main(String[] args) {
+	public static void main(String[] args) { // main start
 		
 		// 1. [ p.41 ] 진수를 표현하는 방법 
 				int var1 = 0b1011;	// (2진수) 데이터 앞에 0b 		1011[2] -> 11 [10]
@@ -64,7 +64,7 @@ public class Ex2_타입 { // class start
 				System.out.println("\t");
 				System.out.println("\n줄바꿈");
 				System.out.println("\r캐리지 리턴");
-			} // main e 
+			
 		} // class e 
 
 		/*
@@ -117,9 +117,9 @@ public class Ex2_타입 { // class start
 		 	 	유니코드 : 전세계 공용어 문자 표현				2바이트 = 특수문자/숫자/영문/한글
 		*/
 		
-	}
+	} // class end
 	
-} // class end
+
 
 /* 
  	타입/자료형 : 
@@ -146,8 +146,7 @@ public class Ex2_타입 { // class start
   		상자의 종류가 많아요 사탕하나를 담기위해 어떤상자를 골라야할지 정해야겠죠 
   		사탕하나를 저장할꺼면 작은 상자를 고르겠죠 큰상자 보다는 
   		
-  		그래서 자바는 메모리 크기와 허용범위를 미리 정하는거죠 
-  		
+  		그래서 자바는 메모리 크기와 허용범위를 미리 정하는거죠 	
   		그러면 똑같은 상자 2개에 선물을 다른거 담을껀데 상자가 같으면 식별이 불가능하 잖아요 
   		그래서 변수명을 다르게 적어야해요 
   
