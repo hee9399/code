@@ -3,7 +3,6 @@
 // 1. list.js 에서 클릭된 게시물 번호 호출 [세션]
 let no = sessionStorage.getItem('no') ;
 let boardList = JSON.parse( localStorage.getItem('boardList') );
-
 console.log('list.js 에서 저장된 세션정보: ' +no);
  
 // 2. 클릭된 게시물 번호의 게시물찾아서 출력 
