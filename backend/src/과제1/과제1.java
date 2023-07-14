@@ -1,4 +1,4 @@
-package 과제; 
+package 과제1; 
 
 public class 과제1 {
 
