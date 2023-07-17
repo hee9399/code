@@ -140,7 +140,7 @@ public class 연산20문제 {
 		
 		//------ 문제13 여기에 풀이-------//
 			System.out.println("키2 : "); int 키1 = scanner.nextInt(); 
-			System.out.println("표준 체중 : " +(키-100)*0.9); 
+			System.out.println("표준 체중 : " +(키1-100)*0.9); 
 			
 		
 		//------ 문제14 여기에 풀이-------//
