@@ -126,7 +126,7 @@ public class Ex1_조건문 { // class start
 				
 				switch(grade2) {
 					case 'A' : 
-					case 'a' :
+					case 'a' : 
 						System.out.println("A등급 우수회원"); 
 						break; 
 					case 'B' : 
