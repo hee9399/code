@@ -14,23 +14,14 @@ public class 연산20문제 {
 		||_/=\\__|
 	 */
 		//------ 문제1 여기에 풀이-------//
-			//1행
-				System.out.print("|"); System.out.print("\\"); 
-				System.out.print("_"); System.out.print("/");    System.out.println("|"); // println 출력후 줄바꿈
-			//2행
-				System.out.print("|"); System.out.print("q");    System.out.print(" p"); 
-				System.out.print("|"); System.out.print("   /"); System.out.println("}");// println 출력후 줄바꿈
-			//3행
-				System.out.print("(");  System.out.print(" 0 "); System.out.print(")"); 
-				System.out.print("\""); System.out.print("\"");  System.out.print("\""); System.out.println("\\"); // println 출력후 줄바꿈 
-			//4행
-				System.out.print("|");  System.out.print("\""); System.out.print("^"); 
-				System.out.print("\""); System.out.print("`"); System.out.println("    |"); //println 출력후 줄바꿈 
-			//5행
-				System.out.print("|"); System.out.print("|");  System.out.print("_"); System.out.print("/"); 
-				System.out.print("="); System.out.print("\\"); System.out.print("\\");System.out.print("_");
-				System.out.print("_"); System.out.println("|"); //println 출력후 줄바꿈
-			
+		
+	 	System.out.println(" ----------- 문제1 ------------- ");
+		System.out.print("출력2"); // 출력만 System.out.println("출력1"); // 출력후 줄바꿈
+	  	System.out.printf("%s \n" , "출력3");// 형식 출력
+	  
+	  	System.out.print("|\\_/| \n|q p|   /}\n( 0 )\"\"\"\\ \n|\"^\"`    | \n||_/=\\\\__| \n");
+	  
+	 
 		/*
 				문제2 : 입력받은 3개 데이터를 이용한 표 만들기 
 	     		[입력변수]
