@@ -80,7 +80,19 @@ public class If문제7문제 {
 			}
 			
 		/* -------문제7----- */
-		
+			System.out.println("--------- 문제7 -----------");
+			System.out.print("아이디 : "); 	String id = scanner.next();
+			System.out.print("비밀번호 : ");	String password = scanner.next();
+				System.out.println( id=="admin");	System.out.println( id.equals("admin") );
+			if( id.equals("admin")  ) { // 만약에 입력받은 아이디가 admin 이면 
+				if( password.equals("1234") ) { // 아이디가 admin 이고 패스워드가 1234 이면 
+					System.out.println("[로그인 성공]");
+				}else { // 아이디가 admin 이고 패스워드가 1234 가 아니면
+					System.out.println("[로그인 실패]패스워드 다릅니다.");
+				}
+			}else { // admin 아니면 
+				System.out.println("[로그인 실패]존재하지 않는 아이디입니다.");
+			}
 		
 	}
 	

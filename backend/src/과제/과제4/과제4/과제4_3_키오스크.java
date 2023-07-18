@@ -14,12 +14,13 @@ public class 과제4_3_키오스크 {
 		
 		int 콜라가격 = 300 ;	int 환타가격 = 200 ;	int 사이다가격 = 100 ; 
 		
-		while(true) {
+		while(true) {// 무한루프 // 종료할때까지 4입력할때까지 프로그램 실행되야함 = 무한루프
 			System.out.println("\n\n-------------------- 메뉴 ------------------- ");
 			System.out.println("1.콜라[300] 2.환타[200] 3.사이다[100] 4.결제");
 			System.out.print(">>>>>> 선택 : "); int ch = scanner.nextInt();
 			
 			/* 문제풀이 위치 */
+				
 			
 			
 			/* ----------- */

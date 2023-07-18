@@ -186,7 +186,7 @@ public class 연산20문제 {
 		
 		//------ 문제20 여기에 풀이-------//
 			System.out.print("아이디 : ");	String 아이디 = scanner.next(); 
-			System.out.print("비밀번호 : ");  String 비밀번호 = scanner.next(); 
+			System.out.print("비밀번호 : ");   String 비밀번호 = scanner.next(); 
 			System.out.println(아이디.equals("admin") && 비밀번호.equals("1234") ? "로그인성공" : "로그인실패" );
 			// * 비교/산술 연산자는 객체에서 사용 불가능[기본타입vs객체 메모리구조 다름] 
 			// 기본타입 데이터 비교시 == 가능 	// 문자열 데이터 비교시 == 불가능 [ .equals() 메소드 사용 ] 

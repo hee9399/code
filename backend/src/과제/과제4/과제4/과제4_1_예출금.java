@@ -1,23 +1,40 @@
-package 과제.과제4;
+package 과제.과제4.과제4;
 
 import java.util.Scanner;
 
 public class 과제4_1_예출금 { 
 	public static void main(String[] args) { 
 		
+		// 입력객체
 		Scanner scanner = new Scanner(System.in);
 		
-		int balance = 0; String account = "123-1234"; short password = 1234;
+		  
+		int balance = 0; String account = "123-1234"; short password = 1234;  
 		
 		while( true ) { // 무한루프 [ 종료조건 : 4 입력시 break; ] 
 			System.out.println("\n\n--------------------");
 			System.out.println("1.예금 2.출금 3.잔액 4.종료 : ");
 			System.out.println("--------------------");
 			System.out.print(">> 선택 : ");
+			// 무한 입력
 			int ch = scanner.nextInt();
 			
 			/* 문제풀이 위치 */
-			
+			// 1. 입력에 따른 경우의수 판단 
+			if( ch == 1 ) { // 예금기능 구현 
+				System.out.print("예금액 : ");    
+			    balance += scanner.nextInt(); // int는 선언키워드 이기때문에 키워드와 키워드명을 붙이면 선언이되고 키워드명을빼고 키워드명만넣으면 호출이된다
+				
+			}
+			else if( ch == 2 ) { // 출금기능 구현 
+				System.out.print("계좌번호 : "); String account = scanner.next();
+			}
+			else if( ch == 3 ) { // 잔액기능 구현 
+				System.out.print("패스워드 : "); short password = scanner.nextShort();
+			}
+			else if( ch == 4 ) { // 종료기능 구현 
+				break;
+			}
 			
 			/* ----------- */
 			
@@ -26,6 +43,19 @@ public class 과제4_1_예출금 {
 	} 
 } 
 
+/*
+ 
+ // 1번문제는 예금액 과 계좌번호 와 패스워드를 출력 , 입력 하는 코드작성 
+			System.out.print("예금액 : ");  int balance = scanner.nextInt(); 
+			System.out.print("계좌번호 : "); String account = scanner.next();
+			System.out.print("패스워드 : "); short password = scanner.nextShort();
+				// 계좌번호 가 123-1234 이다
+				System.out.println(account.equals("123-1234") );
+				
+ 
+ 
+  
+ */
 
 /*
 	주제 : 예출금 시스템
