@@ -1,4 +1,4 @@
-package 과제.과제4;
+package 과제.과제4.과제4;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -9,10 +9,10 @@ public class 과제4_2_가위바위보 {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		int 플레이어;
-		int 컴퓨터;
-		int 게임수 = 0; 
-		int 플레이어승리수 = 0 ; int 컴퓨터승리수 = 0 ;
+		int 플레이어;		// 플레이
+		int 컴퓨터;		// 컴퓨터 낸수 저장하는 변수 역할
+		int 게임수 = 0; 	// 게임 횟수 저장하는 변수 역할
+		int 플레이어승리수 = 0 ; int 컴퓨터승리수 = 0 ; // 승리할때마다 승리수를 저장하는 변수 역할
 		
 		while(true) {
 			
@@ -20,8 +20,46 @@ public class 과제4_2_가위바위보 {
 			System.out.print(" >>>>>>>  가위[0] 바위[1] 보[2] 종료[3] 중 선택 : ");
 			플레이어 = scanner.nextInt();
 			
-			/* 문제풀이 위치 */
+			/* 문제풀이 위치 */ 
 			
+			// step3 : 종료 코드를 넣어주는 시점 [난수x 승리자판단x] 
+			if(플레이어 == 3 ) {
+			
+				System.out.println("게임수 : " +게임수); // 경우의수 없는 출력
+			
+				if(플레이어승리수 > 컴퓨터승리수) {System.out.println("플레이어 최종 승리 : " + 플레이어승리수);}
+				else if(플레이어승리수 < 컴퓨터승리수) {System.out.println("컴퓨터 최종 승리 : " +컴퓨터승리수);} 
+				else {System.out.println("무승부");}
+				
+					break; // while 종료
+				}
+			
+			// step1
+			// 컴퓨터수는 난수로 자동으로 생성한다. [Mate.random() vs new Random();] 
+			// 1. 랜덤 객체 생성 
+			Random random = new Random(); 
+				// 2. 랜덤 객체를 이용한 랜덤 함수 이용 [객체가 있으면 메소드/함수/행동 사용 가능] 
+			컴퓨터 = random.nextInt(3); 	// 0~2 사이의 난수 생성 
+			System.out.println("컴퓨터가 낸수 : " +컴퓨터); 
+			
+			// step2
+				// 가위바위보 경우의수 = 3가지 [승리 패배 무승부 / 가위 바위 보] 
+				// 승리자 판단을 해야해요 
+				// 승리 : 가위(내가)&&보(컴퓨터가) || 바위&&가위 || 보&&바위 
+			if(플레이어==0 && 컴퓨터==1 ||
+			   플레이어==1 && 컴퓨터==0 ||
+			   플레이어==2 && 컴퓨터==1) { // 매 게임마다 승리자 출력
+			 System.out.println("플레이어 승리"); 플레이어승리수++;
+			}
+			// 무승부 : 가위&&가위 || 바위&&바위 || 보&&보
+			else if( 플레이어 == 컴퓨터 ) {
+				System.out.println("무승부"); 
+			}
+			// 패배 : 그외
+			else {
+				System.out.println("컴퓨터 승리"); 컴퓨터승리수++; 
+				게임수++; // 게임수/while 반복횟수 증가
+			}
 			
 			/* ----------- */
 			

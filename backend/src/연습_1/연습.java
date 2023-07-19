@@ -5,7 +5,7 @@ import java.util.Scanner; // Scanner 클래스를 사용하기 위한 클래스�
 public class 연습 {// class start
 	
 	public static void main(String[] args) { // main start
-		Scanner scanner = new Scanner(System.in); 
+		
 		/*
 
 		문제1 : 강아지 console 출력
@@ -34,13 +34,14 @@ public class 연습 {// class start
 		   |  1   | 강호동  |안녕하세요  |  09-28    |
 		  ----------------------------------------
 		 */
+		Scanner scanner = new Scanner(System.in); 
 		System.out.println("-----------------------------문제2-------------------------------");
 		System.out.print("작성자 : "); String 작성자 = scanner.next(); 
-		System.out.print("내용 : "); String 내용 = scanner.next();
-		System.out.print("날짜 : "); String 날짜 = scanner.next();
+		System.out.print("내용 : ");  String 내용 = scanner.next();
+		System.out.print("날짜 : ");  String 날짜 = scanner.next();
 		 
 		System.out.println("------------------방문록--------------------------------"); 
-		System.out.println("|+순번+|+작성자+|+내용+|+날짜+|");
+		System.out.printf("|%4d|%4d|%10d|%4d|" , "순번" , "작성자" , "내용" , "날짜"); 
 		System.out.println("------------------------------------------------------"); 
 		
 		//------ 문제3 여기에 풀이-------//
@@ -51,12 +52,15 @@ public class 연습 {// class start
 			 실수령액 = 기본급 + 수당 - 세금[기본급10%] 
 			[출력조건] 
 			실수령액 출력[ 소수점 없이  ] */
-		System.out.println("기본급 : "); int 정수1 = scanner.nextInt();
-		System.out.println("기본급 : "); int 정수2 = scanner.nextInt();
-		
-		
+		/*
+		System.out.print("기본급 : "); int 정수1 = scanner.nextInt();
+		System.out.print("수당 : "); int 정수2 = scanner.nextInt();
+		System.out.println("실수령액 : ");
+		*/
 		
 		//------ 문제4 여기에 풀이-------//
+			
+		
 		
 		//------ 문제5 여기에 풀이-------//
 		
@@ -172,7 +176,8 @@ public class 연습 {// class start
 		 천원 6장 
 		 백원 7개
 
-문제5 : 하나의 정수를 입력받아 7의 배수인지 출력[ 'O' 혹은 'X' 로 출력]
+문제5 : 하나의 정수를 입력받아 7의 배수인지 출력[ 'O' 혹은 'X' 로 출력] 
+
 
 문제6 : 하나의 정수를 입력받아 홀수 인지 출력 [ 'O' 혹은 'X' 로 출력]
 

@@ -20,22 +20,48 @@ public class 과제4_1_예출금 {
 			int ch = scanner.nextInt();
 			
 			/* 문제풀이 위치 */
-			// 1. 입력에 따른 경우의수 판단 
+			// else if 와 if의 차이점 은 else if는 통으로 묶고 if는 각각의 실행이다 
+			//  step2 : 입력받은 메뉴 번호에 따른 서로 다른 코드/행동 실행 
 			if( ch == 1 ) { // 예금기능 구현 
 				System.out.print("예금액 : ");    
-			    balance += scanner.nextInt(); // int는 선언키워드 이기때문에 키워드와 키워드명을 붙이면 선언이되고 키워드명을빼고 키워드명만넣으면 호출이된다
+				// 일치하면 / 일치하지 않으면 => 경우의수 2개 => if 
+				// 같다 / 다르다.  equals()
+				if(inputAccount.equals(account) ) {
+					// 입력받은 계좌변호와 기존의 계좌번호와 일치하면
+					// 3. 예금액을 입력받아 
+					int inputBalance = scanner.nextInt(); 
+					// 4. 예금액 변수에 누적 더 해준후 [예금 성공] 출력
+					balance += inputBalance;	System.out.println("예금 성공");
+				}else{// 일치하지 않으면 
+					System.out.println("계좌번호 불일치");
+				}
+			 //   balance += scanner.nextInt(); // int는 선언키워드 이기때문에 키워드와 키워드명을 붙이면 선언이되고 키워드명을빼고 키워드명만넣으면 호출이된다
 				
 			}
-			else if( ch == 2 ) { // 출금기능 구현 
-				System.out.print("계좌번호 : "); String account = scanner.next();
+			else if( ch == 2  ) {
+				// step2 : 경우의수 true 기능 구현 
+				System.out.print("계좌번호:"); 		String inputAccount = scanner.next();
+				if( inputAccount.equals( account ) ) {
+					System.out.print("비밀번호:"); 		Short inputPassword = scanner.nextShort();
+					// 1. 비밀번호 일치 경우의수 
+					if( inputPassword == password  ) { // 입력받은 비밀번호 와 기존의 비밀번호와 일치하면
+						// 2. 출금액 받고
+						System.out.print("출금액:"); 		int inputBalance = scanner.nextInt();
+						// 3. 예금액보다 출금액이 더 크면
+						if( inputBalance > balance ) { // 입렫받은 출금액이 현재 예금된 금액보다 크면 
+							System.out.println("잔액 부족");
+						}else {
+							balance -= inputBalance; System.out.println("출금 성공");
+						}
+					}else {
+						System.out.println("비밀번호 불일치");
+					}
+				}else {
+					System.out.println("계좌번호 불일치");
+				}
 			}
-			else if( ch == 3 ) { // 잔액기능 구현 
-				System.out.print("패스워드 : "); short password = scanner.nextShort();
-			}
-			else if( ch == 4 ) { // 종료기능 구현 
-				break;
-			}
-			
+			else if( ch == 3  ) { System.out.println("예금액 : " + balance ); }
+			else if( ch == 4  ) {  System.out.println("안녕히 가세요");  break;  }
 			/* ----------- */
 			
 		
