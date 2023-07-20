@@ -41,7 +41,7 @@ public class 연습 {// class start
 		System.out.print("날짜 : ");   String 날짜 = scanner.next();
 		 
 		System.out.println("------------------방문록--------------------------------"); 
-		System.out.printf("|%4d|%4d|%10d|%4d|" , "순번" , "작성자" , "내용" , "날짜"); 
+		System.out.printf("|%4s|%4s|%10s|%4s|" , "순번" , "작성자" , "내용" , "날짜"); 
 		System.out.println("------------------------------------------------------"); 
 		
 		//------ 문제3 여기에 풀이-------//
