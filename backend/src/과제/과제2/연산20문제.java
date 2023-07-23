@@ -34,7 +34,7 @@ public class 연산20문제 {
 		 */
 		//------ 문제2 여기에 풀이-------//
 				
-			/*	//1.입력 객체 생성
+				//1.입력 객체 생성
 				Scanner scanner = new Scanner(System.in);
 					// System.in = 시스템 입력 = 기보드
 				//2. 입력 객체를 이용한 입력값 호출/저장 
@@ -47,11 +47,11 @@ public class 연산20문제 {
 				System.out.printf("--------------방문록--------------------");
 				System.out.printf("|%4s| %4s  |%10s| %4s|\n" ,"순번", "작성자" , "내용" , "날짜"); 
 				System.out.printf("|%4s| %4s  |%10s| %4s|\n" ,1 ,작성자 , 내용 , 날짜);
-				System.out.printf("--------------------------------------\n") 
-		*/
+				System.out.printf("--------------------------------------\n") ;
+		
 				
 				
-	/*			
+				
 		//------ 문제3 여기에 풀이-------//
 			//1. 입력객체 : 상단에 
 			//2. 입력값 호출 
@@ -102,10 +102,10 @@ public class 연산20문제 {
 		
 		//------ 문제8 여기에 풀이-------//
 			System.out.println("정수8 : "); int 정수8 = scanner.nextInt(); 
-			System.out.println();
-									*/
+			System.out.println("문제8 결과 : " + ( 정수8 % 7 == 0 || 정수8 % 2 == 1 ? "O" : "X" ) );
+									
 		//------ 문제9 여기에 풀이-------// 
-				/*
+				
 			System.out.print("정수9_1 : "); int 정수9_1 = scanner.nextInt(); 
 			System.out.print("정수9_2 : "); int 정수9_2 = scanner.nextInt(); 
 			// 삼항연산자 : 조건?참:거짓          // 중첩 : 조건1 ? 참1 : 조건2 ? 참2 : 조건3 ? 참3 : 거짓 // 읽기 어려우면 if문 사용
@@ -127,7 +127,7 @@ public class 연산20문제 {
 			System.out.print("높이 : "); double 높이 = scanner.nextDouble(); 
 			System.out.println("사다리꼴 계산 : " + (윗변 + 밑변)*높이 / 2);
 			
-			*/
+			
 		
 		//------ 문제13 여기에 풀이-------//
 			System.out.println("키2 : "); int 키1 = scanner.nextInt(); 
