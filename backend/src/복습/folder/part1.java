@@ -8,8 +8,8 @@ public class part1 {
 		Scanner ch1 = new Scanner(System.in);
 		
 		int 콜라재고 = 10 ; int 환타재고 = 3; int 사이다재고 = 2;
-	    int 콜라바구니 = 0 ; int 환타바구니 = 0 ; int 사이다바구니 = 0;
-	    int 콜라가격 = 300 ; int 환타가격 = 200 ; int 사이다가격 = 100 ;
+	    int 콜라바구니 = 0; int 환타바구니 = 0 ; int 사이다바구니 = 0;
+	    int 콜라가격 = 300; int 환타가격 = 200 ; int 사이다가격 = 100;
 		
 	    while(true) {
 	    	
