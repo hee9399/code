@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class 과제5_1 {
 	public static void main(String[] args) {
-while(true) { // 프로그램 무한루프 
-			
+			while(true) { // 프로그램 무한루프	
+					
 			/* ------------------------------- 프로그램의 필용한 객체 및 변수들   ---------------------------- */
 			Scanner scanner = new Scanner(System.in); // 입력객체 
 			String filePath = "./src/과제/과제5/재고파일.txt";	// 파일경로

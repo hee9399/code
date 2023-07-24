@@ -7,7 +7,7 @@ public class 과제4_1_예출금 {
 		
 		// 입력객체
 		Scanner scanner = new Scanner(System.in);
-		
+			
 		  
 		int balance = 0; String account = "123-1234"; short password = 1234;  
 		
@@ -38,7 +38,7 @@ public class 과제4_1_예출금 {
 			 //   balance += scanner.nextInt(); // int는 선언키워드 이기때문에 키워드와 키워드명을 붙이면 선언이되고 키워드명을빼고 키워드명만넣으면 호출이된다
 				
 			}
-			else if( ch == 2  ) {
+		 	else if( ch == 2  ) {
 				// step2 : 경우의수 true 기능 구현 
 				System.out.print("계좌번호:"); 		String inputAccount = scanner.next();
 				if( inputAccount.equals( account ) ) {
