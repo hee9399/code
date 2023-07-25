@@ -1,4 +1,4 @@
-package 과제8;
+package 과제9;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -32,14 +32,18 @@ public class MemberSys {
 				System.out.print("이름 : "); String inputName = sc.next();
 				System.out.print("전화번호 : "); String inputPhone = sc.next();
 				System.out.print("나이 : "); int inputAge = sc.nextInt();
-				// 2. 5가지를 하나로 묶음 = 문자열vs객체
-				// * 객체선언 : 클래스명 객체변수명 = new 생성자명();
-				Member member = new Member(); // 필드에 기본값 들어가 있음
-				// * 객체내 필드 수정
-				// * .(도트연산자) : 접근연산자 (스택변수가 알고 있는 객체주소로 가!)
-				member.id = inputId; member.password = inputPw;
-				member.name = inputName; member.phone = inputPhone;
-				member.age = inputAge; 
+				// 2.
+						// 1. 기본생성자[과제8] vs 정의한생성자[과제9]
+				// 1안
+				Member member = new Member(inputId, inputPw, inputName, inputPhone, inputAge) ;
+				// 2안
+				//Member member2 = new Member(inputId, inputPw, inputName, inputPhone); 
+				//if(inputAge >= 19) member2.age = inputAge;
+				//3안
+			//  Member member3 = new Member(inputId, inputPhone, inputName);
+				
+				
+				
 				// 3. 여러개의 객체를 저장하기 위해 배열에 저장
 					// * 비어있는 인덱스 = 기본값인인덱스 를 찾아서 해당 인덱스에 객체 저장
 				for(int i = 0 ; i<memberList.length; i++) {

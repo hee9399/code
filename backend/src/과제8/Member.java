@@ -8,6 +8,8 @@ public class Member {
 	String phone;
 	int age;
 	// 2. 생성자
+		// 기본생성자 자동으로 생성 
+	
 	
 	// 3. 메소드
 }
