@@ -45,10 +45,10 @@ public class 연습 {// class start
 		System.out.println("작성자 : ");	String 작성자 = scanner.next();
 		System.out.println("내용 : "); String 내용 = scanner.next();
 		System.out.println("날짜 : "); String 날짜 = scanner.next();
-		System.out.println("--------------------------방문록--------------------------------");
+		System.out.printf("--------------------------방문록--------------------------------");
 		System.out.printf("| %4s | %4s | %4s | %4s | %4s |" , "순번" , "작성자" , "내용" , "날짜");
-		System.out.printf("| 순번 | %4s | %4s | %4s | %4s |" , 1 , 작성자 , 내용 , 날짜);
-		System.out.println("-----------------------------------------------------------");
+		System.out.printf("| %4s | %4s | %4s | %4s | %4s |" , 1 , 작성자 , 내용 , 날짜);
+		System.out.printf("-----------------------------------------------------------\n");
 		
 		//------ 문제3 여기에 풀이-------//
 		/*
@@ -61,14 +61,7 @@ public class 연습 {// class start
 		실수령액 출력[ 소수점 없이  ]
 		 */
 		System.out.println("----------------문제3-----------------------------------------");
-		System.out.println("기본급 : "); int 정수1 = scanner.nextInt(); 
-		System.out.println("수당 : "); int 정수2 = scanner.nextInt();
 		
-		
-		// 실수령액을 알아야하기때문에 실수령액 변수 추가
-		long 실수령액 = scanner.nextLong();
-		실수령액 = 정수1 + 정수2 - (int)(정수1*0.1);
-		System.out.println("실수령액 : " +실수령액);
 				
 		//------ 문제4 여기에 풀이-------//
 		System.out.println("----------------문제4-----------------------------------------");

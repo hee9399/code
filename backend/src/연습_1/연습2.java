@@ -12,9 +12,9 @@ public class 연습2 {
 		System.out.print("파일에 저장할 내용 : "); 
 		Scanner scanner = new Scanner(System.in); 
 		String instr = scanner.naxtLine(); 
-		
+
 		FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/da07/Ex2_테스트.txt" , true); 
-		FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/da07/Ex2_테스트.txt" , true)
+		FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/da07/Ex2_테스트.txt" , true);
 		
 		byte[] instrArray = instr.getBytes(); 
 		fileOutputStream.write(instrArray);
@@ -139,4 +139,4 @@ public class 연습2 {
 	   }	// main e
 	   
 } // class e
->>>>>>> branch 'main' of https://github.com/hee9399/ezen_web_2023_A.git
+
