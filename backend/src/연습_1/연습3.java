@@ -6,78 +6,73 @@ public class 연습3 { // class	 s
 	
 	public static void main(String[] args) {	//	main e
 		
-		Scanner ch1 = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		int 콜라재고 = 10;		int 환타재고 = 10;		int 사이다재고 = 10; 
 		int 콜라바구니 = 0;		int 환타바구니 = 0;		int 사이다바구니 = 0;
-		int 콜라가격 = 300;		int 환타가격 = 200;		int 사이다가격 = 100; 
+		int 콜라가격 = 300;	int 환타가격 = 200;	int 사이다가격 = 100; 
 		
-	while(true) { // 제고 선택결제를 위한 무한루프
-		System.out.println("메뉴");
-		System.out.println("1.콜라 | 2.환타 | 3.사이다 | 4,결제 |");
-		System.out.println("-------------------------------");
+	while(true) {
 		
-		int ch2 = ch1.nextInt();
+		System.out.println("1.콜라 2.환타 3.사이다");
 		
-		// 1번메뉴 선택했을때
-		if(ch2 == 1) {
-			if(콜라재고 > 0) { // 콜라재고가 0보다 크면 바구니에 담고 콜라재고는 바구니에 담기니까 감소
+		int ch1 = sc.nextInt();
+		
+		if(ch1 == 1) {
+			if(콜라재고 > 0) {
 				콜라재고--;
 				콜라바구니++;
-			}else {
-				System.out.println("콜라재고없음");
 			}
 		}
-		// 2번메뉴 선택했을때
-		if(ch2 == 2) {
+		if(ch1 == 2) {
 			if(환타재고 > 0) {
-				환타재고--; 
+				환타재고--;
 				환타바구니++;
-			}else {
-				System.out.println("환타재고없음");
 			}
 		}
-		// 3번메뉴 선택했을때
-		if(ch2 == 3) {
+		if(ch1 == 3) {
 			if(사이다재고 > 0) {
 				사이다재고--;
 				사이다바구니++;
-			}else {
-				System.out.println("사이다재고없음");
 			}
 		}
-		// 4번메뉴 선택했을때
-		if(ch2 == 4) { // 각메뉴의 수량과 가격이 주문할때마다 떠야하고 주문한 총가격이 출력되야함
-			System.out.println("-----------------------");
-			System.out.println("제품명 |   수량 |      가격 |");		// 본횟수 1번
+		if(ch1 == 4) {
+			System.out.println("제품명  | 수량  |   가격   |");
 			
-			if(콜라바구니 != 0) {
-				System.out.println("콜라\t"+콜라바구니+"     "+콜라가격);
-			}
-			if(환타바구니 != 0) {
-				System.out.println("환타\t"+환타바구니+"     "+환타가격);
-			}
-			if(사이다바구니 != 0) {
-				System.out.println("사이다\t"+사이다바구니+"     "+사이다가격);
-			}
-			int 총가격 = (사이다바구니*사이다가격) + (콜라바구니*콜라가격) + (환타바구니*환타가격);
-			System.out.println("총가격 : "+총가격);
-			 
-			int sum = (콜라바구니*콜라가격)+(사이다바구니*사이다가격)+(환타바구니*환타가격); 
-			System.out.println("총가격 : " +sum);
+			if(콜라바구니>0)System.out.println("콜라\t"+콜라바구니+" "+콜라가격);
+			if(환타바구니>0)System.out.println("환타\t"+환타바구니+" "+환타가격);
+			if(사이다바구니>0)System.out.println("사이다\t"+사이다바구니+" "+사이다가격);
+			
+			int 총가격 = (콜라바구니*콜라가격)+(환타바구니*환타가격)+(사이다바구니*사이다가격) ;
+			System.out.println("총가격 : " +총가격);
+			
+			if(총가격 > 1) {
+				System.out.println("1.결제 2.취소");
+				int ch2 = sc.nextInt();
+				
+				if(ch2 == 1) {
+					int 금액 = sc.nextInt();
+					System.out.println(총가격-금액+"결제성공");
+					사이다바구니 = 0; 콜라바구니 = 0; 환타바구니 = 0;
+				}else {
+					System.out.println("잔액부족");
+					콜라바구니+=콜라가격;
+					사이다바구니+=사이다가격;
+					환타바구니+=환타가격;
+					사이다바구니 = 0; 콜라바구니 = 0; 환타바구니 = 0;
+				}
+				if(ch2 == 2) {
+					콜라바구니+=콜라가격;
+					사이다바구니+=사이다가격;
+					환타바구니+=환타가격;
+					사이다바구니 = 0; 콜라바구니 = 0; 환타바구니 = 0;
+				}
+				
+			} // if e
+			
 		}
-		 
-			
-		
 		
 	} // while e
-			
-		
-			
-		
-		
-		
-		
 		
 		
 		
