@@ -8,7 +8,7 @@ public class 고객 {
 	public 고객(String name) {
 		super();
 		this.name = name;
+		
 	}
-	
 	
 }
