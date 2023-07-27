@@ -4,7 +4,7 @@ import java1.day11.Ex1.Ex3.Member;
 
 public class B {
 	public static void main(String[] args) {
-		
+		asd
 	
 	A a = new A(); // A와 B클래스는 같은 패키지
 	
