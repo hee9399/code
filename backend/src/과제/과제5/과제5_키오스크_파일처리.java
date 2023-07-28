@@ -1,12 +1,18 @@
 package 과제.과제5;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class 과제5_1 {
-	public static void main(String[] args) {
-			while(true) { // 프로그램 무한루프	
-					
+
+public class 과제5_키오스크_파일처리 {
+	public static void main(String[] args) throws IOException {
+		
+		while(true) { // 프로그램 무한루프 
+			
 			/* ------------------------------- 프로그램의 필용한 객체 및 변수들   ---------------------------- */
 			Scanner scanner = new Scanner(System.in); // 입력객체 
 			String filePath = "./src/과제/과제5/재고파일.txt";	// 파일경로
@@ -90,38 +96,4 @@ public class 과제5_1 {
 			
 		} // while end 
 	} // main end 
-} // class end 
-
-/*
-
-	 주제 : 키오스크(변수버전)
-	 	- 실행예시 사진은 없습니다.
-		조건 
-		1. 제품 가격/재고/바구니 상태를 하나의 문자열 변수에서 관리 
-			// 샘플 : 
-					이름 : 콜라 , 환타 , 사이다
-					재고 : 10 , 10 , 10
-					가격 : 300 , 200 , 100
-					바구니 : 0 , 0 , 0
-			
-		2. 키오스크 메뉴 [ 무한루프 : 종료 없음(24시간) ] 
-			1. 콜라 2.사이다 3.환타 4.결제
-			[ 1~3 선택시 ]
-				- 재고가 있을경우 장바구니 담기 / 없으면 '재고부족' 출력
-				 
-			[ 4 선택시 ] 
-				- 현재 장바구니 현황 표시 목록 
-				----------------------------------
-				제품명	수량	가격
-				사이다	1	400
-				환타		2	1000
-				총가격 : 1400
-				- 결제메뉴 표시
-					1. 결제 2.취소 
-					[결제]
-						- 금액 입력받아 총가격에 뺀 잔액 출력 -> 결제 성공시 장바구니 초기화 
-						- 만약에 금액이 부족하면 결제 취소 -> 장바구니 초기화 / 재고 다시 되돌리기
-					[취소]
-						- [ 장바구니 초기화 / 재고 다시 되돌리기 ]
- 
- */
+}

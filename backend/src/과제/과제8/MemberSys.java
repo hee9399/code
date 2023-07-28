@@ -1,7 +1,9 @@
-package 과제9;
+package 과제.과제8;
 
 import java.util.Arrays;
 import java.util.Scanner;
+
+import 과제.과제9.Member;
 
 // 목적 : 실행 (main메소드사용)
 public class MemberSys {
