@@ -8,7 +8,14 @@ import 과제.과제10.Member;
 import 과제.과제10.MemberSys;
 
 public class MainPageDto {  // 입출력 담당하는 클래스 // view -> HTML/JS
-
+	/*
+	  mainpage 목적/역할 : 삭제했으면 삭제했다 알려주고 실패했으면 실패했다 알려준다
+	  			컨트롤러에서 반환하는 true false를 가지고 System.out.println 이걸 통해 출력만 해주는 것이
+	  			MainPage의 역할입니다
+	  			
+	  유효성 검사(필터링) 역할은 Controller의 역할이다
+	  
+	*/
 	// 0. 싱글톤 생성
 			// 1. 현재 클래스로 에 static 객체 생성 , 필드는 무조건 잠금 
 		private static MainPage mainPage = new MainPage();
