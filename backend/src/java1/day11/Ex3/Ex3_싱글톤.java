@@ -1,4 +1,4 @@
-package java1.day11.Ex3;
+ package java1.day11.Ex3;
 
 public class Ex3_싱글톤 {
 
