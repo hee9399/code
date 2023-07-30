@@ -36,7 +36,7 @@ public static void main(String[] args) {
 		/* ----------- */
 		
 		while(true) {
-			System.out.println("\n\n-------------------- 메뉴 ------------------- ");
+			System.out.println("\n\n -------------------- 메뉴 ------------------- ");
 			System.out.println("1.콜라[300] 2.환타[200] 3.사이다[100] 4.결제");
 			System.out.print(">>>>>> 선택 : "); int ch = scanner.nextInt();
 			
