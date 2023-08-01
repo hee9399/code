@@ -71,12 +71,13 @@ public class 과제5_키오스크_파일처리 {
 				// 3. 배열 상태 업데이트 
 				재고관리[ch-1] = name+","+stock+","+price+","+basket;
 				// 4. 파일에 내보내기 // 파일내 제품들의 변화가 있으므로 업데이트 // 현재 재고관리배열 상태를 파일에 저장 
-				String outStr = "";
+				String outStr = ""; // 파일에 저장하기위한 클래스
 				for( int i = 0 ; i<재고관리.length ; i++ ) { // 배열내 모든 데이터를 하나의 문자열 변환
 					outStr += 재고관리[i].split(",")[0]+","+재고관리[i].split(",")[1]+
 								","+재고관리[i].split(",")[2]+","+재고관리[i].split(",")[3]+"\n";
 				} // for end 
 				// 5. 재고관리 배열을 하나의 문자열로 변환된 문자열을 바이트배열로 변환후 내보내기
+				// FileOutputStream 에 true를 넣지 않는 이유는 중복된값이 없게 하기위해
 				FileOutputStream fileOutputStream2 = new FileOutputStream( filePath ); // 이어쓰기x 새로쓰기o
 				fileOutputStream2.write( outStr.getBytes() );
 			} // if end 
