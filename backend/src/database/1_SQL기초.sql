@@ -49,6 +49,8 @@
 								- create database db명
                                 - create table table명 (필드명 속성명 , 필드명 속성명 , 필드명 속성명 ); 
                             -2. drop	: 데이터베이스 , 테이블 , 뷰(가상테이블) 삭제
+								- drop
+                            
                             -3. alter	: 테이블 , 뷰(가상테이블) 속성 수정
                             -4. truncate : 테이블내 데이터 초기화/삭제 
                             -5. rename	 : 테이블(표) 의 이름 변경 
@@ -91,7 +93,36 @@
 								1번 레코드 , 2번 레코드 , 3번레코드
                                 
                             3. 행/열 로 구성된 표를 다른 표와 연결/관계 = 관계형 데이터베이스
+                     - 데이터 필드 타입 [ mysql기준 *DBMS 조금씩 다름 ] 
+						(숫자) : 바이트 단위 
+						1. 정수 
+							tyinyint[1바이트] : -128-127 , 
+                            smallint(2바이트) : +-3만정도 , 
+                            mediumint(3바이트) : +-8백만정도
+                            int(4바이트)  : +-21억 정도
+                            bigint(8바이트) : +-21억 이상
+						2. 실수 
+							float(4) : 소수점 7자리
+                            double(8)  : 소수점 15자리
+						3. 문자 
+							char(문자길이) , varchar(문자길이)
+						둘의 차이점은? 
+							[ 최소 0~최대255 글자수 까지 가능 ] 그 이상이라면? 대용량 text  longtext  사용해야한다 
+                            char : 고정길이    char(3) -> 'ab' -> 3바이트   [ * 저장할 데이터의 글자수가 제한되어 있는경우 ]
                             
+                            [ 최소 0~최대65535 글자수 까지 가능 ]  그 이상이라면? 대용량 text  longtext  사용해야한다 
+                            varchar : 가변길이 varchar(3) -> 'ab' -> 2바이트 [ * 저장할 데이터의 글자수가 정확하지않을때 ] (누구는이름이 3글자일수도있고 2글자일수도있을때)
+                            
+						4. 날짜 
+							date(YYYY-MM--DD)(날짜) 
+                            time(HH:MM:SS)(시간) 
+                            datetime(YYYY-MM-DD HH:MM:SS) (날짜시간)
+						5. 대용량 
+							text ( 최소1 ~ 최대65535 )
+                            mediumtext( 최소1 ~ 최대 16000000 )
+                            longtext (4G) (4기가이다)    :   게시물 내용물 , 첨부파일 , 이미지 , 동영상 [ 4G ]
+						6.논리 
+							boolean(1)		:	0 or 1
                             
 */					
 
@@ -157,6 +188,52 @@ create table member( 아이디 text , 비밀번호 text );
 
 #예2 : 테이블 확인 
 select * from member; 
+
+#예3 : 테이블 삭제 
+drop table member; 
+
+# 활용2 : 
+/*
+	문제1 : 
+		1. 웹개발 하는데 DB저장소 'sqldb1web' 이름으로 DB 생성 
+		2. 해당 db에 member 테이블 생성 
+			id( 문자열 최대 20 )
+            password( 문자열 최대 10 )
+*/
+
+# 1. 만약에 생성할 이름의 DB명이 존재하면 삭제... 
+drop database if exists sqldb1web; 
+# 2. DB 생성 
+create database sqldb1web;
+# 3. DB 사용 선택 
+use sqldb1web; 
+# 4. 만약에 생성할 이름의 테이블명이 존재하면 삭제.. 
+drop table if exists 
+# 5. 테이블 생성  (필드명 타입 , 필드명 타입 )
+create database member(id varchar(20) , password varchar(20) )
+# 6. 테이블생성 여부 확인 
+select * from member; 
+
+/*
+	문제2 : 
+		1. 웹개발 하는데 DB저장소 'sqldb1wdb2' 이름으로 DB저장 
+        2. 해당 db에 board 테이블 생성 
+			게시물번호 (필드명 : no       	    타입 : 최대 21억 정도)
+			게시물번호 (필드명 : title       	타입 : 문자열 최대 100)
+			게시물번호 (필드명 : content      	타입 : 문자열 최대 6만 5천 이상 )
+			게시물번호 (필드명 : view       	타입 : 최대 21억 정도)
+			게시물번호 (필드명 : datetime       타입 : 날짜/시간 )
+    
+*/
+
+# 1. 데이터베이스 생성
+drop database if exists sqldb1wdb2;
+create database sqldb1wdb2; 
+# 2. 테이블 생성 
+use sqldb1wdb2; 
+drop table if exists board;
+create table board( no int , title varchar(100) , contnet longtext , view int , date datetime );
+select * from board;
 
 
 
