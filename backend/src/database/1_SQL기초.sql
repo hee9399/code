@@ -17,14 +17,14 @@
 					- 개발자 (본인)
 				DBMS[ 데이터베이스 관리 시스템 ] 
 					- MySQL , ORACLE(1) , MATIADB , SQLSETVER - 각 회사별 소프트웨어
-                    - SQL [ 구조화된 질의 언어 ] ( 구조화된 질문/요청 )
+                    - 표준 SQL [ 구조화된 질의 언어 ] ( 구조화된 질문/요청 )
                     - SQL 이란?  데이터베이스에서 데이터를 추출하고 조작하는 데에 사용하는 데이터 처리 언어 
                     
                 DB [ 데이터 베이스 ]
 					- 실제 데이터 저장된 곳 = DB SERVER
                     - 메모리[ 16진수/기계어 ] : 개발자 직접으로 관리하기 힘들다 
                     
-				- 관리alter 
+				- 관계 
                 
 					DBA ---------->      DB			[ X ]
 					개발자 				기계어 
@@ -35,7 +35,7 @@
 										MYSQL
 										ORACLE
 						 표 만들어줘 				기계어 
-						 create  
+						 create (번역/실행 해주는코드)  
                          SQL언어 학습 
                     이클립스 ------------> JVM  --------> 메모리      [ O ]
                     개발자 				 번역 	
@@ -124,6 +124,14 @@
 						6.논리 
 							boolean(1)		:	0 or 1
                             
+				레코드(record)란 데이터베이스에서 하나의 단위로 취급되는 자료의 집합
+                
+                데이터(data)란 어떤 값을 포함하고 있는 가공되지 않은 1차 자료
+                
+                - 제약조건 
+					1. pk	:	primary key ( pk필드명 )
+					2. fk	:	forelgn key ( fk필드명 ) references pk테이블명(pk필드명) [ 선택 옵션 ] 
+                    
 */					
 
 
@@ -234,6 +242,150 @@ use sqldb1wdb2;
 drop table if exists board;
 create table board( no int , title varchar(100) , contnet longtext , view int , date datetime );
 select * from board;
+
+/*
+	문제3 : 
+		1. 웹개발 하는데 DB저장소 'sqldb1wdb1' 이름으로 DB저장 
+        2. 해당 db에 memberboard 테이블 생성 
+			회원번호 		( 필드명 : mno		 타입 : 최대 21억 정도 )
+            회원아이디 	( 필드명 : mid		 타입 : 문자열 최대 20 )			
+            회원비밀번호 	( 필드명 : mpw		 타입 : 문자열 최대 20 )
+        
+			게시물번호 (필드명 : bno       	    타입 : 최대 21억 정도)
+			게시물번호 (필드명 : btitle       	타입 : 문자열 최대 100)
+			게시물번호 (필드명 : bcontent      	타입 : 문자열 최대 6만 5천 이상 )
+			게시물번호 (필드명 : bview       	타입 : 최대 21억 정도)
+			게시물번호 (필드명 : bdate       타입 : 날짜/시간 )
+    
+*/
+
+# 1. 데이터 베이스 생성
+drop database if exists sqldb1wdb1; # 마냐게 동일한 데이터베이스가/db명 있으면 생성불가능 하기 때문에 만약에 존재하면 삭제
+create database sqldb1wdb1;
+
+# 2. 테이블 생성
+use sqldb1wdb1; # 어디에다 테이블을 설치할것인가? 
+drop table if exists memberboard(
+
+	mno int , # 회원번호		#	회원번호 		( 필드명 : mno		 타입 : 최대 21억 정도 )
+	mid varchar(20) , 		#	회원아이디 	( 필드명 : mid		 타입 : 문자열 최대 20 )	
+	mpw varchar(20) , 		#	회원비밀번호 	( 필드명 : mpw		 타입 : 문자열 최대 20 )	
+    bno int , 				#	게시물번호 (필드명 : bno       	    타입 : 최대 21억 정도)
+    btitle  varchar(100) ,  #	게시물번호 (필드명 : btitle       	타입 : 문자열 최대 100)
+	bcontent longtext , 	#	게시물번호 (필드명 : bcontent      	타입 : 문자열 최대 6만 5천 이상 )
+    bview int , 			#	게시물번호 (필드명 : bview       	타입 : 최대 21억 정도)
+    bdate datetime			#	게시물번호 (필드명 : bdate       타입 : 날짜/시간 )
+
+); # 마냐게 동일한 테이블명이 존재한다면 삭제
+select*from memberboard;
+/*
+	문제4 :
+		1. 웹개발 하는데 DB저장소 'sqldb1wdb1' 이름으로 DB선택 
+        2. 해당 db에 memberboard 테이블을 중복을 최소화 할수 있도록 2개의 테이블로 분리하여 각각 생성 [ 필드의 타입은 문제3 동일 ]
+	단계 -
+		1. 
+
+*/
+
+use sqldb1wdb1;
+drop table if exists member;
+create table member(
+	mno int ,         		#	회원번호 		( 필드명 : mno		 타입 : 최대 21억 정도 )
+	mid varchar(20) , 		#	회원아이디 	( 필드명 : mid		 타입 : 문자열 최대 20 )	
+	mpw varchar(20)  		#	회원비밀번호 	( 필드명 : mpw		 타입 : 문자열 최대 20 )	
+);
+
+drop table if exists board2;
+create table board2(
+
+	bno int , 				#	게시물번호 (필드명 : bno       	    타입 : 최대 21억 정도)
+    btitle  varchar(100) ,  #	게시물번호 (필드명 : btitle       	타입 : 문자열 최대 100)
+	bcontent longtext , 	#	게시물번호 (필드명 : bcontent      	타입 : 문자열 최대 6만 5천 이상 )
+    bview int , 			#	게시물번호 (필드명 : bview       	타입 : 최대 21억 정도)
+    bdate datetime			#	게시물번호 (필드명 : bdate       타입 : 날짜/시간 )
+
+);
+select*from board2; 
+# ---------------------> 테이블 관계 상태 확인 : 메뉴 -> database -> reverse enginner 
+
+-- 예1 : 1:M 관계 / PK:FK 관계alter
+use sqldb2web1;
+drop table if exists member2;
+create table member2(
+	mno_pk int ,
+    mid varchar(20) , 
+    mpw varchar(20) ,
+    primary key(mno_pk)   -- 현재 테이블에서 mno_pk라는 필드를 식별키로 사용 설정 
+    );
+drop table if exists board2;
+create table board2(
+	bno int ,
+    btitle varchar(100) ,
+    bcontent longtext , 
+    bview int , 
+    bdate datetime , 
+    mno_fk int , -- 1.FK 필드선언 
+    foreign key(mno_fk) references member2(mno_fk) -- 2.현재 테이블에서 mno_fk 라는 필드를 외래키로 사용
+    # foreign key( mno_fk)	:	'mno_fk' 라는 필드를 Fk 필드로 설정 
+    # references member2(mno_pk)	:	Fk필드를 member2 테이블의 mno_pk 필드와 참조.. [ 관계 ]
+    
+);    
+/*
+	문제5 : 조건
+		1) 키오스크 시스템 개발하는데 'sqldb2sys' 라는 이름으로 DB 생성 
+        2) 해당 DB에 카테고리(category) 와 제품(product) 테이블 2개를  생성
+        3) 	카테고리 : 카테고리번호(cno) , 카테고리명(cname)  
+			제품 : 제품번호(pno) , 제품명(pname) , 제품가격(pprice) 
+			- 필드 타입은 적절한 타입으로 선언 
+		4) 두 테이블간 관계 
+			- pk필드는 새로 생성하지 않고 pk설정만 하고 fk필드는 선언후 관계 설정한다.
+*/
+# 조건1) 
+drop database if exists sqld2sys;
+create database sqldb2sys; 
+# 조건2)	1. 테이블선언하고 필드명과 필드타입 선언 2.Pk선정 (테이블당 1개 권장)
+		# 2. Pk선정[테이블당 1개 권장]
+        # 3. 1:M 관계 경우에는 M쪽 테이블에 FK테이블 삭제하고 Fk 필드 선언/설정 
+# 여러테이블 생성할때 : PK테이블 생성하고 FK테이블 생성
+# 테이블 삭제할때 : FK테이블 삭제하고 PK테이블 삭제 	
+# 제약옵션 옵션 사용
+
+use sqldb2sys;
+drop table if exists category;
+create table category(
+	cno_pk tinyint ,
+    cname varchar(10) ,
+    primary key(cno_pk)
+);
+
+drop table if exists product;
+create table product(
+	pno_pk int ,
+    pprice int ,
+    cno_fk tinyint ,	-- FK필드로 사용할 필드 선언 [ 연결할 PK필드명/타입 와 동일하게 선언 ] 
+    primary key(pno_pk) ,
+    foreign key(cno_fk) references category(cno_fk)
+);
+
+/* ---------------------------------------------------------------------------------------------------- */
+drop database if exists sqldb2team1;
+create database sqldb2team1;
+use sqldb2team1;
+
+drop table if exists category;
+create table category( cno int , cname varchar(7) , primary key (cno));
+
+drop table if exists movie;
+create table movie( mno int , mname varchar(10) , cno int , primary key(mno) , foreign key(cno) references category(cno) );
+
+drop table if exists localtheater;
+create table localtheater( lno int , lname varchar(5) , primary key(lno) );
+
+drop table if exists movieroom;
+create table movieroom( mrno int , mrname varchar(5) , lno int , primary key(mrno) , foreign key(lno) references localtheater(lno));
+
+drop table if exists screening;
+create table screening( sno int ,  mrno int , mno int , foreign key(mrno) references movieroom(mrno) ,foreign key(mno) references movie(mno) , primary key(sno));
 
 
 
