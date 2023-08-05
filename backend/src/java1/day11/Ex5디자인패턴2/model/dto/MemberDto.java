@@ -10,7 +10,7 @@ public class MemberDto {
 		private int age;
 		// 2. 생성자
 			// 1. 빈생성자 
-		public MemberDto() { }
+		public MemberDto() {}
 			// 2. 풀생성자
 		public MemberDto(String id, String pw, String name, String phone, int age) {
 			super();
