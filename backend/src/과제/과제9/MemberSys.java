@@ -60,8 +60,8 @@ public class MemberSys {
 				
 				// 3. 로그인 성공여부 변수에 따른 흐름 제어
 				//로그인 실패 [ 모든 배열 검사후에 성공 못하면 실패 ]
-				if( login >= 0 ) { System.out.println("안내) 로그인성공"); } // 추후에 로그인시 새로운 메뉴 메소드호출 
-				else { System.out.println("안내) 로그인실패"); }
+				if( login >= 0 ) { System.out.println("안내) 로그인 성공"); } // 추후에 로그인시 새로운 메뉴 메소드호출 
+				else { System.out.println("안내) 로그인 실패"); }
 				
 				
 			} // if end
