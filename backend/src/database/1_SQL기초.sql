@@ -630,7 +630,106 @@ update table1 set 데이터1 = 2 where 데이터2 = '유재석'; # 데이터2 �
 delete from table1; # 모든 레코드를 삭제 
 delete from table1 where 데이터2 = '유재석'; # 데이터2 필드의 값이 '유재석'인 레코드 삭제 
 
+/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+use sqldb4web; 
+/* 1. 테이블의 모든 레코드 검색 */
+select * from member;
 
+/* 2. 회원가입 : mno 자동부여 이므로 생략 */
+insert into member(mid , mpw , mname , mphone)values( 'ezen02' , '1234' , '이젠' , '010-443-1234' );
+# insert into member(mid , mpw , mname , mphone)values( '?' , '?' , '?' , '?' ); 자바로 들어가면 ? 처리한다 무엇이 들어갈지 모르기때문에
+
+/* 3.로그인 : 입력한 값이 존재하는지 검색 */
+select*from member where mid = 'ezen02' and mpw = '1234'; # 로그인성공 : 레코드 1개이상 검색되면 
+select*from member where mid = 'ezen02' and mpw = '12345'; # 로그인실패 : 레코드 0개 검색되면 
+
+/* 4. 아이디/전화번호 중복체크(유효성검사) : 입력한 값이 존재하는지 검색 */
+select*from member where mid = 'ezen02';					-- 조건에 맞는 충족한 레코드의 모든 필드 검색
+# select*from member where mid = '?';  -- 자바일 경우
+select*from member where phone = '010-443-1234';   			-- 조건에 맞는 충족한 레코드의 모든 필드 검색
+# select*from member where phone = '?';   -- 자바일 경우
+
+/* 5. 아이디찾기 / 비밀번호 찾기 : 입력한 값이 레코드 검색 */
+select mid from member where mname = '이젠' and mphone = '010-443-1234'; -- 조건에 맞는 충족한 레코드의 아이디 필드만 검색
+# select mid from member where mname = ? and mphone = ?; -- 자바일 경우
+select mpw from member where mid = 'ezen02' and mphone = '010-443-1234'; -- 조건에 맞는 충족한 레코드의 비밀번호 필드만 검색
+# select mpw from member where mid = ? and mphone = ?; -- 자바일 경우
+
+/* 6. 회원수정 : 비밀번호 수정 : pk식별 조건 [pk 필드는 수정 하지 않음 -권장 ] */
+update member set mpw = '12345' where mno = 4;	# 4번 회원인 레코드의 비밀번호 수정  
+
+/* 6. 회원수정 : 이름 , 전화번호 수정 : pk식별 조건 [ pk필드는 수정 하지 않음 -권장 ] */
+update member set mname = 'ezen' , mphone = '010-1234-1234' where mno = 4; # 4번 회원인 레코드의 
+# update member set mname = ? , mphone = ? where mno = ?;
+
+/* 7. 회원탈퇴 : pk식별 조건 */ 
+delete from member where mno = 4; -- 4번 회원인 레코드 삭제 
+# delete from member where mno = ?;
+
+/* ------------------------------------------------------------------------------------------------ */
+drop database if exists sqldb6wdb;
+create database sqldb6wdb;
+use sqldb6wdb;
+# 1. 회원테이블 
+drop table if exists member;
+create table member(					# 아이돌 그룹 
+	mid char(8) not null ,				# 식별키 			최대 8자리 
+    mname varchar(10) not null ,		# 그룹명			최대 10자리 
+    mumber int not null ,  				# 인원수 			정수 +-21억정도
+    maddr char(2) not null ,			# 지역  			최대 2자리 
+    mphone1 char(3) ,					# 지역번호   		최대 2자리 
+    mphone2 char(8) , 					# 전화번호 		최대 8자리 
+    mgeight smallint ,					# 평균키 			정수 +-3만정도 
+    mdebut date ,						# 데뷔일 			yyyy-mm-dd 
+    primary key( mid ) 					# 제약조건 
+);
+# 2. 구매테이블 
+drop table if exists buy;				 
+create table buy(						# 구매번호 	정수		 		자동번호 부여
+	bnum int auto_increment ,			# 제품명 		최대 6자리 
+    bpname char(6) not null ,			# 분류명 		최대 4자리
+    bgname char(4) , 					# 가격 		정수 
+    bprice int not null ,				# 구매수량 	정수
+    mid char(8) ,						# 구매자 		FK  
+    primary key(bnum) ,					# 제약조건 
+    foreign key(mid) references member(mid) 
+);
+
+
+
+
+/* 무인택배함 DB설계 */
+drop database if exists sqldb7web;
+create database sqldb7web;
+use sqldb7web; 
+/* 테이블 설계 */
+# 1. 무인택배함 테이블
+create table anmdtable1( 
+	bnumber mediumint , 			-- 함번호 
+    bsituation varchar(2) , 		-- 보관상태	
+    bpw varchar(20) );				-- 비밀번호 
+select * from anmdtable1;
+# 2. 물건 테이블
+create table objecttable1( 
+	bitem  varchar(20) , 		-- 물건코드 
+	bname varchar(10) , 		-- 물건이름
+    bsituation varchar(2) );	-- 보관상태 
+select * from objecttable1;
+# 3. 택배함 보관테이블 
+create table archistable1( 
+	cnumer Smallint , 			-- 번호 
+    bnumber mediumint , 		-- 함번호 
+    storagedate datetime , 		-- 보관일시 
+    visitdate datetime );		-- 찾아간일시 
+select * from archistable1;
+# 4. 택배기사 테이블 
+create table couriertale1( 
+	barticle varchar(30) , 		-- 기사코드
+    barname varchar(5) , 		-- 기사이름 
+    barphone varchar(20) );		-- 기사전화번호
+select * from couriertale1; 
+
+insert into anmdtable1( bnumber , bsituation , bpw ) values( 1 , '실온' , 'null' );
 
 
 
