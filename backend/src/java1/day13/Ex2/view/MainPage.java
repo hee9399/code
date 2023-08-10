@@ -54,23 +54,33 @@ public class MainPage {
 			// 1. 보고자하는 게시물의 인덱스 입력받아서 저장
 			System.out.print("출력할 방문록 의 인덱스 : "); int index = sc.nextInt();
 			// 2. view에서 컨트롤에게 입력받은 인덱스 전달보내고 선택한 인덱스의 게시물1개 리턴 받음
-			BoardDto result = BoardController.getInstance().printLogic( index );
+			BoardDto result = BoardController.getInstance().printLogic(index);
 			// 3. 전달받은 결과를 출력
 			System.out.println("안내] 검색한 방문록 정보 ");
-			System.out.println( 	"[작성자] : " + result.getWriter() + 
+			System.out.println( 	"[작성자] : " +result.getWriter() + 
 									" [내용] : "+result.getContent() 	);
 		}
 		// 글수정 페이지 입출력 함수
 		public void updateView() { 
-			// View 에서 Controller 함수 호출하기
-			BoardController.getInstance().updateLogic();
+			System.out.println("안내) 방문록 수정 페이지");
+			// 1. 입출력
+			System.out.println("수정할 방문록 인덱스 번호 : "); int index = sc.nextInt();
+			sc.nextLine();
+			System.out.println("수정할 내용 : "); 		String content = sc.nextLine();
+			System.out.println("수정할 작성자 : ");		String writer = sc.next();
+			// 2. 입력받은 변수를 컨트롤에게 전달보내고 겨로가를 리턴 받음 
+			boolean result = BoardController.getInstance().deleteLogic(index);
+			// 3. 리턴 결과에 따른 제어
+			if(result) {System.out.println("안내) 삭제 성공");}
+			else {System.out.println("안내) 삭제 실패");}
+			
 		}
 		// 글삭제 페이지 입출력 함수
 		public void deleteView() { 
 			// 1. 삭제하는 게시물의 인덱스 입력받아서 저장
 			System.out.print("삭제할 방문록 의 인덱스 : "); int index = sc.nextInt();
 			// 2. view에서 컨트롤에게 입력받은 인덱스 전달보내고 삭제결과 여부 리턴 받음
-			boolean result = BoardController.getInstance().deleteLogic( index );
+			boolean result = BoardController.getInstance().deleteLogic(index);
 			// 3. 리턴 결과에 따른 제어
 			if( result ) { System.out.println("안내] 삭제 성공 ");}
 			else { System.out.println("안내] 삭제 실패 ");}

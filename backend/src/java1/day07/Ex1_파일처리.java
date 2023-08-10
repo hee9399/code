@@ -58,7 +58,7 @@ public class Ex1_파일처리 {
 			// 1. 파일출력스트림 객체 선언 [ 파일경로 ]
 		// FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/day07/Ex1_테스트.txt" );
 		FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/day07/Ex2_테스트.txt" , true );
-		FileOutputStream fileOutputStream = new FileOutputStream("./src/java1/day07/Ex2_테스트.txt" , true ); // 이어쓰기 기능추가
+		FileOutputStream fileInputputStream = new FileOutputStream("./src/java1/day07/Ex2_테스트.txt" , true ); // 이어쓰기 기능추가
 			// 2. 파일출력스트림 객체를 이용한 내보내기 메소드 사용 [ 바이트 단위 ]
 		byte[] instrArray = instr.getBytes();	// 문자열을 바이트배열로 변환후
 		fileOutputStream.write( instrArray );	// 바이트배열을 내보내기 

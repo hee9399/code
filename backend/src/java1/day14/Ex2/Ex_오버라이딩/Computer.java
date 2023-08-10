@@ -5,7 +5,7 @@ public class Computer extends Calculator {
 	// - 자식클래스에서 부모클래스의 멤버 (필드 , 생성자 , 메소드) 를 사용할수 있다
 	
 	// 1. 필드
-	int count;
+	
 	// 2. 생성자
 	
 	// 3. 메소드
@@ -24,7 +24,7 @@ public class Computer extends Calculator {
 	public double areaCircle(double r) {
 		// 선언부는 동일하되 { } 안에 있는 코드를 재정의[리모델링]
 		System.out.println("Computer areaCircle 메소드 실행");
-		return Math
+		return Math.PI*r*r;
 	}
 	
 }

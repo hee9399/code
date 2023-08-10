@@ -40,7 +40,7 @@ public class part5 {
 					
 					
 					if(basket > 0) {
-						System.out.println("%10s %10s %10s \n" , name , basket , basket*price);
+						System.out.printf("%10s %10s %10s \n" , name , basket , basket*price);
 					}
 				}
 				

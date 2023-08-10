@@ -10,6 +10,7 @@ public class BoardDao extends Dao{
 	// 0. 싱글톤
 		private static BoardDao boardDao = new BoardDao();
 		public static BoardDao getInstance() {return boardDao;}
+		public Object boardDaoList;
 		private BoardDao() {}
 	
 	// 9. boardWrite			: 게시물쓰기 페이지

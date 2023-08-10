@@ -26,9 +26,11 @@ public class 과제4_1_예출금 {
 				System.out.print("예금액 : ");    
 				// 일치하면 / 일치하지 않으면 => 경우의수 2개 => if 
 				// 같다 / 다르다.  equals()
+				// 3. 예금액을 입력받아 
+				System.out.println("예금액 : "); String inputAccount = scanner.next();
 				if(inputAccount.equals(account) ) {
 					// 입력받은 계좌변호와 기존의 계좌번호와 일치하면
-					// 3. 예금액을 입력받아 
+
 					int inputBalance = scanner.nextInt(); 
 					// 4. 예금액 변수에 누적 더 해준후 [예금 성공] 출력
 					balance += inputBalance;	System.out.println("예금 성공");

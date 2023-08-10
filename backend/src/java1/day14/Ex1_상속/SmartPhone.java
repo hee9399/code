@@ -1,4 +1,4 @@
-package java1.day14.Ex1;
+package java1.day14.Ex1_상속;
 
 public class SmartPhone extends Phone {
 	// extends Phone  - Phone 에있는 클래스를 가져다 쓴다

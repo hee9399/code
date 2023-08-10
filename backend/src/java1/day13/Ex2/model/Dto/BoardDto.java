@@ -13,9 +13,7 @@ public class BoardDto {
 		// void 리턴값이 없다
 	// 2. 생성자
 		// 1. 빈생성자 
-		public BoardDto() {
-			// TODO Auto-generated constructor stub
-		}
+		public BoardDto() {}
 		// 3. 메소드
 			// 2. (권장) 풀생성자
 		public BoardDto(String content, String writer, int view) {
@@ -24,6 +22,13 @@ public class BoardDto {
 			this.writer = writer;
 			this.view = view;
 		}
+		
+		public BoardDto(String content, String writer) {
+			super();
+			this.content = content;
+			this.writer = writer;
+		}
+		
 		public String getContent() {
 			return content;
 		}
@@ -71,5 +76,5 @@ public class BoardDto {
 				get필드명()	: 필드에 값 호출할때 사용되는 메소드 
 			2. toString()			: 객체호출시 주소값이 반환 되지만 객체내 필드값을 반환하고 싶을때 사용되는 메소드
  			
- * */
+ */
 

@@ -5,7 +5,7 @@ import java.util.Scanner; // Scanner 클래스를 사용하기 위한 클래스�
 public class 연산20문제 {
 	
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		
 	/*
 		|\_/|
 		|q p|   /}

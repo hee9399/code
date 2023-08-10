@@ -1,4 +1,4 @@
-package java1.day14.Ex1;
+package java1.day14.Ex1_상속;
 
 public class Phone {
 

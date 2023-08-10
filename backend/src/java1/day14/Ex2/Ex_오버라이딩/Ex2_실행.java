@@ -6,14 +6,14 @@ public class Ex2_실행 {
 		int r = 10;
 		
 		Calculator claculator = new Calculator();
-		System.out.println("원 면적 : "+Calculator.areaCircle);
+		System.out.println("원 면적 : "+claculator.areaCircle(r));
 		
 		
 		// 3. 자식객체 생성
 		Computer computer = new Computer();
 		
 		// 4. 자식객체가 부모클래스 멤버 메소드 호출
-		System.out.println("원 면적 : "+Calculator.areaCircle);
+		System.out.println("원 면적 : "+claculator.areaCircle(r));
 		
 		
 		

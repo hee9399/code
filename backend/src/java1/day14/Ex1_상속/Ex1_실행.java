@@ -1,11 +1,11 @@
-package java1.day14.Ex1;
+package java1.day14.Ex1_상속;
 
 public class Ex1_실행 {
 
 	public static void main(String[] args) {
 		
 		// 1. Phone 부모 객체 
-		Phone phone = new phone();
+		Phone phone = new Phone();
 		System.out.println(phone.color);
 		System.out.println(phone.model);
 		// System.out.println("phone.wifi"); // 오류 발생 : 자식 클래스의 맴버 이므로 불가능
@@ -29,7 +29,8 @@ public class Ex1_실행 {
 		myPhone.sendVoice("여보세요");
 		myPhone.receiveVoidce("안녕하세요! 저는 홍길동 입니다");
 		myPhone.hangUp();
-		myPhone.setWifi(true);
+		myPhone.setwifi(true); 
+		myPhone.internet();
 		
 		
 	}// main e
