@@ -14,7 +14,7 @@ public class MemberDao extends Dao {
 	public boolean infoCheck(String 검색할필드명 , String 검색할값 ) {
 		
 		try {	// 오류 : You have an error in your SQL syntax // SQL 문법 오류 발생
-			String sql = "select*from member where mid "+검색할필드명+" = ?"; System.out.println(sql);
+			String sql = "select*from member where "+검색할필드명+" = ?"; System.out.println(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, 검색할값);
 			rs = ps.executeQuery();

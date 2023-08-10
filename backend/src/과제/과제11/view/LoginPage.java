@@ -1,8 +1,13 @@
 package 과제.과제11.view;
 
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import 과제.과제11.controller.BoardController;
 import 과제.과제11.controller.MemberController;
+import 과제.과제11.model.dao.BoardDao;
+import 과제.과제11.model.dto.BoardDto;
 import 과제.과제11.model.dto.MemberDto;
 
 public class LoginPage {
@@ -18,15 +23,17 @@ public class LoginPage {
 	public void loginMenu() {
 		while(MemberController.getInstance().getLoginSession() != 0) {
 			
+			boardPrint();
+			
 			System.out.println("\n\n ----- ---- ---- -----");
-			System.out.println("1.로그아웃 2.회원정보 3.글쓰기 선택 : ");
+			System.out.println("1.로그아웃 2.회원정보 3.글쓰기 4.글조회 선택 : ");
 			
 			try {
 				int ch = sc.nextInt();
 				if(ch == 1) {MemberController.getInstance().logOut();}
 				if(ch == 2) {info();}
 				if(ch == 3) {boardWrite();}
-				
+				if(ch == 4) {boardView();}
 				
 			}catch(Exception e) {
 				System.out.println(e);
@@ -90,19 +97,90 @@ public class LoginPage {
 		
 	}
 	
-	// 5. boardWrite			: 게시물쓰기 페이지
-	public void boardWrite() {}
+	// 9. boardWrite			: 게시물쓰기 페이지
+	public void boardWrite() {
+		System.out.println("----- post write -----");
+		System.out.println("제목 : "); String title = sc.next();
+		System.out.println("내용 : "); String content = sc.next();
+		
+	boolean result = 	
+		BoardController.getInstance().boardWrite(title , content );
+	if(result) {System.out.println("안내) 글쓰기 등록");}
+	else {System.out.println("안내) 글쓰기 실패 : 제목 1~50 사이로 필수 입력");}
+		
+	}
 	
-	// 6. boardPrint			: 모든 게시물 출력
-	public void boardPrint() {}
+	// 10. boardPrint			: 모든 게시물 출력
+	public void boardPrint() {
+		System.out.println(" ----- post LIST ----- ");
+		// 1. 여러개의 게시물을 요청해서 반환된 결과 저장 
+		ArrayList<BoardDto> result = BoardController.getInstance().boardPrint();
+		// 2. 출력 
+		System.out.printf("%-3s %-4s %-19s %-10s %s \n" , "no" , "view" , "date" , "mid" , "title");
+		for( int i = 0 ; i<result.size(); i++ ) {
+			BoardDto dto = result.get(i);	// i번째의 객체를 호출 
+			System.out.printf("%-3s %-4s %-19s %-10s %s \n" , 
+					dto.getBno() , dto.getBview() , dto.getBdate() , dto.getMid() , dto.getBtitle() );
+		}
+	}
 	
-	// 7. boardView				: 개별 게시물 출력
-	public void boardView() {}
+	// 11. boardView		: 개별 게시물 출력
+	public void boardView() {
+		System.out.println(" ----- post View----- ");
+		// 1. 보고자하는 게시물의 게시물번호를 입력받기[ 식별번호 ]
+		System.out.println("게시물번호 : "); int bno = sc.nextInt();
+		// 2.
+		BoardDto result = BoardController.getInstance().boardView(bno);
+		// 3. 출력
+		System.out.printf("title : %3s view : %3s date : %3s mid : %19s " ,
+				result.getBno() , result.getBview() ,
+				result.getMid() , result.getBdate() );
+		System.out.printf("title : %s \n" , result.getBtitle() );
+		System.out.printf("content : %s \n" , result.getBcontent());
+		//조회수 증가 메소드
+		viewAdd(bno);
+		// 4. 추가메뉴 
+		System.out.println("1.뒤로가기 2.수정 3.삭제 4.삭제 선택 >");
+		int ch = sc.nextInt();
+		
+		if(ch == 1) {}
+		if(ch == 2) {boardUpdate();}
+		if(ch == 3) {boardDelete();}
+		
+	}
 	
-	// 8. boardUpdate			: 게시물 수정
+	// 12. boardUpdate		: 게시물 수정
 	public void boardUpdate() {}
 	
-	// 9. boardDelete			: 게시물 삭제
+	// 13. boardDelete		: 게시물 삭제
 	public void boardDelete() {}
 	
+	// 조회수 증가 메소드
+	public void viewAdd(int bno) {
+		
+		boolean result = 
+			BoardDao.getInstance().viewAdd(bno);	
+		
+	}
+	
 }
+
+/*
+	ArrayList<리스트에저장할타입> 리스트 객체명 = new ArrayList<>();
+		1. .size()		: 리스트내 객체수 					==유사 result.length
+		2. .get( 인덱스 )	: 리스트내 인덱스번째의 객체 호출 		==유사 result[i]
+		3. .add( 객체 )	: 리스트내 객체 추가
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
