@@ -59,6 +59,7 @@ public class BoardDao extends Dao{
 		
 		// 11. boardView	: 개별 게시물 출력
 		public BoardDto boardView(int bno) {
+			
 			try {
 				
 				String sql = "select b.* , m.mid from board b natural join member m where b.bno = ?";
@@ -79,26 +80,59 @@ public class BoardDao extends Dao{
 			
 		}
 		
-		
-		
-		// 12. boardUpdate	: 게시물 수정
-		public void boardUpdate() {}
-		
-		// 13. boardDelete	: 게시물 삭제
-		public void boardDelete() {}
-		// 조회수 증가 메소드
+		// 11-2. 조회수 증가 메소드
 		public boolean viewAdd(int bno) {
-			
+					
 			try {
 				String sql = "update board set bview = bview+1 where bno = ? ";
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1,bno);
 				ps.executeUpdate();
 				return true;
+						
+			}catch (Exception e) {System.out.println(e);}
+				return false;
+			}
+		
+		
+		// 12. boardUpdate	: 게시물 수정 [ 인수 : bno , title , content ] / 반환 : true , false
+		public boolean boardUpdate(BoardDto boardDto) { 
+			try {
+				// 1.
+				String sql = "update board set btitle = ? , bcontent = ? where bno = ?";
+				// 2. 
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1 , boardDto.getBno() ); ps.setString(2, boardDto.getBtitle());	ps.setString(3, boardDto.getBcontent());
+				int row = ps.executeUpdate(); // 4. // 5. [ select -> rs = ps.executeQuery() / insert,update , delete -> int row = ps.excuteUpdate ] 
+				
+				if(row == 1) return true;
 				
 			}catch (Exception e) {System.out.println(e);}
 			return false;
+					
 		}
+		
+		// 13. boardDelete	: 게시물 삭제 [ 인수 : bno , title , content ]
+		public boolean boardDelete(int bno) {
+			try {
+				String sql = "delete from board where bno = ?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, bno);
+				int row = ps.executeUpdate();
+				if(row == 1) return true;
+				
+			}catch (Exception e) {System.out.println(e);}
+			return false; // DB 오류 또는 수정된 레코드가 0 이면 실패 
+			
+		}
+		// 14. 쪽지보내기 
+		public void noteSend() {}	
+		
+		// 15. 쪽지확인 페이지  // + 쪽지답장 
+		
+		// 16. 쪽지답장 보내기 페이지 
+		
+		
 }
 
 		/*

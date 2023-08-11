@@ -14,8 +14,13 @@ public class BoardDto { // 이동객체 = 휘발성
 	// 2. 생성자 [ 1.빈생성자 2.풀생성자 ]
 	public BoardDto() {}
 	
-
-
+	// + 글수정시 사용되는 생성자 
+	public BoardDto(int bno, String btitle, String bcontent) {
+		super();
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+	}
 
 	public BoardDto(String btitle, String bcontent, int mno) {
 		super();
@@ -23,8 +28,6 @@ public class BoardDto { // 이동객체 = 휘발성
 		this.bcontent = bcontent;
 		this.mno = mno;
 	}
-
-
 
 
 

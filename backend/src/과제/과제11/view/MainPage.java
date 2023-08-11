@@ -13,8 +13,6 @@ public class MainPage {
 	// 0. 입력객체 
 	private Scanner sc = new Scanner(System.in);
 	
-	
-	
 	// 1. 메인메뉴
 	public void mainView() {
 		while(true) {

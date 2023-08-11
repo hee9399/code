@@ -57,13 +57,13 @@ public class LoginPage {
 		System.out.println(">PHONE : "+result.getMphone());
 		
 		// 2. 서브메뉴
-		System.out.println("1.비밀번호수정 2.회원탈퇴 3.뒤로가기 선택 : ");
+		System.out.println("1.비밀번호수정 2.회원탈퇴 3.뒤로가기 4.글조회 선택 : ");
 		int ch = sc.nextInt();
 		
 		if(ch == 1) {infoUpdate();}
 		if(ch == 2) {infoDelete();}
 		if(ch == 3) {return;} // 생략가능
-		
+		if(ch == 4) {}
 	}
 	
 	// 3. infoUpdate 			: 회원정보 수정 페이지	
@@ -140,28 +140,57 @@ public class LoginPage {
 		//조회수 증가 메소드
 		viewAdd(bno);
 		// 4. 추가메뉴 
-		System.out.println("1.뒤로가기 2.수정 3.삭제 4.삭제 선택 >");
+		System.out.println("1.뒤로가기 2.수정 3.삭제 4.삭제 5.쪽지보내기 선택 >");
 		int ch = sc.nextInt();
 		
 		if(ch == 1) {}
-		if(ch == 2) {boardUpdate();}
-		if(ch == 3) {boardDelete();}
+		if(ch == 2) {boardUpdate(bno , result.getMno() );} // 보고 있는 게시물 번호와 작성자 회원번호
+		if(ch == 3) {boardDelete(bno , result.getMno() );} // 
 		
 	}
-	
-	// 12. boardUpdate		: 게시물 수정
-	public void boardUpdate() {}
-	
-	// 13. boardDelete		: 게시물 삭제
-	public void boardDelete() {}
-	
-	// 조회수 증가 메소드
+	// 11-2. 조회수 증가 메소드
 	public void viewAdd(int bno) {
 		
 		boolean result = 
 			BoardDao.getInstance().viewAdd(bno);	
 		
 	}
+	
+	// 12. boardUpdate		: 게시물 수정[ 게시물번호 식별해서 제목이랑 내용만 수정 -> 로그인된 사람과 작성자가 일치할경우 가능하도록 ]
+		// 로그인된 사람 은 boardWrite에 있음
+	public void boardUpdate(int bno , int mno) {
+		System.out.println("----- post update -----");
+		System.out.println("제목 : "); String title = sc.next();
+		System.out.println("내용 : "); String content = sc.next();
+		
+		// 2.
+		int result = 
+			BoardController.getInstance().boardUpdate( bno , mno , title , content);
+		if(result == 1) {System.out.println("안내] 글 수정 성공");}
+		else if(result == 2) {System.err.println("안내] 글 수정 실패 : 관리자 오류");}
+		else if(result == 3) {System.err.println("안내] 본인 글만 수정 가능 합니다.");}
+		else if(result == 4) {System.err.println("안내] 수정할 제목을 1~50글자 사이로 입력해주세요.");}
+		
+	}
+	
+	// 13. boardDelete		: 게시물 삭제[ 게시물번호 식별해서 삭제 -> 로그인된 사람과 작성자가 일치할경우 가능하도록 ]
+	public void boardDelete(int bno , int mno) {
+		
+		int result = 
+				BoardController.getInstance().boardDelete(bno , mno);
+		if(result == 1) {System.out.println("안내] 글 삭제 성공");}
+		else if(result == 2) {System.out.println("안내] 글 삭제 실패 : 관리자 오류");}
+		else if(result == 3) {System.err.println("안내] 본인 글만 삭제 가능 합니다.");}
+		
+	}
+	
+	// 14. 쪽지보내기 
+	public void noteSend() {}	
+	
+	// 15. 쪽지확인 페이지  // + 쪽지답장 
+	
+	// 16. 쪽지답장 보내기 페이지 
+
 	
 }
 

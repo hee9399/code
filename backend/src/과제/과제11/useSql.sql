@@ -37,7 +37,7 @@ select mid , mpw from member; # select*from member
 select mid , mpw from member where mid = 'exen01' and mpw = '1234';
 select*from member where mid = 'exen01' and mpw = '1234';
 # 자바의 문자열로 변환
-select*from member 
+select*from member;
  
 /*
 	1. 테이블의 필드에 해당하는 레코드 겁색 			
@@ -52,7 +52,7 @@ select*from member
     
 */
 
-/* --------------------------------------------------------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------- */
 use sqldb4web; 
 /* 1. 테이블의 모든 레코드 검색 */
 select * from member;
