@@ -53,7 +53,7 @@ public class BoardDao extends Dao{
 						// 변환된 Dto 를 리스트객체에 담기 
 						list.add(dto);
 					}
-				}catch (Exception e) { }
+				}catch (Exception e) {System.out.println(e);}
 				return list ;
 			}
 		
@@ -98,11 +98,13 @@ public class BoardDao extends Dao{
 		// 12. boardUpdate	: 게시물 수정 [ 인수 : bno , title , content ] / 반환 : true , false
 		public boolean boardUpdate(BoardDto boardDto) { 
 			try {
-				// 1.
+				// 1.                     set - 어디에 수정을할껀지            where(조건) view에서내가선택한 게시물번호
 				String sql = "update board set btitle = ? , bcontent = ? where bno = ?";
 				// 2. 
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1 , boardDto.getBno() ); ps.setString(2, boardDto.getBtitle());	ps.setString(3, boardDto.getBcontent());
+				ps.setInt(1 , boardDto.getBno()); ps.setString(2, boardDto.getBtitle());	ps.setString(3, boardDto.getBcontent());
+				// row 가 하는기능 = 유효성검사를통해 레코드값이 있냐 없냐 한줄이라도있으면 성공 
+					// row는 1개여야한다 insert 로  나온 값이 한줄이기때문에 2줄이면 false
 				int row = ps.executeUpdate(); // 4. // 5. [ select -> rs = ps.executeQuery() / insert,update , delete -> int row = ps.excuteUpdate ] 
 				
 				if(row == 1) return true;
