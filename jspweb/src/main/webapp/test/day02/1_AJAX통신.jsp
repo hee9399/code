@@ -18,6 +18,9 @@
 	<h6> 1.[응답:JSON타입/한글인코딩] JS 에서 servlet[ 자바웹클래스 ] 에게 통신하고 데이터 반환 받기 </h6>
 	<button onclick="예제3()"> 예제3 </button>
 	
+	<h6> 4.[응답:JSON타입[JACKSON라이브러사용]/한글인코딩] JS 에서 servlet[자바웹클래스] 에게 통신하고 데이터 반환 받기</h6>
+	<button onclick="예제4()"> 예제4 </button>
+	
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<script src="1_AJAX통신.js" type="text/javascript"></script>

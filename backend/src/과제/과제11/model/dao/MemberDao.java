@@ -10,7 +10,7 @@ public class MemberDao extends Dao {
 	public static MemberDao getInstance() {return memberDao;}
 	private MemberDao() {}
 	
-	// 1. 회원저보 Check SQL  : type = 1 아이디 중복체크 type = 2 전화번호중복체크 // vs String 필드명 
+	// 1. 회원정보 Check SQL  : type = 1 아이디 중복체크 type = 2 전화번호중복체크 // vs String 필드명 
 	public boolean infoCheck(String 검색할필드명 , String 검색할값 ) {
 		
 		try {	// 오류 : You have an error in your SQL syntax // SQL 문법 오류 발생
@@ -37,7 +37,7 @@ public class MemberDao extends Dao {
 			ps.setString(3 , dto.getMname());
 			ps.setString(4, dto.getMphone()); 
 			
-			// 5. SQL 실행						[ps.ps.executeUpdate();  :  SQL 실행 ]
+			// 5. SQL 실행 [ps.ps.executeUpdate();  :  SQL 실행 ]
 			ps.executeUpdate(); 
 			return true;
 		}catch(Exception e) {System.out.println("경로) 회원가입실패 사유 : "+e);}

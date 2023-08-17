@@ -46,7 +46,7 @@ public class MainPage {
 		// 2. 입력받은 값을 컨트롤에게 전달 하고 결과 받기
 		// 받는게 int 타입이면 int
 		int result = 
-				MemberController.getInstance().signupLogic(id ,password,name ,phone );	
+				MemberController.getInstance().signupLogic(id , password , name , phone );	
 		// 3. 결과에 출력
 		if(result == 1) {System.out.println("안내) 회원가입성공하셨습니다.");}
 		else if(result == 2) {System.out.println("경고] 회원가입시 실패, 관리자에게 문의하세요 ");}
@@ -65,8 +65,7 @@ public class MainPage {
 			System.out.println("안내) 로그인성공");
 			// 만약에 로그인 성공하면 다른 view 클래스로 이동
 			LoginPage.getInstance().loginMenu(); // 만약에 로그인 성공하면 다른 
-			
-			}
+		}
 		else {System.out.println("경고) 로그인실패");}
 	}
 	

@@ -44,7 +44,7 @@ public class LoginPage {
 		
 	}
 	
-	// 2. info 					: 로그인된 회원정보 페이지
+	// 2. info 		: 로그인된 회원정보 페이지
 	// 로그인된 회원정보를 con , dao 에게 전달해야한다
 	public void info() {
 		
@@ -66,7 +66,7 @@ public class LoginPage {
 		if(ch == 4) {}
 	}
 	
-	// 3. infoUpdate 			: 회원정보 수정 페이지	
+	// 3. infoUpdate 	: 회원정보 수정 페이지	
 	public void infoUpdate() {
 		System.out.println("\n\n ======== password Update ===== ");
 		System.out.println("새로운 비밀번호 : "); String newPw = sc.next();
