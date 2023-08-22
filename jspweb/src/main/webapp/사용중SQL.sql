@@ -18,3 +18,5 @@ create table visitlog(
 insert into visitlog( vwriter , vpwd , vcontent) values('정희락' , '1234' , '안녕하세요');
 	-- 이클립스 자바에서 입력할시 = insert into visitlog( vwriter , vpwd , vcontent) values(? , ? , '?);
 
+# 2. 호출 select / 모든 레코드 검색 
+select*from visitlog;
