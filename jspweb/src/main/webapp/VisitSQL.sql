@@ -18,5 +18,24 @@ create table visitlog(
 insert into visitlog( vwriter , vpwd , vcontent) values('정희락' , '1234' , '안녕하세요');
 	-- 이클립스 자바에서 입력할시 = insert into visitlog( vwriter , vpwd , vcontent) values(? , ? , '?);
 
-# 2. 호출 select / 모든 레코드 검색 
-select*from visitlog;
+# 2. 호출 select / 모든 레코드 검색 / 정렬(최신글부터 출력)
+select*from visitlog order by vdate desc;
+
+# 3. 수정 [ 삭제할 식별자 필수 ] 
+/* vno 3 이면 vcontent필드의 값을 수정 */
+update visitlog set vcontent = '내용수정했다' where vno = 3;
+update visitlog set vcontent = '내용수정했다' where vno = 3 and vpwd = '123123';
+# update visitlog set vcontent = ? where vno = ? and vpwd = ?
+
+# 4. 삭제 [ 삭제할 식별자 필수 ] 
+delete from visitlog; /*모든 레코드 삭제*/
+-- vno 3인 레코드 삭제
+delete from visitlog where vno = 3;
+delete from visitlog where vno = 3 and vpwd = 'asd';
+# delete from visitlog where vno = ? and vpwd = ?
+
+
+
+
+
+

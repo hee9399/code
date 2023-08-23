@@ -14,6 +14,7 @@ public class VisitDto {
 	// 2. 생성자 
 	// 기본 생성자 
 	public VisitDto() {}
+	
 	// 풀생성자 
 	public VisitDto(int vno, String vwriter, String vpwd, String vcontent, String vdate) {
 		super();

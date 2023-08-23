@@ -19,7 +19,7 @@ public class VisitDao extends Dao {
 		// 0. try{}catch(){} 
 		try {
 			// 1. SQL 작성 
-			String sql = "insert into visitlog( vwriter , vpwd , vcontent) values(? , ? , ?);";
+			String sql = "insert into visitlog( vwriter , vpwd , vcontent) values(? , ? , ?)";
 			// 2. SQL 연결 
 			ps = conn.prepareStatement(sql);
 			// 3. SQL 매개변수 대입
@@ -43,9 +43,10 @@ public class VisitDao extends Dao {
 		ArrayList<VisitDto> list = new ArrayList<>();
 		
 		try {
-			String sql = "select*from visitlog";
+			String sql = "select*from visitlog order by vdate desc";
 			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery(); // s -> q , i/d/u -> u ,
+			rs = ps.executeQuery(); // s -> Query , i/d/u -> update ,
+			// execute - 실행  Query - 요구
 			while(rs.next()) { // rs.next() : select 검색결과중 다음레코드 이동 = 존재하면 true / 존재하지 않으면 false
 				// * 하나 레코드/하나 줄/하나 행/ 하나 방분록 / 하나 DTO 
 				// 레코드 --> DTO 변환 
@@ -61,9 +62,57 @@ public class VisitDao extends Dao {
 		return list; // 리스트 변환 
 	}
 	
-	// 3. 수정 [ 인수 : 수정할번호(int)/수정할방문록내용(String) , 리턴 : 여러개의 성공/실패 = true/false ]
-	public boolean vupdate(int vno) {return false;}
+	// 3. 수정 [ 인수 : 수정할번호(int)/수정할방문록내용(String)/비밀번호검토(String) , 리턴 : 여러개의 성공/실패 = true/false ]
+	public boolean vupdate(int vno , String vcontent , String vpwd) {
+		try {
+			// SQL작성하기 
+			String sql = "update visitlog set vcontent = ? where vno = ? and vpwd = ?";
+			ps.setInt(2, vno); ps.setString(1, vcontent); ps.setString(3, vpwd);
+			int row = ps.executeUpdate();
+			if(row == 1) return true;
+			return false;
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
 	// 4. 삭제 [ 인수 : 삭제할방문록번호(int) , 리턴 : 성공/실패 = true/false  ]
+	public boolean vdelete(int vno , String vpwd) {
+		try {
+			// SQL작성하기 
+			String sql = "delete from visitlog where vno = ? and vpwd = ?";
+			ps = conn.prepareStatement(sql);
+			// ㅇ
+			ps.setInt(1, vno); ps.setString(2, vpwd);
+			// Update 업데이트를 execute 실행한다
+			int row = ps.executeUpdate();
+			if(row == 1) return true;
+			return false;
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
