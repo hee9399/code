@@ -75,7 +75,7 @@ public class VisitlogController extends HttpServlet {
 		String vpwd = request.getParameter("vpwd");					System.out.println("vpwd"+vpwd);
 		
 		// 2. (데이터 많으면) 객체화 
-		// 3. Dao 에게 전달후 SQL겨로가를 받는다.
+		// 3. Dao 에게 전달후 SQL로 결과를 받는다
 		boolean result = VisitDao.getInstance().vupdate(vno, vpwd, vpwd);
 		// 4. 겨로가를 AJAX에게 전달한다.
 		response.setContentType("application/json;charset=UTF-8");
@@ -94,7 +94,7 @@ public class VisitlogController extends HttpServlet {
 		// 2. (데이터 많으면) 객체화 
 		// 3. Dao 에게 전달후 SQL겨로가를 받는다.
 		boolean result = VisitDao.getInstance().vdelete(vno, vpwd);
-		// 4. 겨로가를 AJAX에게 전달한다..
+		// 4. 결과를 AJAX에게 전달한다..
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().print(result);
 		

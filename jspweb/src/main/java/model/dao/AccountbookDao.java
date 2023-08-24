@@ -60,8 +60,38 @@ public class AccountbookDao extends Dao {
 		}
 		
 		// 3. 수정
+		// 무엇을? 내용과 금액과 날짜를 수정한다. 
+		// 어떻게? 식별번호를 입력받아서 
+		public boolean aupdate(int ano , String awriter , String amoney) {
+			try {
+				// sql작성하기 
+				String sql = "update accountbook set awriter = ? , amoney = ? where ano = ?";
+				ps.setInt(3, ano); ps.setString(1, awriter); ps.setString(2, amoney);
+				int row = ps.executeUpdate();
+				if(row == 1) return true;
+				return false;
+			} catch (Exception e) {System.out.println(e);}
+			
+			return false;
+		}
 		
 		
 		// 4. 삭제
+		public boolean adelete(int ano) {
+			try {
+				// SQL작성하기 
+				String sql = "delete from accountbook where ano = ?";
+				ps = conn.prepareStatement(sql);
+				
+				ps.setInt(1, ano);
+				// 실행 
+				int row = ps.executeUpdate();
+				if(row == 1) return true;
+				return false;
+				
+			} catch (Exception e) {System.out.println(e);}
+			
+			return false;
+		}
 		
 }

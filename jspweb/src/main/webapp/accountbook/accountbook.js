@@ -25,7 +25,7 @@ function awriter(){console.log('등록함수실행됩니다')
       url : "/jspweb/AccountbookConrtoller",  // 누구랑 통신할껀지
       data : info, // 어떤객체를 갖고올껀지
       method : "post", // 서블릿에 doPost로 가라   
-      success : function 함수(r){console.log('doPost통신성공'); vread();
+      success : function 함수(r){console.log('doPost통신성공'); aread();
       
       // vread(); 글을썻을때 최신화 시켜준다 
       // 자바에서 문자 true로 보냈기때문에 따옴표는 사용하지 않는다.
@@ -43,8 +43,8 @@ function awriter(){console.log('등록함수실행됩니다')
 }// function e
  
 // R 호출(read) 가계부 호출 함수명 : aread
-vread();	// js 실행될때 1번 실행 
-function vread(){console.log('호출함수 실행됩니다');
+aread();	// js 실행될때 1번 실행 
+function aread(){console.log('호출함수 실행됩니다');
 	   $.ajax({
       url : "/jspweb/AccountbookConrtoller",     // 누구랑 통신할껀지  
       data : {},      
@@ -64,6 +64,7 @@ function vread(){console.log('호출함수 실행됩니다');
 			html += `<div class="accountbox"> 
 				<div class="accountbox_top">
 					<div>${r[i].awriter}</div>
+					<div>${r[i].amoney}</div>
 				</div>
 				<div>${r[i].adate}</div>
 				<div> 
@@ -85,28 +86,37 @@ function vread(){console.log('호출함수 실행됩니다');
 
 // U 수정(update) 가계부 수정 함수명 : aupdate
 	// 누구를? (클릭한가계부번호) 
-	function aupdate(ano){console.log('수정함수실행됩니다');
+	function aupdate(ano){console.log('수정함수실행됩니다'+ano);
 		
 		// 1. 수정할 내용 입력
 		let acontent = prompt('수정할 가계부내용: ')
 		
 	 	  $.ajax({
      	 url : "/jspweb/AccountbookConrtoller",      
-     	 data : {},      
+     	 data : {ano : ano , awriter : awriter , amoney : amoney},      
      	 method : "put",   
-     	 success : function 함수(r){} ,       
+     	 success : function 함수(r){console.log('doPut통신성공');
+     	 
+     	 	if(r == true){alert('수정성공'); aread(); }
+     	 	else{alert('실패] 수정에 실패하였습니다');}
+     	 
+     	 } ,       
      	 error : function 함수(r){} ,         
-   });
+   });// 성공했을때 
 }// function e
 
 
 // D 삭제(delete) 가계부 삭제 함수명 : adelete
-function adelete(){
+function adelete(ano){console.log('삭제함수 실행됩니다'+ano);
 	   $.ajax({
-      url : "",      
-      data : {},      
-      method : "",   
-      success : function 함수(r){} ,       
+      url : "/jspweb/AccountbookConrtoller",      
+      data : {ano : ano},      
+      method : "delete",   
+      success : function 함수(r){console.log('doDelete통신성공');
+      	
+      	if(r == true){alert('삭제성공'); aread();}
+        else{alert('실패] 삭제에 실패하였습니다');}
+      } ,       
       error : function 함수(r){} ,         
    });
 }// function e

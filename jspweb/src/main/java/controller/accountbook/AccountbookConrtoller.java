@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.xdevapi.JsonArray;
 
 import model.dao.AccountbookDao;
 import model.dto.AccountbookDto;
@@ -60,20 +61,64 @@ public class AccountbookConrtoller extends HttpServlet {
 			// js는 ArrayList타입을 사용할수 없다 ArrayList타입을 JSON배열로 변환해서 전달해야한다
 		ObjectMapper objectMapper = new ObjectMapper();
 		// JSON타입으로 변환은 불가능하지만 왜? 현재 자바에서 진행중이기때문에 그치만 JSON형식의 문자열로 변환 가능하다. 
-		String jsinArray = objectMapper.writeValueAsString(result);
+		String jsonArray = objectMapper.writeValueAsString(result);
 		
-		
+		// 4. 응답 
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().print(jsonArray);
 	}
 
 	
 	// 수정
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. AJAX data 데이터 요청한다.
+			// request.getParameter("속성명"); String 반환
+		// 식별번호
+		int ano = Integer.parseInt(request.getParameter("ano") );
+		// 무엇을 수정할것인가? 내용 , 금액 을 수정한다 
+		String awriter = request.getParameter("awriter");
+		String amoney = request.getParameter("amoney"); 
 		
+		// 2. (데이터 많으면) 객체화 
+		// 3. Dao 에게 전달후 SQL로 결과를 받는다
+		boolean result = AccountbookDao.getInstance().aupdate(ano, awriter, amoney);
+		response.setContentType("application/json;charset=UTF-8");
+    	response.getWriter().print(result);
 	}
 
 	// 삭제
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 무엇을삭제??
+		// 식별대상인 식별번호를 삭제해서 레코드 전체를 삭제한다.
+		int ano = Integer.parseInt(request.getParameter("ano"));
+		
+		// dao에게 전달한다.
+		boolean result = AccountbookDao.getInstance().adelete(ano);
+		
+		// 스크립트에전달
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().print(result);
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

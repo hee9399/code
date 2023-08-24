@@ -36,8 +36,8 @@
 			<div class="accountbox"> <!-- 가계부 1개의 표시구역 -->
 				<div class="accountbox_top">
 					<div>적금</div>
+					<div>10000원</div>
 				</div>
-				<div>10000원</div>
 				<div> <!-- 버튼 구역 -->
 					<button onclick="aupdate()" type="button">수정</button>
 					<button onclick="adelete()" type="button">삭제</button>
