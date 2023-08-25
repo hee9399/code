@@ -106,7 +106,7 @@ public class Ex1_조건문 { // class start
 				}
 				
 				// [p.117] if 중첩 
-				int score3 = (int)( math.random() * 20 ) +81; // 81~100 난수 생성 
+				int score3 = (int)( Math.random() * 20 ) +81; // 81~100 난수 생성 
 				
 				String grade; // 등급 저장하는 변수 
 				

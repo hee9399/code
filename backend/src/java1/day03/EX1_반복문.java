@@ -20,7 +20,7 @@ public class EX1_반복문 { // class s
 		
 		// [p.126] 초기값 변수는 for에서 선언시 지역변수이다. 
 		int sum3 = 0; 
-		for(int 반복변수 = i; 반복변수<=10; 반복변수++) {sum3 += 반복변수;} 
+		for(int 반복변수 = 0; 반복변수<=10; 반복변수++) {sum3 += 반복변수;} 
 		// System.out.println(반복변수);// x= for ()에서 선언된 변수는 for{}밖에서 사용불가 
 		
 		int sum4 = 0; int i;
@@ -52,7 +52,7 @@ public class EX1_반복문 { // class s
  	
 	
 	// [p.129 vs 124] 1~10 출력 
-	for(int i = 1; i<=10 ; i+=1) {System.out.println(i+ " ");}
+	for(int g = 1; g<=10 ; g+=1) {System.out.println(g+ " ");}
 	
 	int a = 1;
 	while(a<=10) {System.out.println(a+" "); a++;}
@@ -122,7 +122,7 @@ public class EX1_반복문 { // class s
 			// * 가장 가까운 반복문 탈출 
 			// if(lower == 'g') break;
 			// * 특정 for break; 
-			if(lower == 'g') break 대문자for; 
+			if(lower == 'g') break; //대문자for; 
 			
 		} // for 2 end
 		System.out.println();

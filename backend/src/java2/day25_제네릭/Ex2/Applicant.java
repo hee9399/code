@@ -10,7 +10,4 @@ public class Applicant <T> {
 		this.kind = kind;
 	}
 	
-
-	
-	
 }// class e

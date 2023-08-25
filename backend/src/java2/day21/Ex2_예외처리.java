@@ -22,7 +22,7 @@ public class Ex2_예외처리 {
 			// catch (Exception e) {System.out.println("예외발생 : "+e);} // 예외 상위 클래스가 앞에 있으면 아래있는 하위 클래스들은 실행이안된다 
 			catch (NumberFormatException e) {System.out.println("숫자로 변환 할수 없는 데이터 : "+e);}
 			catch (ArrayIndexOutOfBoundsException e) {System.out.println("배열 인덱스 초과 : "+e);}
-			catch (NullPointException | ClassCastException e) {System.out.println();}
+			// catch (NullPointException | ClassCastException e) {System.out.println();}
 			catch (Exception e) {System.out.println("예외발생 : "+e);} // 예외 상위클래스는 아래에 있어야한다 
 		}
 		

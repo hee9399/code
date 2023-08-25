@@ -85,10 +85,10 @@ public class 과제1 {
 			} // 두번째 if end 
 			System.out.println( v1 );// o
 			System.out.println( v2 );// o
-			System.out.println( v3 );// 두번째 if {} 선언 X 
+			// System.out.println( v3 );// 두번째 if {} 선언 X 
 		} // 첫번째 if 
 		System.out.println(v1);// o
-		System.out.println(v2);// 첫번째 if {} 선언 x	
+		// System.out.println(v2);// 첫번째 if {} 선언 x	
 	}
 	
 }

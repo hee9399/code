@@ -1,4 +1,4 @@
-package java2.day23.day24_제네릭.Ex2;
+package java2.day24_제네릭.Ex2;
 
 public class Ex2_제네릭 {
 	public static void main(String[] args) {

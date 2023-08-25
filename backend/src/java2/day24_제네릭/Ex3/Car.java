@@ -1,4 +1,4 @@
-package java2.day23.day24_제네릭.Ex3;
+package java2.day24_제네릭.Ex3;
 
 public class Car { 
 

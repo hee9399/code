@@ -1,4 +1,4 @@
-package 과제.과제4.과제4;
+package 과제.과제4;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package java2.day23.day24_제네릭.Ex2;
+package java2.day24_제네릭.Ex2;
 
 public class Product < K , M >{ 
 		// 제네릭 : 클래스 안으로 들어오는 파라미터=변수(변하는수/밖에있는것 = 정해져있지않는 타입 [ 매개타입 ])

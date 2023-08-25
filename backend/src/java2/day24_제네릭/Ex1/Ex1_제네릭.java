@@ -1,4 +1,4 @@
-package java2.day23.day24_제네릭.Ex1;
+package java2.day24_제네릭.Ex1;
 
 import 과제.과제11.model.dto.MemberDto;
 

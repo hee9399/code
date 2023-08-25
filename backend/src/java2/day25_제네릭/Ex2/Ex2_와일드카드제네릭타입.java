@@ -30,7 +30,7 @@ public class Ex2_와일드카드제네릭타입 {
 		Course.registerCourse2(  new Applicant<Student>( new Student() ) );
 		Course.registerCourse2(  new Applicant<HighStudent>( new HighStudent() ) );
 		Course.registerCourse2(  new Applicant<MiddleStudent>( new MiddleStudent() ) );
-			
+		
 		// ------ 코스3 : 직장인 및 일반인만 신청 가능 
 		// Applicant< ? super Worker> applicant
 		// 지원서 객체 중에  Worker 객체 와 Worker 부모객체 만 가능 [ Student,HighStudent,MiddleStudent 불가능 ]
@@ -40,5 +40,5 @@ public class Ex2_와일드카드제네릭타입 {
 		//Course.registerCourse3(  new Applicant<HighStudent>( new HighStudent() ) );
 		//Course.registerCourse3(  new Applicant<MiddleStudent>( new MiddleStudent() ) );
 		
-	}
-}
+	}// main e
+}// class e
