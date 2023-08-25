@@ -16,10 +16,11 @@ public class Ex2_와일드카드제네릭타입 {
 		Course.registerCourse1(applicant);
 		
 		// ------ 코스1 : ( 모든 지원서(사람,직장인,학생,고등학생,중학생) ) 누구나 등록 가능한 코스 
-		Course.registerCourse1( new Applicant<Person>(new Person() ) );
-		Course.registerCourse1( new Applicant<Worker>(new Worker() ) );
-		Course.registerCourse1( new Applicant<Student>(new Student() ) );
-		Course.registerCourse1( new Applicant<MiddleStudent>(new MiddleStudent() ) );
+		Course.registerCourse1(  new Applicant<Person>( new Person() ) );
+		Course.registerCourse1(  new Applicant<Worker>( new Worker() ) );
+		Course.registerCourse1(  new Applicant<Student>( new Student() ) );
+		Course.registerCourse1(  new Applicant<HighStudent>( new HighStudent() ) );
+		Course.registerCourse1(  new Applicant<MiddleStudent>( new MiddleStudent() ) );
 		
 		// ----- 코스2 : 학생만 신청 가능 
 		// Applicant< ?  extends Student > applicant 
@@ -29,7 +30,7 @@ public class Ex2_와일드카드제네릭타입 {
 		Course.registerCourse2(  new Applicant<Student>( new Student() ) );
 		Course.registerCourse2(  new Applicant<HighStudent>( new HighStudent() ) );
 		Course.registerCourse2(  new Applicant<MiddleStudent>( new MiddleStudent() ) );
-				
+			
 		// ------ 코스3 : 직장인 및 일반인만 신청 가능 
 		// Applicant< ? super Worker> applicant
 		// 지원서 객체 중에  Worker 객체 와 Worker 부모객체 만 가능 [ Student,HighStudent,MiddleStudent 불가능 ]
