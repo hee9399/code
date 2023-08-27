@@ -23,15 +23,13 @@ public class 과제4_1_예출금 {
 			// else if 와 if의 차이점 은 else if는 통으로 묶고 if는 각각의 실행이다 
 			//  step2 : 입력받은 메뉴 번호에 따른 서로 다른 코드/행동 실행 
 			if( ch == 1 ) { // 예금기능 구현 
-				System.out.print("예금액 : ");    
+				System.out.print("계좌번호 : ");	String inputAccount = scanner.next();
 				// 일치하면 / 일치하지 않으면 => 경우의수 2개 => if 
 				// 같다 / 다르다.  equals()
-				// 3. 예금액을 입력받아 
-				System.out.println("예금액 : "); String inputAccount = scanner.next();
 				if(inputAccount.equals(account) ) {
 					// 입력받은 계좌변호와 기존의 계좌번호와 일치하면
-
-					int inputBalance = scanner.nextInt(); 
+					// 3. 예금액을 입력받아 
+					System.out.println("예금액 : "); int inputBalance = scanner.nextInt();
 					// 4. 예금액 변수에 누적 더 해준후 [예금 성공] 출력
 					balance += inputBalance;	System.out.println("예금 성공");
 				}else{// 일치하지 않으면 
