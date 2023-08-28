@@ -36,12 +36,13 @@ public class MemberDao extends Dao {
 	
 	// 5. 내정보 호출
 	
-	// 6. 아이디 중복검사
-	public boolean findId(String mid) {
+	// 6. 아이디/이메일 중복검사 [ 인수 : 검사할아이디 / 반환 : true(중복없이) , false(중복없이) ]
+	public boolean findIdorEmail(String type , String data) {
 		try {
-			String sql = "select*from member where mid = ?";
+			// "+type+" 함수를하나더 만들필요없이 type 을 넣어줘서 아이디와 이메일을 선택하에 중복검사를한다
+			String sql = "select*from member where "+type+" = ?"; 
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, mid);
+			ps.setString(1, data);
 			rs = ps.executeQuery();
 			// 아이디 하나만확인하기때문에 if 문 여러개라면? while문
 			// true - 중복이있는아이디다.
