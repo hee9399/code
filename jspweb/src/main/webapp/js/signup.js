@@ -201,7 +201,7 @@ function authReq(){console.log('인증요청');
 
 	// 4. 타이머 실행 
 	// Controller에서 전달한 난수생성6자리가 r에게 전달한다.
-	authcode = r; // 인증 코드 '1234' [ Controller(서블릿) 전달받음 ]
+	authcode = '1234'; // 인증 코드 '1234' [ Controller(서블릿) 전달받음 ]
 	
 	timer = 120;	   // 인증 제한시간 120초 테스트용
 	settimer();        // 타이머 실행

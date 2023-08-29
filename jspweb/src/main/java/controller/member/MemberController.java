@@ -53,9 +53,9 @@ public class MemberController extends HttpServlet {
     	// 첨부파일input : 
     	
     	// 1. AJAX 통신받은 data객체의 '속성명' 요청한다. [ request ]
-    	String mid = request.getParameter("mid");	System.out.println("mid"+mid);
-    	String mpwd = request.getParameter("mpwd");	System.out.println("mpwd"+mpwd);
-    	String memail = request.getParameter("memail"); System.out.println("memail"+memail);
+    	String mid = multi.getParameter("mid");	System.out.println("mid"+mid);
+    	String mpwd = multi.getParameter("mpwd");	System.out.println("mpwd"+mpwd);
+    	String memail = multi.getParameter("memail"); System.out.println("memail"+memail);
     	// String mimg = request.getParameter("mimg");	System.out.println("mimg"+mimg);
     	String mimg = multi.getFilesystemName("mimg"); System.out.println("mimg : "+mimg);
     	
@@ -87,15 +87,12 @@ public class MemberController extends HttpServlet {
 }
 
 /*
- 	용량 단위 
- 	
- 		bit : 0 or 1
- 		byte : 01010101
- 		kb : 1024byte -> 1kb
- 		mb : 
- 
- */
-
+	용량 단위
+		bit : 0 or 1 
+		byte: 01010101 -> 1byte
+		kb : 1024byte -> 1kb
+		mb : 1024kb -> 1mb
+*/
 
 
 
