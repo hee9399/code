@@ -31,7 +31,24 @@ public class MemberController extends HttpServlet {
     	
     	// 첨부파일에 저장할 폴더의 절대경로
     	// img 폴더에 설정 들어가서 경로 복붙 
-    	String uploadpath = "C:\\Users\\504\\git\\ezen_web_2023_A\\jspweb\\src\\main\\webapp\\member\\img"; // 첨부파일 저장할 경로 
+    	// 1. 개발자 pc 경로 업로드 [ 문제발생 : 개발자pc에 업로드하면 업로드파일을 서버로 빌드 ]
+    	// String uploadpath = "C:\\Users\\504\\git\\ezen_web_2023_A\\jspweb\\src\\main\\webapp\\member\\img"; // 첨부파일 저장할 경로 
+    	// git은 작업된 파일/코드을 올리는것이지 서버를 통째로 올리는 공간은 아니다 
+    	// git을 사용하는애들은 workspace를 사용하지 않는다 
+    	
+    	// 2. 서버 pc 경로 업로드 [ 사용자는 바로 서버pc 업로드  ]
+    	// String uploadpath= "이클립스워크스페이스 :  C:\\Users\\504-t\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps";
+    	
+    	// 서버는 두가지의 경로가 있다. c드라이브 , http
+    	
+    	// 3. 서버 pc 경로 ( 상대경로 = 서버경로 찾아주는 함수 )
+    		// 서버에 bulld(베포)된 파일/폴더 의 경로 찾기 
+    		// request.getSession().getServletContext().getRealPath("프로젝트명이하 경로");
+    		// getRealPath : C:\Users\504\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jspweb\member\signup.jsp
+    		// Httppath : http://localhost/jspweb/member/signup.jsp
+    	String uploadpath = request.getSession().getServletContext().getRealPath("/member/img");
+    	System.out.println("member 폴더 img 폴더 실체(서버) 경로 : "+uploadpath);
+    	
     	
 		// 첨부파일 전송 했을때. 
     		// 1. 첨부파일 서버pc에 업로드( COS.jar 라이브러리 )
@@ -58,6 +75,9 @@ public class MemberController extends HttpServlet {
     	String memail = multi.getParameter("memail"); System.out.println("memail"+memail);
     	// String mimg = request.getParameter("mimg");	System.out.println("mimg"+mimg);
     	String mimg = multi.getFilesystemName("mimg"); System.out.println("mimg : "+mimg);
+    	
+    	// *만약에 사진업로드 안했으면 기본프로필 사용하도록 변경 = default.webp
+   		if( mimg == null ) {mimg = "default.webp";}
     	
     	// 2. 객체화
     	MemberDto memberDto = new MemberDto(mid, mpwd, memail, mimg);

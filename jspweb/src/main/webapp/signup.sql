@@ -1,12 +1,12 @@
 -- 08-24 수업 
 # 데이터베이스 생성 : JSPWEB
-drop database if exists JSPWEB;
+drop database if exists JSPWEB; 
 create database JSPWEB;
 use JSPWEB;
 
 # member테이블 생성
 drop table if exists member;
-create table member(
+create table member(  
 	mno int auto_increment ,			-- 식별번호 (회원번호)
 	mid varchar(50) not null unique ,	-- 아이디 , 공백불가능 , 중복불가능
     mpwd varchar(20) not null ,			-- 비밀번호 , 공백불가능
@@ -24,7 +24,10 @@ insert into member( mid , mpwd , memall , mimg ) values( 'qweqwe' , 'a1234' , 'q
 # 2. 아이디중복검사. [  ]
 select*from member where mid = 'qweqwe';
  -- select*from member where mid = ?
-
+ 
+ # 로그인 [ 아이디와 비밀번호가 일치한 레코드 존재여부 ]
+select * from member where mid = 'qweqwe' and mpwd = 'qweqwe' ; # 레코드가 검색되면 로그인성공 / 없으면 로그인 실패 
+# select * from member where mid = ? and mpwd = ? ;
 
 
 

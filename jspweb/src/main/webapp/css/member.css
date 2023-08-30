@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+/**/
+
+.signupForm{ /* 회원가입전체구역 */
+	width: 50%; 
+	margin: 0 auto;
+	font-size: 15px;
+}
+.signupForm h2 , p{
+	/* 구역내 텍스트 가운데정렬 */
+	text-align: center;
+}
+
+.signupForm input{
+	width: 100%;
+	height: 50px;
+	padding: 10px;
+	border: 1px solid #e8e8e8;
+	border-radius: 10px;
+}
+
+.intitle{/* 입력 구역 이름 */
+	font-size: 16px; 
+	margin: 20px 0px 10px 0px;
+}
+
+/* 유효성검사 결과 구역 */
+.idcheckbox , .pwcheckbox , .emailcheckbox{
+	color: #ea3636;
+	font-size: 15px;
+	margin: 0px 0px 10px 5px; 
+}
+
+/* 이메일 구역 */
+.emailbox{display: flex;}
+
+/* 인증요청 버튼 , 인증 버튼 */
+.emailbox button , .authbox button{
+	width: 20%;
+	background-color: #75C1CF;
+	height: 50px;
+	color: white;
+	border: none;
+	border-radius: 15px;
+	margin-left: 10px;
+}
+
+/* 인증 구역 */
+.authbox{display: flex; 
+	margin-top: 10px; 
+	align-items: center;
+}
+
+/* 인증시간이 표시되는 구역 */
+.timebox{
+	width: 30%;
+	padding: 10px;
+	font-size: 20px;
+}
+.preimg{
+	width: 150px;
+	height: 150px;
+	border: 1px solid #e8e8e8;
+	border-radius: 50%;
+	margin: 15px 150px;
+	
+	/* 구역보다 사진이 컸을때. 
+		비율무시, 사이즈자동맞춤 object-fit : contain;
+		비율자동맞춤 , 사이즈버림 object-fit : cover;
+	 */
+	object-fit: cover;
+}
+/* 회원가입 버튼 */
+.signupbtn{
+	width: 100%;
+	height: 50px;
+	border: none;
+	background-color: #75C1CF;
+	color: white;
+	font-size: 23px;
+	margin: 10px 0px 100px 0px;
+}
+
+/* ------------------------ 로그인 css ------------------------------------------ */
+
+/* 로그인 유효성검사 구역 */
+.logincheckbox{
+	color: #ea3636;
+	font-size: 15px;
+	margin: 0px 0px 10px 5px; 
+	text-align: center;
+	margin: 20px 0px;
+}
+
+
+.findbtnbox a{ margin-right: 10px; }
+
+
+
+
+/*
+
+	식별자
+		class : .
+		id	  : # 
+		태그	  태그명 
+		
+		1. 하위 식별자
+				식별자명 하위식별자명  : 모든 하위 식별자 적용
+				식별자명>하위식별자명	: 직계자손 식별자 적용 
+				
+		2. 복수 식별자
+				식별자명 , 식별자명 
+				
+				
+				
+				
+ 구역보다 사진이 컸을때. 
+		비율무시, 사이즈자동맞춤 object-fit : contain;
+		비율자동맞춤 , 사이즈버림 object-fit : cover;
+	
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
