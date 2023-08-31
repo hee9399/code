@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.time.LocalDateTime;
+
 import model.dto.MemberDto;
 
 public class MemberDao extends Dao {
@@ -14,7 +16,7 @@ public class MemberDao extends Dao {
 		
 		try {
 			
-			String sql = "insert into member( mid , mpwd , memail , mimg ) values( ? , ? , ? , ? )";
+			String sql = "insert into member( mid , mpwd , memall , mimg ) values( ? , ? , ? , ? )";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, dto.getMid());
 			ps.setString(2, dto.getMpwd());
@@ -28,7 +30,7 @@ public class MemberDao extends Dao {
 		return false;
 	}
 	
-	// 2. 로그인
+	// 2. 로그인 ( 세션저장 )
 	public boolean login(String mid , String mpwd) {
 		try {			// 1. sql 작성한다 
 			String sql = " select * from member where mid = ? and mpwd = ?";
@@ -47,6 +49,27 @@ public class MemberDao extends Dao {
 	// 4. 비밀번호찾기
 	
 	// 5. 내정보 호출
+	public MemberDto info( String mid ) {
+		try {
+			String sql = "select mno , mid , memall , mimg from member where mid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, mid);
+			rs = ps.executeQuery();
+			if(rs.next() ) {
+				
+				MemberDto memberDto = new MemberDto(
+						LocalDateTime.now().toString() ,
+						rs.getInt(1) , rs.getString(2) ,
+						 rs.getString(3) , rs.getString(4) );
+				return memberDto;
+						
+				
+			}
+			
+		} catch (Exception e) {System.out.println(e);}
+		return null;
+	}
+	
 	
 	// 6. 아이디/이메일 중복검사 [ 인수 : 검사할아이디 / 반환 : true(중복없이) , false(중복없이) ]
 	public boolean findIdorEmail(String type , String data) {
@@ -65,7 +88,59 @@ public class MemberDao extends Dao {
 	}
 	
 	// 7. 회원수정
+	public boolean mupdate(int mno , String mimg) {
+		
+		try {
+			String sql = "update member set mimg = ? where mno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, mimg); ps.setInt(2, mno);
+			int count = ps.executeUpdate();
+			if( count == 1 ) return true;
+			
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
 	// 8. 회원탈퇴 
+	public boolean mdelete(int mno , String mpwd) {
+		
+		try {
+			String sql = "delete from member where mno = ? and mpwd = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno); ps.setString(2, mpwd);
+			int count = ps.executeUpdate();
+			if(count == 1) return true; // 삭제성공 => 회원탈퇴
+			
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false; // 회원번호 또는 입력받은 패스워드 일치하지 않거나 
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

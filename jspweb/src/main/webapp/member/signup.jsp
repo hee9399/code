@@ -34,7 +34,7 @@
 																		
 			<div class="intitle"> 이메일 </div>									
 			<div class="emailbox">			
-				<input onkeyup="emailcheck()" name="memail" class="memail" type="text" />
+				<input onkeyup="emailcheck()" name="memall" class="memall" type="text" />
 				<!-- disabled : 버튼사용불가능 -->
 				<button class="authReqBtn" onclick="authReq()" disabled type="button">인증요청</button><br/>
 			</div>

@@ -42,6 +42,8 @@
 		</form>
 	</div>
 
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 	<script src="../js/login.js" type="text/javascript"></script>
 
 </body>

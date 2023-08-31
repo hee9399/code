@@ -7,8 +7,35 @@ public class MemberDto {
 	private String memall;
 	private String mimg ;
 	
+	// DB 없는 필드 
+	// 로그인 시간
+	private String loginDatetime;
+	
+	// get and set
+	public void setLoginDatetime(String loginDatetime) {
+		this.loginDatetime = loginDatetime;
+	}
+	
+	// 로그인 객체를 만들 생성자 [ 패스워드 제외 ] : 오버로딩 하기위해 매개변수 타입 순서를 변경한다.
+	public MemberDto(  String loginDatetime , int mno, String mid, String memall, String mimg) {
+		super();
+		this.mno = mno;
+		this.mid = mid;
+		this.memall = memall;
+		this.mimg = mimg;
+		this.loginDatetime = loginDatetime;
+	}
+	
+	// ------------------------------------------------ // 
+	
 	// 생성자 
 	public MemberDto() {}
+
+
+	public String getLoginDatetime() {
+		return loginDatetime;
+	}
+	
 	// 풀
 	public MemberDto(int mno, String mid, String mpwd, String memall, String mimg) {
 		super();

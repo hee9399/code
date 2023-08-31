@@ -59,7 +59,8 @@
 		
 	</div> <!-- 인사관리 전체구역 e -->
 	
-		<div class="hrm_Bittom"> <!-- 출력 구역 -->
+	
+		<div class="hrm_Bottom"> <!-- 출력 구역 -->
 			
 			<div class="hrmbox"> <!-- 인사관리 1개의 출력구역 -->
 				<div> 22 </div>
@@ -70,26 +71,10 @@
 				<img src="" />
 				
 			</div> <!-- 인사관리 1개의 출력구역 e -->
+		</div>	
 			
-			<div class="hrmbox"> <!-- 인사관리 1개의 출력구역 -->
-				<div> 22 </div>
-				<div> 정희락 </div>
-				<div> 010-1111-2222 </div>
-				<div> 사원 </div>
-				<img src="" />
-				
-			</div> <!-- 인사관리 1개의 출력구역 e -->
 			
-			<div class="hrmbox"> <!-- 인사관리 1개의 출력구역 -->
-				<div> 22 </div>
-				<div> 정희락 </div>
-				<div> 010-1111-2222 </div>
-				<div> 사원 </div>
-				<img src="" />
-				
-			</div> <!-- 인사관리 1개의 출력구역 e -->
-			
-		</div>
+		
 	
 	
 

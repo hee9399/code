@@ -143,7 +143,7 @@ function emailcheck(){
 	 let authReqBtn = document.querySelector('.authReqBtn');
 	
 	// 1. 입력된 값 호출 
-	let memail = document.querySelector('.memail').value
+	let memall = document.querySelector('.memall').value
 	
 	// 2. 이메일 정규표현식 [ 영대소문자,문자,숫자,_- @ ]
 		// ex) clffp99@naver.com
@@ -156,11 +156,11 @@ function emailcheck(){
 		 
 	let memailj = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z]+$/
 	
-	if(memailj.test(memail)){
+	if(memailj.test(memall)){
 		
 		$.ajax({
       url : "/jspweb/MemberFindController",      // 누구랑 통신할건지 
-      data : {type : "memail" , data : memail}, //      
+      data : {type : "memall" , data : memall}, //      
       method : "get", // doGet으로 가라    
       success : r => {
      		if(r){

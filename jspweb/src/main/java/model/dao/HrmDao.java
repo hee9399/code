@@ -33,7 +33,7 @@ public class HrmDao extends Dao {
 		return false;
 	}
 	
-	// 2. 인사괸리 출력
+	// 2. 인사괸리 출력/호출
 	public ArrayList<HrmDto> hread(){
 		// 여러개의 dto를 담을 리스트를 생성한다
 		// 왜? 여러개의 가계부를 담아올꺼기때문에 그리고 몇개의가계부를 담아올지 모르기때문에 ArrayList 배열 사용 
@@ -62,6 +62,7 @@ public class HrmDao extends Dao {
 		} catch (Exception e) {System.out.println(e);}
 		return list; // 리스트 변환 
 	}
+	
 	
 }// class e
 
