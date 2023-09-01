@@ -1,5 +1,7 @@
 package model.dao;
 
+import model.dto.BoardDto;
+
 public class BoardDao extends Dao {
 
 	// 0. 싱글톤 
@@ -9,7 +11,21 @@ public class BoardDao extends Dao {
 			
 			
 	// 1. 글쓰기
-	
+	public boolean bwriter(BoardDto boardDto) {
+		
+		try {
+			// sql작성
+			String sql = "insert into board( btitle , bcontent , bfile , mno , bcno )values( ? , ? , ? , ? , ? )";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, boardDto.getBtitle()); ps.setString(3, boardDto.getBcontent());
+			ps.setString(3, boardDto.getBfile()); ps.setInt(4, boardDto.getMno());
+			ps.setInt(5, boardDto.getBcno());
+			int count = ps.executeUpdate(); if( count == 1 )return true;
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
 	// 2. 모든 글 출력
 	

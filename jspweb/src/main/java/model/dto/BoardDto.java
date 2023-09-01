@@ -31,12 +31,24 @@ public class BoardDto {
 		this.mid = mid;
 		this.bcname = bcname;
 	}
+	// 입력시 필요한 생성자 
+	public BoardDto(String btitle, String bcontent, String bfile, int mno, int bcno) {
+		super();
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+		this.mno = mno;
+		this.bcno = bcno;
+	}
+	
 	
 	
 	// 메소드
 	public int getBno() {
 		return bno;
 	}
+	
+	
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
