@@ -7,7 +7,7 @@ function hrmimg(object){console.log('사진 선택 변경됨');
 
 	console.log(object); // 이벤트를 발생시킨 태그의 DOM객체를 인수로 받음 
 			//  vs 
-	// console.log(document.querySelector('.mimg'));\
+	// console.log(document.querySelector('.mimg'));
 	// 1. input태그의 속성 [ type,class,onchange,name 등등 ]
 	
 	// ------- 해당 파일을 바이트코드로 변환 

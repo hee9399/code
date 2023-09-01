@@ -1,5 +1,6 @@
 
 let 헤더변수 = "헤더변수데이터";
+let loginState = false; /* 로그인 상태 true:로그인중 false 비로그인 */ 
 
 // 1. 현재 로그인된 회원정보 요쳥 
 
@@ -21,10 +22,11 @@ function getMemberInfo(){
                	
                	
                	if( r == null ){// 비로그인 , 로그인이 안된상태
+               		loginState = false;
 						   html += `<li> <a href="/jspweb/member/signup.jsp"> 회원가입 </a> </li>
 				<li><a href="/jspweb/member/login.jsp"> 로그인 </a></li>`
 				   }else{// 로그인 된상태 
-					   	   
+					   	   loginState = true;
 					  
 					   html += ` <li> ${ r.mid } 님 </li>
 						<li> <img class="hmimg" src="/jspweb/member/img/${ r.mimg }" /> </li>

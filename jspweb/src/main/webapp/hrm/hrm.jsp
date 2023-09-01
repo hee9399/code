@@ -74,9 +74,6 @@
 		</div>	
 			
 			
-		
-	
-	
 
 	<script src="hrm.js" type="text/javascript"></script>
 

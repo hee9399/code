@@ -4,7 +4,7 @@ drop database if exists jspweb;
 create database jspweb;
 use jspweb;
 
-# member테이블 생성
+# 회원제 테이블 생성
 drop table if exists member;
 create table member(  
 	mno int auto_increment ,			-- 식별번호 (회원번호)
@@ -14,6 +14,40 @@ create table member(
     mimg longtext ,		-- 회원 프로필 이미지 사진 이름 , 공백 가능
     primary key(mno)
 );
+
+# 회원제 게시판 테이블 board
+drop table if exists bcategory;
+create table bcategory(
+	bcno int auto_increment , 		-- 식별 번호 
+    bcname varchar(30) not null , 	-- 제목  
+    primary key(bcno) 
+);
+
+# 샘플 [ 공지사항 , 자유게시판 , 노하우 ]
+insert into bcategory value(1 , '공지사항');
+insert into bcategory value(2 , '자유게시판');
+insert into bcategory value(3 , '노하우');
+
+#  게시판 카테고리 테이블  bcategory foreign key(bcategory)
+drop table if exists board;
+create table board(
+	bno int auto_increment , 		-- 식별 번호 
+    btitle varchar(30) not null , 	-- 제목  
+	bcontent longtext , 			-- 내용 
+    bfile longtext , 				-- 첨부파일 
+    bdate datetime default now() ,   -- 날짜 
+    bview int default 0 , 			-- 조회수
+    mno int ,
+    bcno int ,
+    primary key(mno) ,
+    foreign key( mno ) references member(mno) on delete cascade , -- 회원탈퇴시 게시물도 같이 삭제 [ 제약조건 ] 
+    foreign key( bcno ) references bcategory( bcno ) on delete cascade on update cascade -- 카테고리 삭제시 게시물도 삭제 , 
+);
+
+
+
+
+# -------------------------- 회원제  ------------------------------------------------------------
 
 select*from member;
 
