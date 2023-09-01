@@ -1,17 +1,22 @@
 package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.dao.BoardDao;
 import model.dto.BoardDto;
+import model.dto.MemberDto;
+
 
 /**
  * Servlet implementation class BoardController
@@ -26,6 +31,21 @@ public class BoardController extends HttpServlet {
     
     // 1. 전체조회 2. 개별조회
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 1. 요청 
+		
+		// 2. 유효성검사/객체화 
+		
+		// 3. DAO
+		ArrayList<BoardDto> result = BoardDao.getInstance().getList();
+		System.out.println(result);
+		// 가공 ArrayList 를 json형태/객체 로 바꾼다
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonArray = objectMapper.writeValueAsString(result);
+		
+		// 4. 응답
+		response.setContentType("application/json;charset=UTF-8");
+    	response.getWriter().print(jsonArray);
 		
 	}
 	
@@ -49,11 +69,12 @@ public class BoardController extends HttpServlet {
 		String bcontent = multi.getParameter("bcontent");
 		String bfile = multi.getParameter("bfile");
 			// - 작성자( mno )는 입력x / mno는 세션에 저장 되어있는 상태 
-		int mno = ( (BoardDto)request.getSession().getAttribute("loginDto") ).getMno();
-		String bcno = multi.getParameter("bcno");
+		// MemberDto 에 있는 loginDto를 가져온다.
+		int mno = ( (MemberDto)request.getSession().getAttribute("loginDto") ).getMno();
+		int  bcno = Integer.parseInt( multi.getParameter("bcno") );
 		
 		// 2. 유효성검사/객체화
-		BoardDto boardDto = new BoardDto(btitle, bcontent, bfile, mno, mno); System.out.println("boardDto도착"+boardDto);
+		BoardDto boardDto = new BoardDto(btitle, bcontent, bfile, mno, bcno); System.out.println("boardDto도착"+boardDto);
 		
 		// 3. Dao 처리 
 		boolean result = BoardDao.getInstance().bwriter(boardDto);

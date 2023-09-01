@@ -12,6 +12,11 @@
 
 	<div class="webcontainer">
 		<h3> 글 목록 페이지 </h3>
+		
+		<table class="boardTable">
+		
+		</table>
+		
 		<button onclick="onwrite()" type="button">글쓰기</button>
 	
 	</div>
