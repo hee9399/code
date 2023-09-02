@@ -26,13 +26,13 @@
 				
 				<div> 전화번호 </div>
 				<input maxlength="30"  name="hphone"  class="hphone" type="text" placeholder="전화번호"/>
-				<span class="phonecheckbox"></span>
+				ssssss<span class="phonecheckbox"></span>
 				
 				<div> 날짜 </div>
 				<input name="hdate" class="hdate" type="date">
 				
 				<div> 직급 </div>
-				<select class="hrank">
+				<select name="hrank">
 				
 					<option> 사원 </option>
 					<option> 주임 </option>
