@@ -1,12 +1,45 @@
 console.log('splicejs 실행');
 
 var wavesurfer = WaveSurfer.create({
-    // id="waveform" 인 오브젝트에 파형 생성
-    // 필수 옵션
     container: '#waveform',
-    // 선택 옵션들 
-    waveColor: 'violet',
-    progressColor: 'purple'
+    waveColor: '#137a7f',
+    progressColor: 'blue',
+    //audioRate: 2,
+    //splitChannels: true,
+    //normalize: true,
 });
 
-wavesurfer.load('audio.wav');
+wavesurfer.load('/jspweb/splice/sample/kick/DBM_CK_KICK_18.wav');
+
+
+playstop = () => {
+  if(wavesurfer.isPlaying()){  
+    wavesurfer.setCurrentTime(0)
+    wavesurfer.pause();
+  }
+  else{
+    wavesurfer.play();
+  }
+};
+
+var wavesurfer2 = WaveSurfer.create({
+    container: '#waveform2',
+    waveColor: '#137a7f',
+    progressColor: 'blue',
+    //audioRate: 2,
+    //splitChannels: true,
+    //normalize: true,
+});
+
+wavesurfer2.load('/jspweb/splice/sample/vox/PMND_Vocal_Chop_110BPM_03_Bm.wav');
+
+playstop2 = () => {
+  if(wavesurfer2.isPlaying()){  
+    wavesurfer2.setCurrentTime(0)
+    wavesurfer2.pause();
+  }
+  else{
+    wavesurfer2.play();
+  }
+};
+
