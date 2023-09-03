@@ -6,11 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<link href="/jspweb/css/splice.css" rel="stylesheet" />
-	
-	<!-- wavesurfer js라이브러리 다운 -->
+	<link href = "/jspweb/css/splice.css" rel="stylesheet" />
 	<!--  <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script> -->
 	
+	<!-- wavesurfer js라이브러리 다운 -->
 	<script src="https://unpkg.com/wavesurfer.js"></script>
 	
 </head>
@@ -24,9 +23,6 @@
 				<div class="menu1"> <a href="#"> Sounds </a> </div>  
 			</div> 
 		</header>
-		
-				
-		
 	
 		<div class="sample-list">
 		    <div class="sample-card">
@@ -35,7 +31,6 @@
 		       	<div id="waveform"></div>
 				<button onclick="playstop()">play/stop</button>     
 		      
-		       	
 		        <div id="waveform"></div>
 		   
 		    </div>
@@ -44,6 +39,7 @@
 		        <h3>Sample 2</h3>
 		        <div id="waveform2"></div>
 				<button onclick="playstop2()">play/stop</button> 
+				<button> 일시정지 </button>
 		        
 		    </div>
 		    <div class="sample-card">
@@ -58,9 +54,6 @@
 	
 	
 	<!--  <script src="http://code.jquery.com/jquery-latest.min.js"> </script> -->
-	
-	
-	
 	<script src="splice.js" type="text/javascript"></script>
 	
 </body>

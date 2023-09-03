@@ -9,13 +9,12 @@ var wavesurfer = WaveSurfer.create({
     //normalize: true,
 });
 
-wavesurfer.load('/jspweb/splice/sample/kick/DBM_CK_KICK_18.wav');
-
+wavesurfer.load('/jspweb/DBM_CK_KICK_18.wav');
 
 playstop = () => {
   if(wavesurfer.isPlaying()){  
-    wavesurfer.setCurrentTime(0)
-    wavesurfer.pause();
+     wavesurfer.setCurrentTime(0)
+     wavesurfer.pause();
   }
   else{
     wavesurfer.play();
@@ -35,11 +34,11 @@ wavesurfer2.load('/jspweb/splice/sample/vox/PMND_Vocal_Chop_110BPM_03_Bm.wav');
 
 playstop2 = () => {
   if(wavesurfer2.isPlaying()){  
-    wavesurfer2.setCurrentTime(0)
-    wavesurfer2.pause();
+     wavesurfer2.setCurrentTime(0)
+     wavesurfer2.pause();
   }
   else{
-    wavesurfer2.play();
+     wavesurfer2.play();
   }
 };
 
