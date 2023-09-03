@@ -9,7 +9,7 @@ var wavesurfer = WaveSurfer.create({
     //normalize: true,
 });
 
-wavesurfer.load('/jspweb/DBM_CK_KICK_18.wav');
+wavesurfer.load('/jspweb/splice/sample/kick/DBM_CK_KICK_18.wav');
 
 playstop = () => {
   if(wavesurfer.isPlaying()){  
