@@ -19,7 +19,7 @@
 		
 		<form class="writeFrom">  <!-- 쓰기 입력 구역 -->
 		
-		카테고리 : <select name="bcno" class="bcno"> 
+			카테고리 : <select name="bcno" class="bcno"> 
 						<!-- 게시물에 저장되는 카테고리정보는 카테고리이름X 카테고리번호 [FK] -->
 						<option value="1"> 공지사항 </option> 
 						<option value="2"> 자유게시판 </option> 

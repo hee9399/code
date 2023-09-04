@@ -18,6 +18,9 @@
 		</table>
 		
 		<button onclick="onwrite()" type="button">글쓰기</button>
+		
+		
+		
 	
 	</div>
 	

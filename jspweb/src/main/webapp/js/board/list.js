@@ -20,10 +20,10 @@ function onwrite(){// - 만약에 비 로그인이면 로그인 페이지로 이
 // 2. 모든 글 조회 [ js 열렸을때 1회 자동실행 ]
 getList();
 function getList(){
-	
+	// ajax 의 실행은 스크립트가 실행한다.
 	   $.ajax({
       url : "/jspweb/BoardController",      
-      data : {},      
+      data : { type : 1 },      
       method : "get",   
       success : r => {
 		  console.log(r);
@@ -50,7 +50,7 @@ function getList(){
 					html += `<tr>
 				<th>${ b.bno }</th>
 				<th>${ b.bcname }</th>
-				<th>${ b.btitle}</th>
+				<th>  <a href="/jspweb/board/view.jsp?bno=${ b.bno }"> ${ b.btitle} </a> </th>
 				<th>${ b.mid }</th>
 				<th>${ b.bview }</th>
 				<th>${ b.bdate }</th>
@@ -64,3 +64,48 @@ function getList(){
    });
 	
 }// f e
+
+/* 
+
+		HTTP URL에 매개변수(파라미터) 전달 ( 쿼리[질의] 스트링 방식 )
+			- 형태 
+			- 정의 : 페이지 전환시 매개변수(pk,식별)를 전달할때 
+				URL?변수명=데이터 
+				URL?변수명=데이터$변수명=데이터
+				http://localhost:80/jspweb/board/view.jsp?bno=3${ b.bno }
+				url뒤에 ? 를쓰면 매개변수를 전달이된다. , ?를 사용해서 키 , 값을 보낸다
+				내가클릭한 변수를 전달하는 방식이다.
+			
+			- URL에서 매개변수 호출 
+				new URL(location.href).searchParams.get("변수명") 
+		
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

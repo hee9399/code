@@ -21,6 +21,7 @@ import model.dto.MemberDto;
 /**
  * Servlet implementation class BoardController
  */
+// 서블릿은 요청코드가 없으면 켜지는데 요청코드가 존재하면 실행되지 않는다.
 @WebServlet("/BoardController")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,24 +30,48 @@ public class BoardController extends HttpServlet {
     public BoardController() {}
        
     
-    // 1. 전체조회 2. 개별조회
+    // type : 1. 전체조회 2. 개별조회
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 요청 
-		
-		// 2. 유효성검사/객체화 
-		
-		// 3. DAO
-		ArrayList<BoardDto> result = BoardDao.getInstance().getList();
-		System.out.println(result);
-		// 가공 ArrayList 를 json형태/객체 로 바꾼다
 		ObjectMapper objectMapper = new ObjectMapper();
-		String jsonArray = objectMapper.writeValueAsString(result);
+		String type = request.getParameter("type");
 		
-		// 4. 응답
+		String json = ""; // if 안에서 공통으로 사용하기때문에 jsonArray 을 밖으로 뺀다.
+		
+		if(type.equals("1") ) { // 1이면 전체 조회 로직 
+			
+			// 3. DAO
+			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
+			System.out.println(result);
+			// 가공 ArrayList 를 json형태/객체 로 바꾼다
+			
+			 json = objectMapper.writeValueAsString(result);
+			
+			
+		}else if( type.equals("2") ) {// 2면 개별 조회 로직 
+			// 1. 매개변수 요청 
+			int bno = Integer.parseInt(request.getParameter("bno") );
+			// 2. DAO 처리 
+			BoardDto result = BoardDao.getInstance().getBoard(bno);
+			
+				// 3. 만약에 ( 로그인 혹은 비로그인 ) 요청한 한사람과 게시물작성한사람과 동일하면
+			Object object = request.getSession().getAttribute("loginDto");
+			
+			if( object == null ) { // 비로그인 
+				result.setIshost(false); // 남이 쓴 글 
+			}else { // 로그인 했을때 
+				MemberDto login = (MemberDto)object;
+				// 내가 쓴 글 
+				if( login.getMno() == result.getMno() ) {result.setIshost(true);}
+				
+			}
+			json = objectMapper.writeValueAsString(result);
+		}
+		// 공통 로직 
+			// 1. 전체조회 , 개별조회 하던 응답 로직 공통 
 		response.setContentType("application/json;charset=UTF-8");
-    	response.getWriter().print(jsonArray);
-		
+    	response.getWriter().print( json );
 	}
 	
 	// 1. 쓰기 
@@ -84,14 +109,54 @@ public class BoardController extends HttpServlet {
     	response.getWriter().print(result);
 		
 	}
-	
+	// 수정
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 1. 수정할 첨부파일 업로드 
+		MultipartRequest multi = new MultipartRequest(
+				request, 
+				request.getServletContext().getRealPath("/board/upload") ,
+				1024 * 1024 * 1024 ,
+				"UTF-8" ,
+				new DefaultFileRenamePolicy() 
+				);
+		
+		// 2. 수정할 데이터 요청 
+		int bcno = Integer.parseInt( multi.getParameter("bcno") );
+		String btitle = multi.getParameter("btitle");
+		String bcontent = multi.getParameter("bcontent");
+		String oldfile = multi.getFilesystemName("oldfile"); // 파일명 호출 !! [ getFilesystemName ]
+		// 2* 수정할 게시물 식별키 / 누구를 수정할껀지 
+		int bno = Integer.parseInt( multi.getParameter("bno") );
+		// js onUpdate() 에서 bno를 보내야한다 
+		BoardDto updateDto = new BoardDto(bno, btitle, bcontent, oldfile, bcno);
+			System.out.println("수정dto : " +updateDto);
+		
+		// * 만약에 새로운 첨부파일이 없으면 기존 첨부파일 그대로 사용 
+			// 마냐게boardDto 가 null 이면
+		if( updateDto.getBfile() == null ) {
+			// 기존 첨부파일  .getBoard(bno)는 수정할게시물의 번호를 보여주는 코드이다 
+			 updateDto.setBfile( BoardDao.getInstance().getBoard(bno).getBfile() );
+			
+		}// if e
+		
+		// 3. DAO 
+		boolean result = BoardDao.getInstance().onUpdate(updateDto);
+		// 3. 응답 
+		response.setContentType("application/json;charset=UTF-8");
+    	response.getWriter().print(result);
 		
 	}
 
-	
+	// 삭제 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// 1. 요청 bno 는 정수값(int)으로 받기때문에 integer 로 형변환 해주어야한다 
+				int bno = Integer.parseInt( request.getParameter("bno") ); 
+				// 2. DAO
+				boolean result = BoardDao.getInstance().ondelete(bno);
+				// 3. 응답 
+				response.setContentType("application/json;charset=UTF-8");
+		    	response.getWriter().print(result);
 	}
 
 }

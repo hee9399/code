@@ -1,44 +1,23 @@
 console.log('splicejs 실행');
 
-var wavesurfer = WaveSurfer.create({
+var wavesurfer = WaveSurfer.create({ // WaveSurfer 오디오 파형 생성 함수 
     container: '#waveform',
-    waveColor: '#137a7f',
-    progressColor: 'blue',
+    waveColor: '#D1D2D5', // 오디오 파형 색깔
+    progressColor: 'blue', // 오디오파일 실행시켰을때 색깔
     //audioRate: 2,
     //splitChannels: true,
     //normalize: true,
 });
 
-wavesurfer.load('/jspweb/splice/sample/kick/DBM_CK_KICK_18.wav');
+wavesurfer.load('/jspweb/splice/sample/vox/PMND_Vocal_Chop_110BPM_03_Bm.wav');
+
+
 
 playstop = () => {
-  if(wavesurfer.isPlaying()){  
-     wavesurfer.setCurrentTime(0)
-     wavesurfer.pause();
+  if(wavesurfer.isPlaying()){  // isPlaying 버튼을 눌렀을때 해당파일 실행시킴
+     wavesurfer.pause(); // 실행시킨 이후에 버튼을 누르면 일시정지 됨
   }
   else{
     wavesurfer.play();
   }
 };
-
-var wavesurfer2 = WaveSurfer.create({
-    container: '#waveform2',
-    waveColor: '#137a7f',
-    progressColor: 'blue',
-    //audioRate: 2,
-    //splitChannels: true,
-    //normalize: true,
-});
-
-wavesurfer2.load('/jspweb/splice/sample/vox/PMND_Vocal_Chop_110BPM_03_Bm.wav');
-
-playstop2 = () => {
-  if(wavesurfer2.isPlaying()){  
-     wavesurfer2.setCurrentTime(0)
-     wavesurfer2.pause();
-  }
-  else{
-     wavesurfer2.play();
-  }
-};
-

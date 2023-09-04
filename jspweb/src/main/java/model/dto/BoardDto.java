@@ -16,8 +16,27 @@ public class BoardDto {
     private String mid; // 작성자 회원아이디 [ 사용자는 게시물 조회시 작성자회원번호 보단 작성자아이디 원하는 경우 다수  ]
     private String bcname; // 카테고리명 [ 사용자는 게시물의 카테고리번호 보단 카테고리 ]
     private String mimg; // 작성자 프로필 
+    // - 조회대상자와 게시물 작성자대상자 일치여부 (본인글인지 아닌지에대한 체크여부)
+    private boolean ishost;
+    // - 수정할때 사용되는 생성자 
+    public BoardDto(int bno, String btitle, String bcontent, String bfile, int bcno) {
+		super();
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+		this.bcno = bcno;
+	}
     
-    // 생성자 
+    // get and set
+    public boolean isIshost() {
+		return ishost;
+	}
+	
+	public void setIshost(boolean ishost) {
+		this.ishost = ishost;
+	}
+	// 생성자 
     public BoardDto() {}
     // 풀 
 	public BoardDto(int bno, String btitle, String bcontent, String bfile, int bview, int mno, int bcno, String mid,
