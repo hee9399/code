@@ -16,7 +16,6 @@
 <body>
 	<div class="mainwarp"> <!-- 메인페이지 전체 -->
 	
-	
 		<header> <!-- 헤더 -->
 			<div class="headercontainer">
 				<div class="mainlogo1"><a href="#"><img class="mainlogo2" src="/jspweb/splice/img/mainlogo.png" ></a> </div>
@@ -24,14 +23,16 @@
 			</div> 
 		</header>
 	
-	
-		<div>pack</div>
+		
+		
 	
 		<div class="sampleList">
+		
 		    <div class="sampleCard">
+		    
 		        <img src="/jspweb/splice/img/voximg.png" alt="Sample 1">
 		        <h3>PMND_Vocal_Chop_110BPM_03_Bm.wav</h3>
-		       	<div id="waveform"></div>
+		       	<div class="wavefile" id="waveform"> </div>
 				<button class="file1" onclick="playstop()">play/stop</button>     
 		      
 		        <div id="waveform"></div>
@@ -47,3 +48,4 @@
 	
 </body>
 </html>
+
