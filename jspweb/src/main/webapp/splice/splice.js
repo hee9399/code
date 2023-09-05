@@ -1,6 +1,6 @@
 console.log('splicejs 실행');
 
-var wavesurfer = WaveSurfer.create({ // WaveSurfer 오디오 파형 생성 함수 
+var wavesurfer = WaveSurfer.create({ // WaveSurfer - 오디오 파형 생성 함수 
     container: '#waveform',
     waveColor: '#D1D2D5', // 오디오 파형 색깔
     progressColor: 'blue', // 오디오파일 실행시켰을때 색깔

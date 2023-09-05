@@ -27,12 +27,12 @@
 	
 		<div>pack</div>
 	
-		<div class="sample-list">
-		    <div class="sample-card">
+		<div class="sampleList">
+		    <div class="sampleCard">
 		        <img src="/jspweb/splice/img/voximg.png" alt="Sample 1">
 		        <h3>PMND_Vocal_Chop_110BPM_03_Bm.wav</h3>
 		       	<div id="waveform"></div>
-				<button onclick="playstop()">play/stop</button>     
+				<button class="file1" onclick="playstop()">play/stop</button>     
 		      
 		        <div id="waveform"></div>
 		   

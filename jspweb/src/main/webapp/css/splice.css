@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
 *{box-sizing: border-box;}
-a{
-	background-color: transparent;
-	
-}
+li{list-style: none;}
+
+
 body{
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -33,7 +32,6 @@ header {
 
 .headercontainer{
 	height: 100%;
-	
 	align-items: center;
 	display: flex;
 }
@@ -44,6 +42,9 @@ header {
 	max-height: none;
 }
 
+
+
+ /*
 .menu1{
 	z-index: 99999999;
 	color: #a6a8ad;
@@ -53,22 +54,29 @@ header {
 	font-weight: 500;
 	line-height: 1.25rem;
 	transition: clolr .2s;
+	
+}
+
+.sampleList{
 	display: inline-block;
 }
 
+
 .sample-list {
-    display: flex;
+    display: inline-block;
     align-items: center;
     grid-auto-rows: min-content;
     --pack-size: 36px;
 }
+
 .sample-card , img{
     height: auto;
     vertical-align: middle;
 } 
+
  
  
- /*
+
 .sample-card {
     background-color: white;
     border: 1px solid #ddd;

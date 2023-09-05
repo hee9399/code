@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.dao.BoardDao;
 import model.dto.BoardDto;
 import model.dto.MemberDto;
+import model.dto.PageDto;
 
 
 /**
@@ -41,12 +42,33 @@ public class BoardController extends HttpServlet {
 		
 		if(type.equals("1") ) { // 1이면 전체 조회 로직 
 			
+			// ------------ 1. 카테고리 ----------------- // 
+			int bcno = Integer.parseInt( request.getParameter("bcno") ); 
+			// ----------------- 2. 출력할 게시물수/하나의 페이지의 최대 게시물수 --------- //
+			int listsize = Integer.parseInt( request.getParameter("listsize") );
+			// ------------------ 3. 페이징 처리 하기 ----------------- //
+			int page = Integer.parseInt( request.getParameter("page") );
+				// 1. 페이지별 레코드의 시작번호 
+			int startrow = (page-1)*listsize; // 페이지번호*최대게시물수 
+				// 1*10 -> 10	0  // 2*10 -> 20	10  // 3*10 -> 30	20
+			// ---------------------------- 4. 마지막 페이지번호 --------------------------- // 
+				// 1. 마지막페이지번호/(나누기) 총페이지 = 전체게시물수 /(나누기) 페이지별최대게시물수
+					// 마지막페이지수를 구하려면 총페이지의 수가 필요하고 전체게시물수 를 구하려면 페이지별최대 게시물수가 필요하다.
+				// 2. 전체 게시물수
+			int totalsize = BoardDao.getInstance().getTotalSize(bcno);
+				// 3. 마지막페이지번호/총페이지수
+			int totalpage = totalsize%listsize == 0 ? // 만약에 나머지가 없으면 
+							totalsize/listsize :   // 몫
+							totalsize/listsize+1;  // 몫 + 1	( 나머지 페이지 수를 표시할 페이지1개 추가 )
+					// 게시물수 : 10 , 페이지별 2개씩 출력 => 총페이지수 5[몫]
+					// 게시물수 : 20 , 페이지별 3개씩 출력 => 총페이지수 6[몫] +1 ( 나머지[2] )  
 			// 3. DAO
-			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
-			System.out.println(result);
-			// 가공 ArrayList 를 json형태/객체 로 바꾼다
+			ArrayList<BoardDto> result = BoardDao.getInstance().getList( bcno , listsize ,startrow );
+			// ------------------------- 6. pageDto 구성 -------------------------- //
+			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, result);
 			
-			 json = objectMapper.writeValueAsString(result);
+			// 가공 ArrayList 를 json형태/객체 로 바꾼다
+			 json = objectMapper.writeValueAsString(pageDto);
 			
 			
 		}else if( type.equals("2") ) {// 2면 개별 조회 로직 
@@ -133,7 +155,7 @@ public class BoardController extends HttpServlet {
 			System.out.println("수정dto : " +updateDto);
 		
 		// * 만약에 새로운 첨부파일이 없으면 기존 첨부파일 그대로 사용 
-			// 마냐게boardDto 가 null 이면
+			// 만약에boardDto 가 null 이면
 		if( updateDto.getBfile() == null ) {
 			// 기존 첨부파일  .getBoard(bno)는 수정할게시물의 번호를 보여주는 코드이다 
 			 updateDto.setBfile( BoardDao.getInstance().getBoard(bno).getBfile() );

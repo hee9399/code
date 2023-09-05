@@ -29,18 +29,45 @@ public class BoardDao extends Dao {
 		return false;
 	}
 	
+	// 2-2. 게시물 수 출력 
+	public int getTotalSize( int bcno ) {
+		
+		try {
+			String sql = " select count(*) from board b ";
+			// 만약에 전체보기 가 아니면 [ 카테고리별 개수 ]
+			if( bcno != 0 ) { sql += " where b.bcno = "+bcno; }
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if( rs.next() )return rs.getInt(1);
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return 0;
+	}
+	
 	// 2. 모든 글 출력 , 여러개의 개시물 - ArrayList
-	public ArrayList<BoardDto> getList(){
+	public ArrayList<BoardDto> getList( int bcno , int listsize , int startrow ){
 		
 		// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 
 		ArrayList<BoardDto> list = new ArrayList<>();
 		
 		try {
+			// 앞부분 공통 sql
 			String sql = "select b.* , m.mid , m.mimg , bc.bcname "
-					+ "	from board b \r\n "
-					+ "		natural join bcategory bc "
-					+ "			natural join member m order by b.bdate desc ";
+					+ "	from board b "
+					+ "    natural join bcategory bc "
+					+ "    natural join member m ";
+			// 만약에 카테고리를 선택했으면 [ 전체보기 가 아니면 
+			if( bcno != 0 ) { 
+				sql += " where b.bcno = "+bcno;
+			}
+			// 뒤부분 공통 sql
+			sql += " order by b.bdate desc limit ? , ?";
+				
+			
 			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , startrow ); 
+			ps.setInt( 2 , listsize ); System.out.println(ps);
 			rs = ps.executeQuery();
 			while( rs.next() ) { // 여러개의 레코드 조회 
 				
