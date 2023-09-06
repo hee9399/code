@@ -17,7 +17,6 @@ function getBoard(){
 		// new URL(location.href).searchParams("매개변수명")
 	console.log( bno );
 	
-	// if( bno ==  )
 	
 	// 2. ajax 이용한 bno 전달해서 게시물의 상세 정보 모두 가져오기 
 	 $.ajax({
@@ -34,8 +33,9 @@ function getBoard(){
 		부가정보2 : <div> ${r.mid} , <img src="/jspweb/member/img/${r.mimg}" width="50px" </div>
 		제목 : <div> ${r.btitle} </div>
 		내용 : <div> ${r.bcontent} </div>
-		첨부파일 : <div> ${r.bfile} </div>`
-		
+		첨부파일 : <div> <a href="/jspweb/FileDownLoad?fileDownLoad?filename${r.bfile}"${r.bfile} </a> </div>`
+			
+			/* <a href=" get 메소드방식 "> </a> */ 
       
       	html += `<a href="list.jsp"> <button type="button"> 목록보기 </button> </a>`
       	// 3. 만약에 본인글 인지 제어 [ 본인글이면 수정/삭제 표시함 / 아니면 표시안함 ]

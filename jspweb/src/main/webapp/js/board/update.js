@@ -1,4 +1,6 @@
 
+
+
 // 2. 쿼리스트링(url주소상의변수) 의 변수 가져오기 
 		// 쿼리스트링 : URL?변수명=값&변수명=값$변수명=값
 		// new URL(location.href).searchParms.get("변수명");
@@ -23,8 +25,24 @@ function getBoard(){
 		  // value 를 쓰는 이유는 입력값이 input 으로 입력받기때문에 value를 사용한다 
 		  document.querySelector('.bcno').value = `${r.bcno}`
 		  document.querySelector('.btitle').value = `${r.btitle}`
-		  document.querySelector('.bcontent').value = `${r.bcontent}`
+		  document.querySelector('.bcontent').innerHTML = `${r.bcontent}`
 		  document.querySelector('.oldfile').value = `${r.oldfile}`
+		  
+		  /*  섬머노트 실행  */ 
+			$(document).ready(function() {
+				
+				// $('#summernote').summernote();
+				let option = { // 섬머노트 옵션관련 객체 만들기 
+					
+					lang : 'ko-kr' , // 한글속성 적용
+					height : 500 , // 높이 
+					placeholder : '여기에 내용작성'
+					
+				}// option end
+				
+			  $('#summernote').summernote( option );
+			});// summernote end
+		  
 	  } ,       
       error : e => {} ,         
    });

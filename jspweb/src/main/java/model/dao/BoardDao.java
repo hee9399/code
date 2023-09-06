@@ -30,12 +30,21 @@ public class BoardDao extends Dao {
 	}
 	
 	// 2-2. 게시물 수 출력 
-	public int getTotalSize( int bcno ) {
+	public int getTotalSize( int bcno , String key , String keyword ) {
 		
 		try {
-			String sql = " select count(*) from board b ";
+			String sql = " select count(*) from board b natural join member m ";
 			// 만약에 전체보기 가 아니면 [ 카테고리별 개수 ]
 			if( bcno != 0 ) { sql += " where b.bcno = "+bcno; }
+			
+			// - 만약에 전체보기 가 아니면 [ 카테고리별 개수 ]
+			if( !key.isEmpty() && !keyword.isEmpty() ) {
+				if(bcno != 0 ) sql += " and";
+				else sql += " where ";
+				// * 메소드 소괄호 안에있는 매개변수를 입력받을때는 큰따옴표안에 ++를 넣는다 "+매개변수+"
+				sql += " "+key+" like '%"+keyword+"%' ";
+			}
+			
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if( rs.next() )return rs.getInt(1);
@@ -46,8 +55,12 @@ public class BoardDao extends Dao {
 	}
 	
 	// 2. 모든 글 출력 , 여러개의 개시물 - ArrayList
-	public ArrayList<BoardDto> getList( int bcno , int listsize , int startrow ){
+	public ArrayList<BoardDto> getList( int bcno , int listsize , int startrow ,
+			String key , String keyword ){
 		
+
+		System.out.println("key도착"+key);
+		System.out.println("keyword도착"+keyword);
 		// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 
 		ArrayList<BoardDto> list = new ArrayList<>();
 		
@@ -58,9 +71,24 @@ public class BoardDao extends Dao {
 					+ "    natural join bcategory bc "
 					+ "    natural join member m ";
 			// 만약에 카테고리를 선택했으면 [ 전체보기 가 아니면 
-			if( bcno != 0 ) { 
-				sql += " where b.bcno = "+bcno;
+				// 카테고리가 있을때  where가있고 검색이 있을때 where이 있으면 안된다 
+			if( bcno != 0 ) { sql += " where b.bcno = "+bcno;}
+			System.out.println("bcno != 0 도착"+bcno);
+				
+				// - 만약에 검색이 있다 vs 없다. [ key 와 keyword 모두 빈문자열이 아니면 ]
+					// 문자열.isEmpty() : 문자열이 비어 있으면 [ '' ] null vs '' 다름 
+				// !key.isEmpty() - key의 값이 비어있지 않으면 
+			if( !key.isEmpty() &&  !keyword.isEmpty() ) {
+				
+				// - 만약에 카테고리내 검색이면 [ 이미 where 구문이 존재하기 때문에 and 조건 추가 ]
+				if( bcno != 0 ) sql += "and";
+				else sql += " where ";
+				// * 메소드 소괄호 안에있는 매개변수를 입력받을때는 큰따옴표안에 ++를 넣는다 "+매개변수+"
+				sql += " "+key+" like '%"+keyword+"%' ";
+				System.out.println("key , keyword 도착"+sql);
+				
 			}
+			
 			// 뒤부분 공통 sql
 			sql += " order by b.bdate desc limit ? , ?";
 				

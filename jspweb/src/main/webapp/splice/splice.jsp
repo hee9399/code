@@ -23,17 +23,14 @@
 			</div> 
 		</header>
 	
-		
-		
-	
 		<div class="sampleList">
 		
 		    <div class="sampleCard">
 		    
 		        <img src="/jspweb/splice/img/voximg.png" alt="Sample 1">
-		        <h3>PMND_Vocal_Chop_110BPM_03_Bm.wav</h3>
+		        <h3> PMND_Vocal_Chop_110BPM_03_Bm.wav </h3>
 		       	<div class="wavefile" id="waveform"> </div>
-				<button class="file1" onclick="playstop()">play/stop</button>     
+				<button class="file1" onclick="playstop()"> play/stop </button>     
 		      
 		        <div id="waveform"></div>
 		   

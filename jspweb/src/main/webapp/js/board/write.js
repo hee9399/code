@@ -1,5 +1,21 @@
 console.log('writejs open');
 
+/*  섬머노트 실행  */ 
+$(document).ready(function() {
+	
+	// $('#summernote').summernote();
+	let option = { // 섬머노트 옵션관련 객체 만들기 
+		
+		lang : 'ko-kr' , // 한글속성 적용
+		height : 500 , // 높이 
+		placeholder : '여기에 내용작성'
+		
+	}
+	
+  $('#summernote').summernote( option );
+});
+
+
 // 글쓰기 등록함수 
 function bwrite(){
 	console.log('onwrite() open')

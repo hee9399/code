@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 *{box-sizing: border-box;}
+
 li{list-style: none;}
 
 
@@ -10,6 +11,7 @@ body{
     margin: 0;
     padding: 0;
 }
+
 header {
     z-index: 9999;
     width: 100%;
@@ -41,6 +43,7 @@ header {
 	height: 30px;
 	max-height: none;
 }
+/* 하나의 샘플 전체  */
 .sampleList{
 	padding: 32px;
 }
@@ -49,7 +52,8 @@ header {
 	display: flex;
 }
 
-#waveform{width: 100px;}
+/* wave 파일/파형 */
+#waveform{ width: 100px; }
 
 
  /*
