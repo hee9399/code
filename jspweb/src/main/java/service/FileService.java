@@ -13,9 +13,7 @@ public class FileService {
 		if( file.exists() ) { // 만약에 경로상의 파일이 존재하면 
 			
 			file.delete(); // 경로상의 파일 삭제 
-			return true; // 삭제 성공하면 true
-			
-			 
+			return true; // 삭제 성공하면 true		 
 			
 		}
 		
