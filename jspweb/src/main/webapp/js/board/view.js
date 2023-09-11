@@ -78,6 +78,7 @@ function onUpdate(bno){
 	location.href=`/jspweb/board/update.jsp?bno=${bno}`
 	// 수정버튼을 눌렀을때 기존페이지가 나와야 한다.
 	
+	
 }//  f e
 
 

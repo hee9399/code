@@ -1,16 +1,20 @@
 
 let 헤더변수 = "헤더변수데이터";
 let loginState = false; /* 로그인 상태 true:로그인중 false 비로그인 */ 
+let loginMid = ''; // 로그인 성공된 아이들 가져오는 변수 
+
+
 
 // 1. 현재 로그인된 회원정보 요쳥 
 
-getMemberInfo();
+getMemberInfo(); //  로그인이 된 사람과 안된사람을 걸러주는 곳이다.
 
 function getMemberInfo(){
 	
 	           $.ajax({
                url : "/jspweb/MemberController" , 
                method: "get" ,
+               async : false , // 비동기화(기본값=true) , 동기화(false) 설정하는속성 비동기화 :  클라이언트가 요청을 보내고 응답의 대한 대기를 하지않는것
                data : {type : "info"} ,
                success : r => { console.log(r) 
                	// r 은 키 : 값 을 받은 상태이다. r은 객체이다 
@@ -22,11 +26,11 @@ function getMemberInfo(){
                	
                	
                	if( r == null ){// 비로그인 , 로그인이 안된상태
-               		loginState = false;
+               		loginState = false; loginMid = '';
 						   html += `<li> <a href="/jspweb/member/signup.jsp"> 회원가입 </a> </li>
-				<li><a href="/jspweb/member/login.jsp"> 로그인 </a></li>`
+									<li><a href="/jspweb/member/login.jsp"> 로그인 </a></li>`
 				   }else{// 로그인 된상태 
-					   	   loginState = true;
+					   	   loginState = true; loginMid = r.mid;
 					  
 					   html += ` <li> ${ r.mid } 님 </li>
 						<li> <img class="hmimg" src="/jspweb/member/img/${ r.mimg }" /> </li>
