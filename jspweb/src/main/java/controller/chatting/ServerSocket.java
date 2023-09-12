@@ -79,6 +79,7 @@ public class ServerSocket {
 		// 2-1 받은 메시지를 접속된 회원들에게 모두 전송 
 			// 접속되있는 회원들은 client소켓에 있다
 		for( ClientDto clientDto : clientList ) { // 회원목록에서 하나씩 회원 꺼내기 
+													// sendText - 텍스트는 string타입이다 문자열이다.
 			clientDto.getSession().getBasicRemote().sendText(jsonMsg); // 예외처리 필수 
 			
 		}// for e

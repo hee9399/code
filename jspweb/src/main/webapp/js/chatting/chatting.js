@@ -20,59 +20,90 @@ let clientSocket = new WebSocket(`ws://localhost:80/jspweb/serversocket/${loginM
 		// 자동으로 받기위해
 		// 이 라이브러리는 커스텀을이용해서 주고 받아야한다. 
 		// 1. (자동실행) 클라이언트 소켓이 정상적으로 서버소켓에 접속했을때
-	clientSocket.onopen = e => {console.log('서버와 접속이 성공');  }; 
+	clientSocket.onopen = e => { 
+		// 1-2 : 만약에 접속을 성공하면 알림메시지 전송 
+		let msg = { type : "alarm" , content : `${loginMid}님이 입장했습니다.`} 
+		// clientSocket.send(msg); // 그냥 전송하면 문제발생 : 해당 메시지를 받는 JAVA는 JSON타입을 모른다 그래서 문자열 타입으로 전송해야한다. , JSON.stringify 사용
+		// 타입 : 각메모리를 저장한다 
+		// 
+		clientSocket.send( JSON.stringify(msg) );
+		
+	}; 
 		// 2. (자동실행) 클라이언트소켓이 서버소켓과 연결에서 오류가 발생했을때 
-	clientSocket.onerror = e => {console.log('서버와 오류발생: '+e);  };
+	clientSocket.onerror = e => { console.log('서버와 오류발생: '+e);  };
 		// 3. (자동실행) 클라이언트 소켓이 서버소켓과 연결이 끊겼을때.
-	clientSocket.onclose =  e => {console.log('서버와 연결이 끊김: '+e); };
+	clientSocket.onclose =  e => { console.log('서버와 연결이 끊김: '+e); };
 		// 4. (자동실행) 클라이언트소켓이 메시지를 받았을때.
 			// onmessage가 발동하면 onMsg함수 실행한다.
-	clientSocket.onmessage = e => onMsg(e); ;
-	// 보내기x
+	clientSocket.onmessage = e => onMsg(e); 
+	// send 보내기는 없음
+	
 	
 // 3. 서버에게 메시지 전송 	
 function onSend(){
 	// 3-1 textarea 입력값 호출 
-	let msg = document.querySelector('.msg').value;
-	if(msg == ''){ alert('내용을 입력해주세요.'); return; }
+	let msaValue = document.querySelector('.msg').value;
+	if(msaValue == '' || msaValue == '\n'){ 
+		document.querySelector('.msg').value = ``;
+		return; 
+	}
 	
-	// 3-2
+	// 3-2 메시지 전송 
+	
+	let msg = {type : 'message' , content : msaValue }
+	
 		// send 를 하게되면 자바서버에서는 onMessage를 받는다.
 			// msg - 보낸사람 
-	clientSocket.send(msg); // 클라이언트 소켓과 연결된 서버소켓에게 메시지 전송 ----> 서버소켓의 
+	clientSocket.send( JSON.stringify(msg) ); // 클라이언트 소켓과 연결된 서버소켓에게 메시지 전송 ----> 서버소켓의 
+	
+	// 3-3 메시지 전송 성공시 
+	 document.querySelector('.msg').value = ``;
+	  
 	
 }// f  e
+
 
 // 4. 메세지를 받았을때 추후 행동(메소드) 선언 
 function onMsg(e){ // 매개변수는 아무말이나 사용가능 
 	console.log(e); // e : 메시지 받았을때 발생한 이벤트 정보가 들어있는 객체 
 	console.log(e.data); // 메시지를보내면 해당 메시지는 개발자도구함에 data에 담기기때문에.
 	
-	let msg = JSON.parse( e.data );
-		// JSON.parse( ) : 문자열타입의 JSON형식을 JSON타입으로 변환 
-		// JSON.stringify() : JSON타입 을 문자열 타입 (JSON형식 유지)
+	let msgBox = JSON.parse( e.data ); // e.data : 서버로 부터 전달받은 내용물 e.data 속성에 있는 
+	// 객체안에있는 또다른객체ㅐ를 parse 해서 json형태로 전달한다. 
+	msgBox.msg = JSON.parse( msgBox.msg );
+	
+	// 2. msg속성내 content(메시지내용) 속성의 \n 를 <br>로 바꾼다  치환후 결과를 content속성에 대입 
+		// - replace() 문자열 교체/치환/바꾸기 함수 , 숫자처리불가능
+	msgBox.msg.content.replace( /\n/g , '<br>' );
+	
 	
 	// 1. 어디에 출력할껀지 
 	let chatcont = document.querySelector('.chatcont');
 	
 	// 2. 무엇을 
 	let html = ``;
+		// 만약에 메시지 타입이 알람 이면 
+		if( msgBox.type == 'alarm' ){
+			html += `${typeHTML(msgBox.msg)}`;
+		}
+		// 만약에 메시지 타입이 알람이 아니면 
 		// 2-2 만약에 내가 보냈으면.[ 보낸사람아이디와 로그인된사람의 아이디와 같으면 ]
-		if( msg.frommid == loginMid ){
+			// 4번 함수에서 치환덴 content 변수를 html에 대입하면 체팅 보낼때 줄바꿈 처리가되어서 보내진다.
+		else if( msgBox.frommid == loginMid ){
 			html += `<div class="rcont">  
 					<div class="subcont">
-						<div class="date"> 오전 10:02 </div>
-						<div class="content"> ${msg.msg} </div>
+						<div class="date"> ${msgBox.date} </div>
+						${typeHTML(msgBox.msg)}
 					</div>
 				</div>`;
 		}else{// 2-2 내가 보낸 내용이 아니면 
 			html += `		<div class="lcont">  
-					<img class="pimg" src="/jspweb/member/img/default.webp" />
+					<img class="pimg" src="/jspweb/member/img/${msg.frommimg}" />
 					<div class="tocont">
-						<div class="name"> ${msg.frommid} </div> 
+						<div class="name"> ${msgBox.frommid} </div> 
 						<div class="subcont">
-							<div class="content"> ${msg.msg} </div> 
-							<div class="date"> 오전 10:10 </div> 
+							${ typeHTML(msgBox.msg) }
+							<div class="date"> ${msgBox.date} </div> 
 						</div>
 					</div>
 				</div>`;
@@ -81,6 +112,80 @@ function onMsg(e){ // 매개변수는 아무말이나 사용가능
 	
 	// 3. 누적 대입 [ 기존 채팅목록에 이어서 추가 += ]
 	chatcont.innerHTML += html;
+	
+	// ----------------------- * 만약에 스크롤 최하단으로 내리기 ( 스크롤 이벤트 ) ----------------------------- //
+	// 1. 현재 스크롤의 상단 위치 좌표.
+	// let topHeight = chatcont.scrollTop; // dom객체.scrollTop : 해당 div의 스크롤 상단위치 
+		// console.log(topHeight);
+	// 2. 현재 dom객체의 전체 높이 
+	// let scrollHeight = chatcont.scrollHeight; // dom객체.scrollHeight : 헤당 div의 전체 높이 
+		// console.log(scrollHeight);
+	// 3.  전체 높이 값을 현재 스크롤 상단 위치에 대입 
+			// chatcont - 채팅창목록 
+	chatcont.scrollTop = chatcont.scrollHeight;
+	
+}// f  e
+
+// 5. textarea 입력창에서 입력할때마다 이벤트 발생 함수 
+function onEnterKey(){
+	// 2. 만약에 [pc카톡기준] ctrl + enter 이면 줄바꿈처리한다. 
+	if( window.event.keyCode == 13 &&  window.event.ctrlKey ){ // 조합키 : 한번에 두개 이상 입력 가능한 키 [ ctrl.shift+alt ]  
+		 document.querySelector('.msg').value += `\n`; return;
+	}
+	// 1. 만약에 입력한 키 가 [엔터] 이면 메시지 전송 
+	if( window.event.keyCode == 13 ){onSend(); return;}
+	
+	
+	
+}//f  e
+
+// 6. 이모티콘 출력하기 
+getEmo(); // 이모티콘 가져오는 함수
+function getEmo(){
+	
+	// - 여기서 i는 해당 이미지의 순서번호 
+	for(let i = 1; i<=43 ; i++ ){
+		document.querySelector('.emolistbox').innerHTML
+			+= `<img 
+				onclick="onEmoSend(${i})"
+			src="/jspweb/img/imoji/emo${i}.gif" />`;
+	}
+	
+}// f  e
+
+// 7. 클릭한 이모티콘 서버로 보내기/전송하기.
+function onEmoSend(i){
+	
+	// 1. msg 구성 
+	let msg = { type : 'emo' , content : i+"" }; // i는 int타입이다 i+"" 큰따옴표를 처리해서 문자열까지 통합해서 사용한다.
+		// 여기서 type 은 msg[메시지] , emo[이모티콘] , img[사진] 메시지면 메시지 이모티콘이면 이모티콘
+		// content : 내용물 
+		
+	// 2. 보내기 
+	clientSocket.send(JSON.stringify( msg ) );
+			// JSON타입을 String타입으로 변환해주는 함수. [ 모양/형식/포멧 : JSON ]
+	
+}// f  e
+
+// 8. msg 타입에 따른 html 반환 함수 
+function typeHTML( msg ){
+	
+	html = ``;
+	
+	// 1. 메시지 타입 일때는 <div> 반환 
+	if(msg.type == 'message'){
+		html += `<div class="content"> ${msg.content} </div>`; // 메시지면 메시지전송
+	}
+	
+	// 2. 이모티콘 타입 일때는 <img> 반환 
+	else if(msg.type == 'emo'){
+		html += `<img src="/jspweb/img/imoji/emo${msg.content}.gif" />`; // 이모티콘이면 이모티콘 전송 
+	}
+	// 3. 만약에 알림 타입 일때는 <div> 반환 
+	else if( msg.type == 'alarm' ){
+		html += `<div class="alarm"> ${msg.content} </div>`;
+	}
+	return html; 
 	
 }// f  e
 
@@ -240,3 +345,40 @@ function onmsg(event){
 				3. 서버가 '안녕' 메시지 보낸다.
 		
 */
+
+/*
+	let msgBox = JSON.parse( e.data ); console.log( msgBox );
+		// JSON.parse( ) : 문자열타입의 JSON형식을 JSON타입으로 변환 
+		// JSON.stringify() : JSON타입 을 문자열 타입 (JSON형식 유지)
+		console.log( msgBox.msg ); // java , js console내 출력시 줄바꿈 \n 맞음 html에서의 줄바꿈해줘야한다 <br>
+		
+		// 1. 특정 문자열 찾아서 1개 치환/바꾸기/교체 
+		let content = msgBox.msg.replace( '\n' , '<br>' ); // replace( '변경할문자열[정규표현식]' , '새로운문자' )
+		console.log(content);
+		
+		// 2. 특정 문자열 찾아서 찾은 문자열 모두 치환/바꾸기/교체 => java : .replaceAll();  js : 정규표현식 
+		content = msgBox.msg.replace( /\n/g , '<br>' );	// \g : 동일한 패턴의 모든 문자 찾기 [전체]
+		console.log(content);
+	
+	msgBox.msg = JSON.parse( content ); // 치환하고 다시객체에 대입한다. 
+		console.log(msgBox);
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
