@@ -212,9 +212,9 @@ function authReq(){console.log('인증요청');
 	// -- 인증요청시 서빌릿 과통신[ 무엇을? 인증코드 생성 , 이메일전송 ]
 	   $.ajax({
       url : "/jspweb/AuthSendEmailController",      
-      data : {memail : document.querySelector('.memail').value },      
+      data : { memail : document.querySelector('.memail').value } ,      
       method : "get",   
-      success : r => {console.log(r);
+      success : r => {console.log(r)};
       
       	// 1. 'authbox' div 호출 
 	let authbox = document.querySelector('.authbox');
