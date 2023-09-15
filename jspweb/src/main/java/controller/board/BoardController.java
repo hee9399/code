@@ -141,7 +141,7 @@ public class BoardController extends HttpServlet {
 			json = objectMapper.writeValueAsString(result);
 		}
 		// 공통 로직 
-			// 1. 전체조회 , 개별조회 하던 응답 로직 공통 
+		// 1. 전체조회 , 개별조회 하던 응답 로직 공통 
 		response.setContentType("application/json;charset=UTF-8");
     	response.getWriter().print( json );
 	}

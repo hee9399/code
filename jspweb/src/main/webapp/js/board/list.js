@@ -24,6 +24,7 @@ let pageOject = {
 	listsize : 10 , 
 	page : 1 , key : '' , keyword : ''
 }
+
 	// 여기서 type은 : 1:전체조회 , 2:개별조회  
 	// bcno : 조회할 카테고리 번호 [ 기본값은 전체보기 ]
 	// listsize : 하나의 페이지에 최대 표시할 게시물수 [ 기본값은 10개 ]

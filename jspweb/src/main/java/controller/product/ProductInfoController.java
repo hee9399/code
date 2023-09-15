@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,10 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import model.dao.ProductDao;
+import model.dto.MemberDto;
 import model.dto.ProductDto;
 
 // 링크 : http://localhost/jspweb/ProductInfoController
@@ -40,7 +45,7 @@ public class ProductInfoController extends HttpServlet {
 		// 2. 업로드할 파일아이템저장소 객체 : 업로드할 옵션 [ import org.apache.commons.fileupload.disk.DiskFileItemFactory; ]
 		DiskFileItemFactory itemFactory = new DiskFileItemFactory();
 		itemFactory.setRepository( new File(uploadPath) ); // 2. 저장위치 // 파일을 전송해주기때문에 File 타입으로 묶어서 전달한다.
-		itemFactory.setSizeThreshold( 1024*1024*10 );	// 3. 용량 
+		itemFactory.setSizeThreshold( 1024*1024*1024 );	// 3. 용량 
 		itemFactory.setDefaultCharset("UTF-8");		// 4. 한글인코딩 
 		
 		
@@ -51,7 +56,7 @@ public class ProductInfoController extends HttpServlet {
 		try {
 			
 			Map< Integer , String > imgList = new HashMap<>(); // 업로드한 파일명 들을 저장하기 위한 map컬렉션 
-			
+			// Map 컬렉션은 키 와 값 으로 구성된 엔트리 이다 , [ * 키는 중복이 불가능하다. ]
 			
 			// form전송시 input/select/textarea 태그의 모든 데이터 한번에 요청 해서 List 반환
 			List<FileItem> fileList = fileUpload.parseRequest( request );
@@ -63,35 +68,77 @@ public class ProductInfoController extends HttpServlet {
 				
 				// 1. 일반 필드 [ item.isFormField() : 마냐게 일반폼필드이면 true / 아니고 첨부파일필드이면 false ]
 				if( item.isFormField() ) {  
-					System.out.println( item.getString() ); // .getString() : 해당 요청 input의 value 호출 
+					System.out.println( item.getString() ); // .getString() : 해당 요청 input의 value 호출 , 파일 값 호출 
 					
 				}
 				else { // 2. file 필드 
 					// 만약에 파일 필드이면 업로드 진행 
-					System.out.println("업로드할 파일명 : "+item.getName() ); // getName()
+					System.out.println("업로드할 파일명 : "+item.getName() ); // getName() : 파일이름 호출함
 					// 6. 업로드 경로 + 파일명 [ 조합 ]
-					File fileUploadPath = new File(uploadPath + "/"+item.getName() ) ;
+					
+						// 파일명에 중복이 있을때 식별 생성 
+						 UUID uuid =  UUID.randomUUID();
+							// UUID 클래스 : 고유성을 보장하는 ID를 만들기 위한 식별자 표준 규약 [ - 하이픈 4개 구역 ]
+						String filename = uuid+"-"+item.getName().replaceAll("-", "_");
+														// 만약에 파일명에 - 하이픈 존재하면 _ 언더바로 변경
+														// 왜? 파일명과 UUID 간의 식별하기 위해 구분 - 하이픈 사용하기 때문에 
+														// 추후에 파일명만 추출시 사용자가 파일명에 - 이 있으면 파일명 추출시 쪼개기가 힘들다.
+						// UUID[ - - - ] - 파일명 : 추후에 파일명만 추출시 -하이픈 기준으로 쪼개기 
+						
+						// 하이픈 이란?  붙임표또는 하이픈은 문장 부호이다. 낱말을 합치거나 음절을 나눌 때 쓰인다. 
+					
+					File fileUploadPath = new File(uploadPath + "/"+filename ) ;
 					
 					System.out.println("업로드경로와 파일명이 조합된 경로 : " + fileUploadPath);
 					
 					item.write( fileUploadPath ); // .write("저장할경로[파일명포함]")  파일 업로드할 경로를 file타입으로 제공 
 					// 7. 업로드 된 파일이름 Map에 저장 [ -DB에 저장할려고 ]
 					i++;
-					imgList.put( i , item.getName() );
+					imgList.put( i , filename ); // 저장시 에는 이미지번호가 필요 없음
+					// Map 컬렉션은 키 와 값 으로 구성된 엔트리 이다 , [ * 키는 중복이 불가능하다. ]
 					
 				}// else e
 			}//for e	
-			 ProductDto productDto = new ProductDto(
+			
+			// 회원번호 
+			Object object = request.getSession().getAttribute("loginDto");
+			MemberDto memberDto = (MemberDto)object;
+			int mno = memberDto.getMno();
+			
+			 ProductDto productDto = new ProductDto( 
+					 /* 이미지는 여러개이기때문에 인덱스로 가져올수없고 List 로 사진갯수만큼 가져온다  
+					   
+					     1. fileList.get(0) : input의  pcno 값 호출
+					  	 2. fileList.get(1) : naem 의 pname 값 호출
+					  	 3. fileList.get(2) : pcontent 값 호출 
+					  	 4. fileList.get(3) : pprice 값 호출 
+					  	 5. fileList.get(4).getString() : 위도 
+					  	 6. fileList.get(5).getString() : 경도 
+					  	 
+					  */
 					Integer.parseInt( fileList.get(0).getString() ) , 
 					 fileList.get(1).getString() ,
 					 fileList.get(2).getString() ,
 					 Integer.parseInt( fileList.get(3).getString() ) ,
-					 null , null , 
-					 0 ,
+					 fileList.get(4).getString() ,  
+					 fileList.get(5).getString() ,
+					 mno , // 회원번호 호출  
+					 // 여러개 이미지는 위에서 리스트로 구성후 대입 
+					 // 업로드한 파일명의 개수만큼 MAP 리스트 
 					 imgList );
 			 System.out.println( productDto );
-			
-		} catch (Exception e) {  }
+			 System.out.println("dto도착");
+			 
+			// Dto 를 Dao 처리 
+				boolean result = ProductDao.getInstance().register( productDto );
+				
+			// 응답 
+			response.setContentType("application/json;charset=UTF-8");
+			response.getWriter().print(result);
+				
+		} catch (Exception e) {  }; 
+		
+		
 		
 		
 		// 옵션 :  1. 요청방식 2. 저장위치 3. 용량 4. 한글인코딩  5. 파일명중복일때 , 5가지 사용해서 구현하기 
@@ -102,6 +149,41 @@ public class ProductInfoController extends HttpServlet {
 	// 2. 제품 조회
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String type = request.getParameter("type");
+		
+		String json = "";
+		ObjectMapper mapper = new ObjectMapper();
+		
+		
+		if( type.equals("findByTop") ) {
+			int count = Integer.parseInt("count");
+			ProductDao.getInstance().findByTop(count);
+			List<ProductDto> result = ProductDao.getInstance().findByAll();
+			json = mapper.writeValueAsString(result);
+		}
+		else if( type.equals("findByLatLng") ) {
+			String east = request.getParameter("east");
+			String west = request.getParameter("west");
+			String south = request.getParameter("south");
+			String north = request.getParameter("north");
+			List<ProductDto> result = ProductDao.getInstance().findByAll();
+			ProductDao.getInstance().findByLatLng(east, west, south, north);
+			json = mapper.writeValueAsString(result);
+			
+		}
+		else if( type.equals("findByPno") ) {
+			int pno = Integer.parseInt("pno");
+			List<ProductDto> result = ProductDao.getInstance().findByAll();
+			ProductDao.getInstance().findByPno(pno);
+			json = mapper.writeValueAsString(result);
+		}
+		else if( type.equals("findByAll") ) {
+			List<ProductDto> result = ProductDao.getInstance().findByAll();
+			json = mapper.writeValueAsString(result);
+		}
+		// 응답 
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().print(json);
 	}
 
 	// 3. 제품 수정
@@ -116,6 +198,7 @@ public class ProductInfoController extends HttpServlet {
 
 }
 /*
+   // ----------------------------------- 업로드 ----------------------------------------------------- // 
  	MultipartRequest multi = new MultipartRequest(
 				request ,
 				request.getServletContext().getRealPath("/product/img") ,

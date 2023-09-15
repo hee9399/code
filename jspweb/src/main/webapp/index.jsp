@@ -89,7 +89,10 @@
 	
 	 <!-- 부트스트랩 js 호출 -->
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-	 <!-- JSP파일안에 다른 JSP 파일 import 하기  -->
+	
+	<script src="/jspweb/js/index.ks" type="text/javascript"> </script>
+	
+	<!-- JSP파일안에 다른 JSP 파일 import 하기  -->
 	 <%@include file ="footer.jsp" %>
 	
 	

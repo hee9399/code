@@ -12,8 +12,8 @@ public class PageDto {
 	private int startrow;	// 현재 페이지에서 시작되는 순서 
 	private int totalsize;	// 총 게시물 수 or 카테고리별 게시물 수
 	private int totalpage;  // 총 페이지 수 
-	private int startbtn;   // 
-	private int endbtn;
+	private int startbtn;   // 페이지번호버튼 시작번호 
+	private int endbtn;	    // 페이지번호버튼 끝번호 
 	
 	// * 게시물 리스트 [ 조회된 결과 ]
 	ArrayList<BoardDto> boardList;

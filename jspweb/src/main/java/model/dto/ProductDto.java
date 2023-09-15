@@ -14,8 +14,8 @@ public class ProductDto {
     int pprice;		// signed(기본값:음수사용 +-21억) / unsigned ( 음수사용x - 음수만큼의메모리를 양수로 사용 0~40억정도 : 음수 사용여부 )
     int pstate;						// [ 0 : 판매중(기본값) , 1 : 거래중 , 2 : 판매대기 , 3 : 판매완료 ]
     String pdate;	
-    String plat;	
-    String plng;	
+    String plat;		// 위도 
+    String plng;		// 경도
     int mno;
     Map<Integer, String> imgList = new HashMap<>(); // 여러개 이미지 넣기 위해서 제품의 이미지는 여러개 이기때문에 
     String mid; // * 제품 등록한 회원 아이디 
