@@ -75,8 +75,8 @@ function idcheck(){ // 실행조건 : 아이디 입력창에 입력할때마다 
 			
 			// -- 입력한 아이디가 패턴과 일치하면 아이디중복검사.
 			  $.ajax({
-  				      url : "/jspweb/MemberFindController",      
-   				      data : { type : "mid" , data : mid },      
+  				      url : "/jspweb/MemberFindController" ,      
+   				      data : { type : "mid" , data : mid } ,      
     				  method : "get",   // get으로 가라 
       				  success : r => {console.log('통신성공')
       				  console.log(r);
