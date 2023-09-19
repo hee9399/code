@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -105,7 +104,7 @@ public class ProductInfoController extends HttpServlet {
 			MemberDto memberDto = (MemberDto)object;
 			int mno = memberDto.getMno();
 			
-			 ProductDto productDto = new ProductDto( 
+			ProductDto productDto = new ProductDto( 
 					 /* 이미지는 여러개이기때문에 인덱스로 가져올수없고 List 로 사진갯수만큼 가져온다  
 					   
 					     1. fileList.get(0) : input의  pcno 값 호출
@@ -154,27 +153,30 @@ public class ProductInfoController extends HttpServlet {
 		String json = "";
 		ObjectMapper mapper = new ObjectMapper();
 		
-		
 		if( type.equals("findByTop") ) {
-			int count = Integer.parseInt("count");
-			ProductDao.getInstance().findByTop(count);
-			List<ProductDto> result = ProductDao.getInstance().findByAll();
+			/* 
+			   1. js에서 보낸 조회객체를 요청한다.  
+			   2. dao처리한다.
+			   3. js에게 응답한다. 
+				
+			*/
+			int count = Integer.parseInt( request.getParameter("count") );
+			List<ProductDto> result = ProductDao.getInstance().findByTop(count);
 			json = mapper.writeValueAsString(result);
+			
 		}
 		else if( type.equals("findByLatLng") ) {
 			String east = request.getParameter("east");
 			String west = request.getParameter("west");
 			String south = request.getParameter("south");
 			String north = request.getParameter("north");
-			List<ProductDto> result = ProductDao.getInstance().findByAll();
-			ProductDao.getInstance().findByLatLng(east, west, south, north);
+			List<ProductDto> result = ProductDao.getInstance().findByLatLng(east, west, south, north);
 			json = mapper.writeValueAsString(result);
 			
 		}
 		else if( type.equals("findByPno") ) {
-			int pno = Integer.parseInt("pno");
-			List<ProductDto> result = ProductDao.getInstance().findByAll();
-			ProductDao.getInstance().findByPno(pno);
+			int pno = Integer.parseInt( request.getParameter("pno") );
+			ProductDto result = ProductDao.getInstance().findByPno(pno);
 			json = mapper.writeValueAsString(result);
 		}
 		else if( type.equals("findByAll") ) {

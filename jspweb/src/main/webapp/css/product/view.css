@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.productBox{
+	width: 50%; 
+	margin: 0 auto;
+}
+.imgbox{ height: 800px; }
+.imgbox img{ object-fit : cover; }
+.mid{margin-top: 20px;}
+.categorydate{
+	display: flex;
+	justify-content: space-between;
+}
+.pname{
+	font-size: 25px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+.pprice{ font-size: 20px; }
+.pcontent{ 
+	margin: 20px 0px; 
+	min-height: 150px; /* 최소 높이 */
+}
+
+.etcbtnbox{display: flex;}
+.etcbtnbox button{ 
+	width: 100%; 
+	border: none; 
+	font-weight: bold; 
+	height: 50px; 
+	margin: 10px 0px;	
+}
+/* 의사클래스 : 형제의 목록 , 하위요소가 여러개일때 ntn-child(인덱스=1) */
+.etcbtnbox button:nth-child(1){background-color: yellow;}
+.etcbtnbox button:nth-child(2){background-color: black; color: white; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

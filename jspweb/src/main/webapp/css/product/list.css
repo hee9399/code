@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+
+html , body{
+	
+	/* 부모요소의 사이즈가 존재하면 자식 요소의 사이즈 기준점이 된다. */
+	height: 100%;; /* 기본값 auto */
+	
+	/* width는 기본값이 100% 이다. */
+	width: 100%;
+	-ms-overflow-style: none; /* [1] 해당 구역에 스크롤 숨기기 */
+}
+
+/* [2] 브라우저에서 제공하는 숨기기 */
+::-webkit-scrollbar{ display: none; }
+/* 
+	스크롤 숨기기 기능 - 스크롤은 자동 기능이기때문에 다음과같이 숨길수 있다.
+		- html , body 태그에는 자동으로 스크롤바 생성
+		1. -ms-overflow-style : none;
+		2. ::-webkit-scorllbar{display: none;}
+*/
+	
+
+/* width , height : 고정크기( px ) , 상대크기( % ) */
+					/* 여기서 상대란 부모의 크기를 이야긴한다. */
+.mapcontent{ display: flex; width: 100%; height: 800px; }
+#map{ width: 80%; }
+.sidebar{ width: 20%; height: 800px; overflow-y: scroll;  }
+.card{ 
+	margin: 10px; 
+	height: 300px !important;
+}
+.card img{
+	object-fit : cover;
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
