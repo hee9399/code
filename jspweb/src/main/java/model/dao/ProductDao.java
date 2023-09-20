@@ -98,7 +98,7 @@ public class ProductDao extends Dao {
 		return null;
 	}
 	
-	// 3. 선택된 제품번호에 해당하는 제품 출력 함수  
+	// 1. 선택된 제품번호에 해당하는 제품 출력 함수  
 		public ProductDto findByPno(int pno) {
 			try {
 				String sql = "select * from product p natural join pcategory pc natural join member m where p.pno= "+pno;
@@ -122,7 +122,7 @@ public class ProductDao extends Dao {
 			return null;
 		}
 	
-		// 1. N개 제품들을 최신순으로 출력 함수 
+		// 2. N개 제품들을 최신순으로 출력 함수 
 	public List<ProductDto> findByTop( int count ){
 		
 		List<ProductDto> list = new ArrayList<>();
@@ -141,7 +141,7 @@ public class ProductDao extends Dao {
 		return null; 
 	}	
 	
-		// 2. 현재카카오지도내 보고있는 동서남북 기준내 제품들을 출력 함수
+		// 3. 현재카카오지도내 보고있는 동서남북 기준내 제품들을 출력 함수
 	public List<ProductDto> findByLatLng( String east , String west , String south , String north ){
 		try { // 제품의 경도가 '동쪽' 보다 작고 경도가 '서쪽' 보다 크고 / 제품의 위도가 '남쪽' 보다 크고 '북쪽' 보다 크다.
 			List<ProductDto> list = new ArrayList<>();
@@ -169,14 +169,87 @@ public class ProductDao extends Dao {
 		return null;
 	}
 	
-	// 3. 제품 개별 조회/출력
+	// 5. 제품 찜하기 등록( 기존에 찜하기가 안되어있을때 등록함 = 조건에따른 레코드가 없을때 ) , 취소( 찜하기 상태일때 취소한다. = 조건에따른 레코드가 있을때 ) 
+	public boolean setWish( int mno , int pno ) {
+		
+		try {	
+			// 찜하기가 있으면 없으면 - 삼항연산자
+			String sql = getWish(mno, pno) ? "delete from pwishlist where mno = ? and pno = ?" 
+					: "insert into pwishlist values( ? , ? ) ";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno); ps.setInt(2, pno);
+			int count = ps.executeUpdate();
+			if( count == 1 ) {return true;}
+			
+		} catch (Exception e) {System.out.println("setWish"+e);}
+		
+		return false;
+	}
 	
+	// 6. 제품 찜하기 상태 출력 
+	public boolean getWish( int mno , int pno ) {
 	
-	// 4. 수정 / 재품 수정
+		try {
+			
+			String sql = "select * from pwishlist where mno = ? and pno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, mno); ps.setInt(2, pno);
+			rs = ps.executeQuery();
+			if(rs.next() ) {return true;}
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
-	
-	// 5. 삭제 / 제품 삭제 
-	
-	
+	// 7. 현재 로그인된 회원의 찜한 제품 정보를 출력한다(가져온다.) , 찜한 제품은 여러개 이기때문에 List/ArrayList 사용해서 가져온다.
+	public List<ProductDto> getWishProductList( int mno ) {
+		
+		
+		List<ProductDto> list = new ArrayList<>();
+		try {
+			// 현재 회원이 찜한 제품번호 찾기 
+			String sql = "select pno from pwishlist where mno = "+mno; // 현재 회원의 찜하기 제품번호 목록 찾기 
+		
+			ps = conn.prepareStatement(sql); 
+			rs = ps.executeQuery();
+			
+			// 현재 회원이 찜한 제품번호의 레코드 반환  ,  1번함수에 선택된 제품번호에 해당하는 제품 출력 함수 에 있는 dao를 가져온다. 
+				// 찾은 제품번호 하나씩 findByPno() 함수에게 전달해서 제품정보를 list 담기 
+			while( rs.next() ) { list.add( findByPno( rs.getInt("pno") ) ); }
+			return list;
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return null;
+	}
 	
 }// class e
+
+/*
+ 	Map<Integer, String>		: map객체명.keySet() : map객체내 모든 키 호출 
+ 	Map<Integer, String>		: map객체명.values() : map객체내 모든 값 호출 
+ 	
+ 	// ------ get( 인덱스 )  : List 컬렉션은 인덱스 사용한다.
+ 	// ------ get( 인덱스 )  : SET컬렉션 MAP 컬렉션은 인덱스가 없으므로 키 값으로 호출한다.
+ 	
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

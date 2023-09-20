@@ -49,7 +49,7 @@
 			<div class="pprice">667,000원</div>
 			<div class="pcontent">옷 팝니다.<br>옷 팝니다. 옷 팝니다.</div>
 			<div class="etcbtnbox">
-				<button type="button"> 찜하기 </button>
+				<button onclick="setWish()" type="button"> 찜하기<span class="wish">♡</span> </button>
 				<button type="button"> 바로구매 </button>
 			</div>
 			

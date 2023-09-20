@@ -152,7 +152,7 @@ public class MemberController extends HttpServlet {
 			// 첨부 input : multi.getFilesystemName("input name")
 		String mimg = multi.getFilesystemName("mimg");
 		
-		// Dap [ 로그인된 회원번호 , 수정할 값 ]
+		// Dao [ 로그인된 회원번호 , 수정할 값 ]
 		Object object = request.getSession().getAttribute("loginDto"); 
 		MemberDto memberDto = (MemberDto)object;
 		int loginMno = memberDto.getMno();

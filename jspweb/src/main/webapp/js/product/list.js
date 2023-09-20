@@ -52,6 +52,7 @@ function getInfo() {
     // 영역의 북동쪽 좌표를 얻어옵니다 
     var neLatLng = bounds.getNorthEast(); // 북동쪽
     
+    // lat : 위도[ +-90 ] , lng : 경도 [ +-180 ]
     let 북 = neLatLng.getLat(); 
     let 남 = swLatLng.getLat(); 
     let 서 = swLatLng.getLng(); 

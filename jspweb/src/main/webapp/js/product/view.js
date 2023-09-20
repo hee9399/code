@@ -29,7 +29,7 @@ function findByPno(pno){
 		  
 		  Object.values( jsonObject.imgList ).forEach( (img,i) => {
 			  
-			  // 첫번째 이미지에만 active클래스 삽입
+			  // 첫번째 이미지에만 active클래스 삽입 , active : 현재화면을 보여주는태그[부트스트랩에서 가져옴]
 			  html += `<div class="carousel-item ${i==0 ? 'active' : ''} "> 
 					      <img src="/jspweb/product/img/${img}" class="d-block w-100" alt="...">
 					    </div>`;
@@ -51,6 +51,74 @@ function findByPno(pno){
    });
 	
 }//  f  e
+
+
+// 2. 찜하기 등록 [ 비회원제 : ip주소 / 디바이스식별번호 , 회원제 : header.js에 회원식별번호가 존재한다. ]
+function setWish(){
+	
+	// 1. 회원제 유효성검사.  header.js에 회원식별번호가 존재한다.(전역변수 가져오기)
+	if( loginState == false ){ alert('로그인후 가능한 기능입니다.') }
+	
+	// 2. ajax 요청 
+		 $.ajax({
+	      url : "/jspweb/PwishListController",      
+	      async : false , // 동기화 
+	      data : {pno : pno},      
+	      method : "post",   
+	      success : r => {
+			  console.log(r);
+			  if(r){ getWish(); }
+			  else{  }
+			  } ,       
+	      error : e => {} ,         
+	   });
+	
+}// f   e
+
+// 3. 찜하기 상태 호출
+getWish(); 
+function getWish(){
+
+	let wish = document.querySelector('.wish'); // 하트 구역 가져오기 
+
+	// 1. 비회원이면
+	if( loginState == false ){ wish.innerHTML = '♡'; }
+	
+	// 2. ajax 요청 
+		 $.ajax({
+	      url : "/jspweb/PwishListController",      
+	      data : { type : "finByWish" , pno : pno},      
+	      method : "get",   
+	      success : r => {
+			  console.log(r);
+			  if(r){wish.innerHTML = '♥'; }
+			  else{wish.innerHTML = '♡';}
+			  
+			  } ,       
+	      error : e => {} ,         
+	   }); 
+	
+		
+	
+}//f e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

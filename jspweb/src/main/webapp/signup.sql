@@ -151,7 +151,7 @@ select mno , mid , memall , mimg from member where mid = 'hee9399';
 -- update member set mimg = ? where mno = ?
 
 
-
+select pno from product where 동 >= plng and 서 <= plng and 북 >= plat and 남 <= plat order by pdate desc;
 
 
 
