@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import model.dto.MpointDto;
 import model.dto.ProductDto;
 
 public class ProductDao extends Dao {
@@ -225,6 +226,64 @@ public class ProductDao extends Dao {
 		return null;
 	}
 	
+	// 8. 포인트 지급/사용[증갑/차감] 함수 [ 인수: mpno식별번호 , mno회원번호 , mpamount포인트수 , mpcomment지급내역 vs mpointDto ]
+		// 내 포인트가 어떻게 됬는지? 차감됬는지 
+	public boolean setPoint( MpointDto dto ) {
+		System.out.println("dto:"+dto);
+		try {
+			String sql = "insert into mpoint( mpno , mno , mpamount , mpcomment ) values( ? , ? , ? , ? ) ";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1 , dto.getMpno() ); 		ps.setInt(2 , dto.getMno() );
+			ps.setLong(3 , dto.getMpamount() );		ps.setString(4, dto.getMpcomment() ); 
+			int count = ps.executeUpdate();
+			System.out.println("setPoint: "+ps);
+			if( count == 1 ) { return true; }		
+			
+		} catch (Exception e) {e.getStackTrace();}
+		
+		return false;
+	}
+	// 10. 내 포인트 확인 [ 로그인한 사람의 현재 포인트 합계 ] [ 인수: mno회원번호 ] , 하나출력 - 찾는다. 
+	public long getPoint( int mno ) {
+		
+		try {
+			// mpamount 에 대한 포인트 합계를 구하겠다.
+				// sum( 필드명 ) : 총합계를 계산할 필드명 인수로 대입 // avg // count
+			String sql = "select sum(mpamount) from mpoint where mno = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1 , mno);
+			rs = ps.executeQuery();
+			if( rs.next() ) {return rs.getInt( 1 );}
+			
+		} catch (Exception e) {e.getStackTrace();}
+		
+		return 0;
+	}
+	
+	// 11. 내 표인트 사용 내역 전체 출력하는 함수 [ 인수: mno회원번호 ] 내포인트 전체 내역
+	public List<MpointDto> getPointList( int mno ){
+		
+		List<MpointDto> list = new ArrayList<>();
+		try {
+			String sql = "select*from mpoint where mno = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1 , mno);
+			rs = ps.executeQuery();
+			while( rs.next() ) {  
+				
+				MpointDto dto = new MpointDto(
+					rs.getString(1) , rs.getInt(2) , rs.getLong(3) ,
+					rs.getString(4) , rs.getString(5) );
+				
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {e.getStackTrace();}
+		
+		return null;
+	}
+	
+	
 }// class e
 
 /*
@@ -236,7 +295,37 @@ public class ProductDao extends Dao {
  	
  */
 
-
+/*
+ 
+ 	jdbc : java 와 db 간의 연동 라이브러리 [ mysql-connector-j-8.1.0.jar ]
+ 		1. Connection
+ 		2. PreparedStatement
+ 		3. ResultSet
+ 		- DriverManager.getConnection( 연동할 DB주소 )
+ 	
+ 		
+ JAVA
+ 		1. 연동
+ 				연동은언제 되나요? new MmeberDao(); 싱글톤 생성했을때 
+ 					싱글톤은 언제 사라지나요? java가 꺼지면 사라진다.
+ 				
+ 			자바와 외부(소프트웨어)와 통신하는 데이터가 다니는 통로 이다. ( 바이트(Byte)단위로다닌다. )					
+ 							JAVA																				DB서버
+ 						DriverManager.getConnection														localhost:3306
+ JAVA						
+ 		2. 연동 결과 			
+ 					연동은언제하나요?	JAVA가 객체를 생성했을때 
+ JAVA
+ 
+ 		3. 연동 결과 [ SQL 대입해서 PreparedStatement ]
+ 				PreparedStatement - SQL에 대한 서명을 준비한다.
+ 				
+  JAVA
+ 
+ 		4. Sql 조작/준비
+ 		
+ 		
+ */
 
 
 
